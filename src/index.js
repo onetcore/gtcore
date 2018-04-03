@@ -1,1 +1,4 @@
-alert('test');
+import $ from 'jquery';
+$(function() {
+    alert('test');
+});
