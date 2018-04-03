@@ -54,7 +54,9 @@ module.exports = (env) => {
             new webpack.IgnorePlugin(/jquery/),
             new ExtractTextPlugin('[name].css')
         ].concat(isDev ? [
-            new HTMLPlugin(),
+            new HTMLPlugin({
+                title:'Mozlite JS UI'
+            }),
             new webpack.HotModuleReplacementPlugin()
         ] : [
             new UglifyJsPlugin({
@@ -62,7 +64,9 @@ module.exports = (env) => {
                     ecma: 6 //es6支持
                 }
             }),
-            new CopyPlugin([{ from: 'src/index.d.ts', to: 'index.d.ts' }])
+            new CopyPlugin([{ from: 'src/index.d.ts', to: 'index.d.ts' },{
+                from:'node_modules/jquery/dist/jquery.min.js', to:'jquery.min.js'
+            }])
         ]),
         devServer: {
             contentBase: path.join(__dirname, "dist"),
