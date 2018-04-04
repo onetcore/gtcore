@@ -57,3 +57,6 @@ package-lock.json
 
 # dotenv environment variables file
 .env
+
+# mac
+.DS_Store
