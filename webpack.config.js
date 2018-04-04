@@ -9,15 +9,14 @@ module.exports = (env) => {
     const isDev = !(env && env.prod);
     return [{
         entry: {
-            mozlite: path.join(__dirname, 'src', 'index.js'),
-            bootstrap: 'bootstrap-loader'
+            mozlite: path.join(__dirname, 'src', 'index.js')
         },
         output: {
             filename: '[name].js',
             path: path.join(__dirname, 'dist'),
             chunkFilename: '[id].chunk.js',
             sourceMapFilename: '[name].map',
-            library: '[name]',
+            library: 'Mozlite',
             libraryTarget: 'var',
         },
         resolve: {
@@ -49,11 +48,6 @@ module.exports = (env) => {
                 {
                     test: /\.s?css$/, //移到单独得文件
                     exclude: /(node_modules|bower_components)/,
-                    use: isDev ?
-                        ExtractTextPlugin.extract({ use: ['css-loader', 'sass-loader'] }) : ExtractTextPlugin.extract({ use: ['css-loader?minimize', 'sass-loader?minimize'] })
-                },
-                {
-                    test: /bootstrap.scss$/, //移到单独得文件
                     use: isDev ?
                         ExtractTextPlugin.extract({ use: ['css-loader', 'sass-loader'] }) : ExtractTextPlugin.extract({ use: ['css-loader?minimize', 'sass-loader?minimize'] })
                 }
