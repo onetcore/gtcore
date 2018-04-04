@@ -8,12 +8,21 @@ const HTMLPlugin = require('html-webpack-plugin');
 module.exports = (env) => {
     const isDev = !(env && env.prod);
     return [{
-        entry: { mozlite: path.join(__dirname, 'src', 'index.js') },
+        entry: {
+            mozlite: path.join(__dirname, 'src', 'index.js'),
+            bootstrap: 'bootstrap-loader'
+        },
         output: {
             filename: '[name].js',
-            path: path.join(__dirname, 'dist')
+            path: path.join(__dirname, 'dist'),
+            chunkFilename: '[id].chunk.js',
+            sourceMapFilename: '[name].map',
+            library: '[name]',
+            libraryTarget: 'var',
         },
-        resolve: { extensions: ['.js', '.json'] },
+        resolve: {
+            extensions: ['.js', '.json'],
+        },
         module: {
             rules: [{
                     test: /\.js$/,
@@ -42,8 +51,16 @@ module.exports = (env) => {
                     exclude: /(node_modules|bower_components)/,
                     use: isDev ?
                         ExtractTextPlugin.extract({ use: ['css-loader', 'sass-loader'] }) : ExtractTextPlugin.extract({ use: ['css-loader?minimize', 'sass-loader?minimize'] })
+                },
+                {
+                    test: /bootstrap.scss$/, //移到单独得文件
+                    use: isDev ?
+                        ExtractTextPlugin.extract({ use: ['css-loader', 'sass-loader'] }) : ExtractTextPlugin.extract({ use: ['css-loader?minimize', 'sass-loader?minimize'] })
                 }
             ]
+        },
+        externals: {
+            jquery: "jQuery"
         },
         plugins: [
             new webpack.ProvidePlugin({
@@ -51,22 +68,21 @@ module.exports = (env) => {
                 jQuery: "jquery"
             }),
             new webpack.optimize.OccurrenceOrderPlugin(true),
-            new webpack.IgnorePlugin(/jquery/),
             new ExtractTextPlugin('[name].css')
         ].concat(isDev ? [
             new HTMLPlugin({
-                title:'Mozlite JS UI'
+                title: 'Mozlite JS UI',
+                inject: 'head',
+                filename: 'index.html',
+                template: 'src/index.html'
             }),
             new webpack.HotModuleReplacementPlugin()
         ] : [
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    ecma: 6 //es6支持
-                }
-            }),
-            new CopyPlugin([{ from: 'src/index.d.ts', to: 'index.d.ts' },{
-                from:'node_modules/jquery/dist/jquery.min.js', to:'jquery.min.js'
-            }])
+            new CopyPlugin([
+                { from: 'src/index.d.ts', to: 'index.d.ts' },
+                { from: 'node_modules/jquery/dist/jquery.min.js', to: 'jquery.min.js' }
+            ]),
+            new UglifyJsPlugin()
         ]),
         devServer: {
             contentBase: path.join(__dirname, "dist"),

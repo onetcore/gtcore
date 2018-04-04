@@ -1,8 +1,6 @@
-import $ from 'jquery';
-
 //对jQuery得扩展
 $.fn.extend({
-     /**
+    /**
      * 获取或设置缓存数据。
      */
     dset: function(key, func) {
@@ -99,7 +97,7 @@ export function render(context) {
         executor(context);
     }
 }
- /**
+/**
  * 添加执行队列，这个队列一般在页面加载完或者Modal加载完后执行得方法。
  * @param func 执行得方法。
  */
