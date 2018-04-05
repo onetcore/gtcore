@@ -1,0 +1,121 @@
+.moz-checkbox {
+    cursor: pointer;
+    margin-top: 0;
+    input {
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+        visibility: hidden;
+    }
+    span {
+        margin-left: 10px;
+    }
+    .box-wrapper {
+        float: none;
+        position: relative;
+        display: inline-block;
+        border: 1px solid $check-radio-box-border-color;
+        padding: 0;
+        padding-right: 16px;
+        margin-bottom: 0;
+        width: 16px;
+        height: 18px;
+        box-sizing: border-box;
+        background-clip: padding-box;
+        border-radius: 3px;
+        transition: all 300ms ease-in-out;
+        user-select: none;
+        top: 4px;
+        .box-checked {
+            position: absolute;
+            display: block;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            top: 2px;
+            background-clip: padding-box;
+            border-radius: 2px;
+            zoom: 1;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            transition: 250ms all cubic-bezier(0.455, 0.030, 0.515, 0.955);
+        }
+    }
+    &:hover .box-wrapper {
+        box-shadow: 0 0 0 2px $check-radio-box-shadow-color;
+        .box-checked {
+            opacity: 0.3;
+        }
+    }
+}
+
+.moz-radiobox {
+    @extend .moz-checkbox;
+}
+
+$boxs:16,
+18,
+10;
+@each $i in $boxs {
+    .moz-checkboxlist.box#{$i} .moz-checkbox .box-wrapper,
+    .moz-radioboxlist.box#{$i} .moz-radiobox .box-wrapper {
+        @if $i==16 {
+            padding-right: 14px;
+        }
+        padding-right: #{$i - 2}px;
+        margin-bottom: 0;
+        width: 16px;
+        height: #{$i}px;
+    }
+}
+
+.moz-checkbox.checked {
+    .box-wrapper {
+        .box-checked {
+            background: $check-radio-box-checked-color;
+            opacity: 1;
+            &:before {
+                font: normal normal normal 14px/1 FontAwesome;
+                font-size: 12px;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+    &.checked-style-check {
+        .box-wrapper {
+            .box-checked {
+                background: transparent;
+                &:before {
+                    content: '\f00c';
+                    color: $check-radio-box-checked-color;
+                }
+            }
+        }
+    }
+}
+
+.moz-radiobox.checked,
+.some-checked {
+    @extend .moz-checkbox.checked;
+}
+
+.some-checked .box-wrapper .box-checked {
+    opacity: 0.5;
+}
+
+.moz-checkbox.circle .box-wrapper,
+.moz-radiobox .box-wrapper,
+.moz-checkbox.circle .box-wrapper .box-checked,
+.moz-radiobox .box-wrapper .box-checked {
+    border-radius: 50%;
+}
+
+.checked-show {
+    display: none;
+}

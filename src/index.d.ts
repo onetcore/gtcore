@@ -65,8 +65,11 @@ interface JQuery {
      */
     loadModal(url?: string): void;
 
-    /** 获取选中的实例，多个值使用','分隔。 */
-    checkedVal(): string;
+    /** 获取选中的实例列表。 */
+    checkedVal(): Array;
+
+    /** 获取单选框得值。 */
+    radioVal():string;
 
     /**
      * 设置checkbox或者radio的选中状态。

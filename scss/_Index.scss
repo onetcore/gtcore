@@ -1,3 +1,42 @@
-body {
-    background: $bg-color;
+.action-btn {
+    @extend .btn;
+    @extend .btn-sm;
+    @extend .btn-outline-secondary;
+}
+
+.filter {
+    .filter-btn,
+    button,
+    select,
+    input,
+    textarea {
+        @extend .action-btn
+    }
+    .filter-input {
+        cursor: initial !important;
+    }
+}
+
+$grid-bordered-styles:(solid, dashed);
+@each $style in $grid-bordered-styles {
+    .grid-#{$style} {
+        border-top: $grid-border-width $style $grid-border-color;
+        border-left: $grid-border-width $style $grid-border-color;
+        .grid-row {
+            border: none;
+            .grid-col {
+                border-right: $grid-border-width $style $grid-border-color;
+                border-bottom: $grid-border-width $style $grid-border-color;
+            }
+        }
+    }
+}
+
+.grid-row {
+    margin: 0;
+}
+
+.js-alert .modal-dialog {
+    top: 50%;
+    margin-top: -95px;
 }
