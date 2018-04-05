@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "UI for Mozlite framework.",
     "main": "index.js",
-    "types": "index.d.ts",
     "scripts": {
         "start:dev": "webpack-dev-server --mode development",
         "dev": "webpack --mode development",
@@ -13,8 +12,8 @@
         "type": "git",
         "url": "git+https://github.com/mozlite/js.git"
     },
-    "author": "",
-    "license": "ISC",
+    "author": "网魂小兵",
+    "license": "Apache-2.0",
     "bugs": {
         "url": "https://github.com/mozlite/js/issues"
     },

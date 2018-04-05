@@ -9,15 +9,16 @@ module.exports = (env) => {
     const isDev = !(env && env.prod);
     return [{
         entry: {
-            mozlite: path.join(__dirname, 'src', 'index.js')
+            mozlite: path.join(__dirname, 'src', 'mozlite.js')
         },
         output: {
-            filename: '[name].js',
+            filename: 'js/[name].js',
             path: path.join(__dirname, 'dist'),
-            chunkFilename: '[id].chunk.js',
-            sourceMapFilename: '[name].map',
+            chunkFilename: 'js/[id].chunk.js',
+            sourceMapFilename: 'js/[name].map',
             library: 'Mozlite',
             libraryTarget: 'var',
+            publicPath:'../'
         },
         resolve: {
             extensions: ['.js', '.json'],
@@ -62,19 +63,20 @@ module.exports = (env) => {
                 jQuery: "jquery"
             }),
             new webpack.optimize.OccurrenceOrderPlugin(true),
-            new ExtractTextPlugin('[name].css')
+            new ExtractTextPlugin('css/[name].css')
         ].concat(isDev ? [
             new HTMLPlugin({
                 title: 'Mozlite JS UI',
                 inject: 'head',
                 filename: 'index.html',
-                template: 'src/index.html'
+                template: 'html/index.html'
             }),
             new webpack.HotModuleReplacementPlugin()
         ] : [
             new CopyPlugin([
                 { from: 'src/index.d.ts', to: 'index.d.ts' },
-                { from: 'node_modules/jquery/dist/jquery.min.js', to: 'jquery.min.js' }
+                { from: 'node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.js' },
+                { from: 'README.md', to: 'README.md' }
             ]),
             new UglifyJsPlugin()
         ]),
