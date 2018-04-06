@@ -1,3 +1,4 @@
+import 'bootstrap';
 import { alert, BsType } from './alert';
 import { queue, call, render } from './core';
 

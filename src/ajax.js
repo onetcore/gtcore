@@ -32,13 +32,13 @@ $.fn.formSubmit = function(success, error) {
         },
         error: function(e) {
             submit.removeAttr('disabled').find('i.fa').attr('class', css);
-            onError(e);
+            onError(e, error);
         }
     });
     return false;
 };
 
-function onError(e){
+function onError(e, error){
     if (e.status === 401) {
         alert('需要登入才能够执行此操作！<a href="/login">点击登入...</a>');
         return;

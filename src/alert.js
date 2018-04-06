@@ -1,4 +1,6 @@
 import './core';
+import 'bootstrap';
+
 //弹窗类型
 export const BsType = {
     Success: "success",

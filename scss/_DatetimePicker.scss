@@ -1,0 +1,37 @@
+//兼容bootstrap 4.0
+$btn-primary-bg: $primary!default;
+$btn-primary-color:$white!default;
+$border-radius-base:.25rem !default;
+$gray-lighter:$gray-300!default;
+$gray-light:$gray-600!default;
+$screen-sm-min:576px!default;
+$screen-md-min:768px!default;
+$screen-lg-min:992px!default;
+@import '~eonasdan-bootstrap-datetimepicker/src/sass/_bootstrap-datetimepicker.scss';
+.collapse.in {
+    display: block;
+}
+
+.moz-date {
+    width: 110px;
+}
+
+.moz-datetime {
+    width: 175px;
+}
+
+.moz-time {
+    width: 85px;
+}
+
+.filter {
+    .moz-date {
+        width: 95px;
+    }
+    .moz-datetime {
+        width: 148px;
+    }
+    .moz-time {
+        width: 75px;
+    }
+}

@@ -9,12 +9,27 @@ module.exports = (env) => {
     const isDev = !(env && env.prod);
     return [{
         entry: {
-            mozlite: path.join(__dirname, 'src', 'mozlite.js')
+            mozlite: path.join(__dirname, 'src', 'mozlite.js'),
+            vendor:[
+                'bootstrap',
+                'eonasdan-bootstrap-datetimepicker'
+            ]
+        },
+        optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    commons: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'vendor',
+                        chunks: 'all'
+                    }
+                }
+            }
         },
         output: {
-            filename: 'js/[name].js',
+            filename: 'js/[name].min.js',
             path: path.join(__dirname, 'dist'),
-            chunkFilename: 'js/[id].chunk.js',
+            chunkFilename: 'js/[name].min.js',
             sourceMapFilename: 'js/[name].map',
             library: 'Mozlite',
             libraryTarget: 'var',
@@ -62,6 +77,7 @@ module.exports = (env) => {
                 $: "jquery",
                 jQuery: "jquery"
             }),
+            new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
             new webpack.optimize.OccurrenceOrderPlugin(true),
             new ExtractTextPlugin('css/[name].css')
         ].concat(isDev ? [
@@ -75,7 +91,7 @@ module.exports = (env) => {
         ] : [
             new CopyPlugin([
                 { from: 'src/index.d.ts', to: 'index.d.ts' },
-                { from: 'node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.js' },
+                { from: 'node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
                 { from: 'README.md', to: 'README.md' }
             ]),
             new UglifyJsPlugin()
@@ -83,9 +99,10 @@ module.exports = (env) => {
         devServer: {
             contentBase: path.join(__dirname, "dist"),
             port: 8080,
-            host: '0.0.0.0',
+            host: 'localhost',
             historyApiFallback: true,
-            hot: true
+            hot: true,
+            publicPath:'/'
         }
     }];
 };

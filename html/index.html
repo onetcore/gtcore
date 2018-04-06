@@ -4,12 +4,22 @@
     <title>
         <%= htmlWebpackPlugin.options.title %>
     </title>
-    <script src="jquery.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
 </head>
 
 <body>
+    <div class="filter">
+        <div class="input-group">
+            <input class="filter-input form-control" js-date="date" />
+            <div class="input-group-append">
+                <button js-action="post" type="button" class="action-btn">
+                    <i class="far fa-hand-point-up"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <script>
-        Mozlite.alert('xxxx')
+        Mozlite.render();
     </script>
 </body>
 
