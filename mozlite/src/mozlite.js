@@ -11,4 +11,4 @@ import { query, Query } from './query';
 import './datetimepicker';
 import '../scss/mozlite.scss';
 
-module.exports = { query, Query, queue, render, call, alert, BsType, ajax }; 
+module.exports = { query, Query, queue, render, call, alert, BsType, ajax };
