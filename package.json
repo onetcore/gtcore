@@ -7,7 +7,6 @@
     "style": "dist/css/mozlite.min.css",
     "scripts": {
         "start:dev": "webpack-dev-server --mode development",
-        "dev": "webpack --mode development",
         "build": "webpack --mode production --env.prod"
     },
     "repository": {

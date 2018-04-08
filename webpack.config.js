@@ -98,7 +98,7 @@ module.exports = (env) => {
             new UglifyJsPlugin()
         ]),
         devServer: {
-            contentBase: DistDir,
+            contentBase: 'mozlite/dist/',
             port: 8080,
             host: 'localhost',
             historyApiFallback: true,
