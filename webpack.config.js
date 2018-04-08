@@ -81,7 +81,11 @@ module.exports = (env) => {
             }),
             new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
             new webpack.optimize.OccurrenceOrderPlugin(true),
-            new ExtractTextPlugin('css/[name].min.css')
+            new ExtractTextPlugin('css/[name].min.css'),
+            new CopyPlugin([
+                { from: 'node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
+                { from: 'package.json', to: 'package.json' },
+            ])
         ].concat(isDev ? [
             new HTMLPlugin({
                 title: 'Mozlite JS UI',
@@ -89,10 +93,7 @@ module.exports = (env) => {
                 filename: 'index.html',
                 template: 'index.html'
             }),
-            new webpack.HotModuleReplacementPlugin(),
-            new CopyPlugin([
-                { from: 'node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
-            ]),
+            new webpack.HotModuleReplacementPlugin()
         ] : [
             new CopyPlugin([
                 { from: 'README.md', to: '../README.md' }
