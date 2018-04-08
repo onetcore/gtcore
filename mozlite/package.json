@@ -2,9 +2,9 @@
     "name": "mozlite",
     "version": "0.0.2",
     "description": "UI for Mozlite framework.",
-    "main": "js/mozlite.js",
+    "main": "dist/js/mozlite.js",
     "types": "index.d.ts",
-    "style": "css/mozlite.css",
+    "style": "dist/css/mozlite.css",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
