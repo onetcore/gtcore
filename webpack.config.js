@@ -55,17 +55,14 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(png|jpg|jpeg|gif|svg)$/,
-                    exclude: /(node_modules|bower_components)/,
                     use: 'url-loader?limit=8192&name=images/[hash].[ext]'
                 },
                 {
                     test: /\.(woff|woff2|eot|ttf|otf)$/,
-                    exclude: /(node_modules|bower_components)/,
                     use: 'url-loader?limit=8192&name=fonts/[hash].[ext]'
                 },
                 {
                     test: /\.s?css$/, //移到单独得文件
-                    exclude: /(node_modules|bower_components)/,
                     use: isDev ?
                         ExtractTextPlugin.extract({ use: ['css-loader', 'sass-loader'] }) : ExtractTextPlugin.extract({ use: ['css-loader?minimize', 'sass-loader?minimize'] })
                 }
@@ -91,7 +88,7 @@ module.exports = (env) => {
                 title: 'Mozlite JS UI',
                 inject: 'head',
                 filename: 'index.html',
-                template: 'index.html'
+                template: 'templates/index.html'
             }),
             new webpack.HotModuleReplacementPlugin()
         ] : [
