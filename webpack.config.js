@@ -10,7 +10,7 @@ module.exports = (env) => {
     return [{
         entry: {
             mozlite: path.join(__dirname, 'src', 'mozlite.js'),
-            vendor:[
+            common: [
                 'bootstrap',
                 'eonasdan-bootstrap-datetimepicker'
             ]
@@ -20,7 +20,7 @@ module.exports = (env) => {
                 cacheGroups: {
                     commons: {
                         test: /[\\/]node_modules[\\/]/,
-                        name: 'vendor',
+                        name: 'common',
                         chunks: 'all'
                     }
                 }
@@ -33,7 +33,7 @@ module.exports = (env) => {
             sourceMapFilename: 'js/[name].map',
             library: 'Mozlite',
             libraryTarget: 'var',
-            publicPath:'../'
+            publicPath: '../'
         },
         resolve: {
             extensions: ['.js', '.json'],
@@ -102,7 +102,7 @@ module.exports = (env) => {
             host: 'localhost',
             historyApiFallback: true,
             hot: true,
-            publicPath:'/'
+            publicPath: '/'
         }
     }];
 };
