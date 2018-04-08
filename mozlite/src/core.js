@@ -160,3 +160,8 @@ String.prototype.toDateString = function(fmt) {
 String.prototype.toCamelCase = function() {
     return this.replace(/-([a-z])/ig, (all, cur) => cur.toUpperCase());
 }
+
+//调用render
+$(function() {
+    if (_executors.length > 0) { render(); }
+});

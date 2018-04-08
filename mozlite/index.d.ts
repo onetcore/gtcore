@@ -1,4 +1,9 @@
-/// <reference types="jquery"/>
+declare module 'mozlite' {
+    export = Mozlite;
+}
+
+declare const Mozlite: IMozlite;
+
 /** 
  * 扩展JQuery。
 */
@@ -69,7 +74,7 @@ interface JQuery {
     checkedVal(): Array;
 
     /** 获取单选框得值。 */
-    radioVal():string;
+    radioVal(): string;
 
     /**
      * 设置checkbox或者radio的选中状态。
@@ -108,26 +113,50 @@ interface String {
     toCamelCase(): string;
 }
 
-declare module "mozlite" {
+interface IMozlite {
     /**
      * 添加执行队列，这个队列一般在页面加载完或者Modal加载完后执行得方法。
      * @param func 执行得方法。
      */
-    function queue(func: (context?: JQuery | undefined) => void);
+    queue(func: (context?: JQuery | undefined) => void);
 
     /**
      * 执行当前队列中得方法。
      * @param context 当前上下文。
      */
-    function render(context?: JQuery | undefined);
+    render(context?: JQuery | undefined);
 
     /**
      * 执行方法。
      * @param name 方法名称。
      * @param args 参数列表。
      */
-    function call(name: string, ...args: any[]);
+    call(name: string, ...args: any[]);
 
+    /**
+     * 弹窗警告。
+     * @param msg 消息实例或字符串。
+     * @param type 消息类型。
+     * @param func 点击确认后回调函数。
+     */
+    alert(msg: string | BsMessage, type?: BsType, func?: Function);
+
+    /**
+     * 发送ajax的POST请求。
+     * @param url 消息实例或字符串。
+     * @param data 发送JSON实例。
+     * @param success 发送成功后回调函数。
+     * @param error 发送发生错误后的回调函数。
+     */
+    ajax(url: string, data: object, success?: Function, error?: Function);
+
+    /**
+     * 当前请求查询实例。
+     */
+    query: Query;
+}
+
+declare namespace Mozlite {
     /**报警类型 */
     enum BsType {
         /**成功。 */
@@ -151,23 +180,6 @@ declare module "mozlite" {
         /**其他实例对象。 */
         data?: any;
     }
-
-    /**
-     * 弹窗警告。
-     * @param msg 消息实例或字符串。
-     * @param type 消息类型。
-     * @param func 点击确认后回调函数。
-     */
-    function alert(msg: string | BsMessage, type?: BsType, func?: Function);
-
-    /**
-     * 发送ajax的POST请求。
-     * @param url 消息实例或字符串。
-     * @param data 发送JSON实例。
-     * @param success 发送成功后回调函数。
-     * @param error 发送发生错误后的回调函数。
-     */
-    function ajax(url: string, data: object, success?: Function, error?: Function);
 
     /**
      * 网格。
@@ -219,9 +231,4 @@ declare module "mozlite" {
         prototype: Query;
         new(): Query;
     }
-
-    /**
-     * 当前请求查询实例。
-     */
-    const query: Query;
 }

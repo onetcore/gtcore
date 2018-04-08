@@ -81,7 +81,7 @@ module.exports = (env) => {
             }),
             new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
             new webpack.optimize.OccurrenceOrderPlugin(true),
-            new ExtractTextPlugin('css/[name].css')
+            new ExtractTextPlugin('css/[name].min.css')
         ].concat(isDev ? [
             new HTMLPlugin({
                 title: 'Mozlite JS UI',
