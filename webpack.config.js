@@ -84,7 +84,7 @@ module.exports = (env) => {
             new ExtractTextPlugin('css/[name].min.css'),
             new CopyPlugin([
                 { from: 'node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
-                { from: 'package.json', to: 'package.json' },
+                { from: 'package.json', to: '../package.json' },
             ])
         ].concat(isDev ? [
             new HTMLPlugin({
