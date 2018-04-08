@@ -1,0 +1,30 @@
+{
+    "name": "mozlite",
+    "version": "0.0.2",
+    "description": "UI for Mozlite framework.",
+    "main": "js/mozlite.js",
+    "types": "index.d.ts",
+    "style": "css/mozlite.css",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mozlite/js.git"
+    },
+    "keywords": [
+        "bootstrap",
+        "Mozlite",
+        "jQuery"
+    ],
+    "peerDependencies": {
+        "jquery": "1.9.1 - 3",
+        "font-awesome": "^4.7.0"
+    },
+    "author": "网魂小兵",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/mozlite/js/issues"
+    },
+    "homepage": "https://github.com/mozlite/js#readme"
+}
