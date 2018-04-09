@@ -3,7 +3,7 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HTMLPlugin = require('html-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 const SrcDir = path.join(__dirname, 'mozlite', 'src');
 const DistDir = path.join(__dirname, 'mozlite', 'dist');
 
@@ -84,7 +84,7 @@ module.exports = (env) => {
                 { from: 'package.json', to: '../package.json' },
             ])
         ].concat(isDev ? [
-            new HTMLPlugin({
+            new HTMLWebpackPlugin({
                 title: 'Mozlite JS UI',
                 inject: 'head',
                 filename: 'index.html',
@@ -98,12 +98,13 @@ module.exports = (env) => {
             new UglifyJsPlugin()
         ]),
         devServer: {
-            contentBase: 'mozlite/dist/',
+            contentBase: path.join(__dirname, "./mozlite/dist"),
             port: 8080,
             host: 'localhost',
             historyApiFallback: true,
             hot: true,
-            publicPath: '/'
+            publicPath: '/',
+            inline: true
         }
     }];
 };
