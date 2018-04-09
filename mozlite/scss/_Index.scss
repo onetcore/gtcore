@@ -40,3 +40,7 @@ $grid-bordered-styles:(solid, dashed);
     top: 50%;
     margin-top: -95px;
 }
+
+.js-resize .scalable {
+    position: absolute;
+}

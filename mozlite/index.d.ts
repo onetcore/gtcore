@@ -86,7 +86,14 @@ interface JQuery {
      * 获取以js-${type}开头的所有属性对象。
      * @param type js-属性名称。
      */
-    jsAttrs(type): Object;
+    jsAttrs(type?:string): Object;
+
+    /**
+     * 缩放当前元素，单位为px。
+     * @param type 缩放类型，如：scale,scale-x,scale-y,margin-left等。
+     * @param scale 缩放比例。
+     */
+    scale(type:string, scale:Number):this;
 }
 
 /**扩展日期。 */

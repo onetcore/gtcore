@@ -1,5 +1,5 @@
-import {queue} from './core';
-import {alert} from './alert';
+import { queue } from './core';
+import { alert, BsType } from './alert';
 
 $.fn.formSubmit = function(success, error) {
     var form = this;
@@ -38,13 +38,11 @@ $.fn.formSubmit = function(success, error) {
     return false;
 };
 
-function onError(e, error){
+function onError(e, error) {
     if (e.status === 401) {
         alert('需要登入才能够执行此操作！<a href="/login">点击登入...</a>');
         return;
-    } 
-    else if (error) { error(e); } 
-    else {
+    } else if (error) { error(e); } else {
         alert(e.responseText);
     }
 };
@@ -56,7 +54,7 @@ function getHeaders() {
     return { 'RequestVerificationToken': token.val() };
 };
 
-export function ajax(url, data, success, error){
+export function ajax(url, data, success, error) {
     $('#js-loading').fadeIn();
     $.ajax({
         url: url,

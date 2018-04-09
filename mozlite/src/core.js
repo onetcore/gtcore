@@ -45,13 +45,13 @@ $.fn.extend({
         const attributes = this.get(0).attributes;
         for (var i = 0; i < attributes.length; i++) {
             const attr = attributes[i];
-            var name = attr.name.trim();
+            var name = $.trim(attr.name);
             if (name.startsWith(prefix)) {
                 name = name.substr(prefix.length);
                 while (name.startsWith('-'))
                     name = name.substr(1);
                 if (!name) name = '_this';
-                var value = attr.value.trim();
+                var value = $.trim(attr.value);
                 if (value == 'true')
                     value = true;
                 else if (value == 'false')
@@ -66,14 +66,14 @@ $.fn.extend({
      */
     jsAttr: function(name, value) {
         if (value) return this.attr('js-' + name, value);
-        return this.attr('js-' + name);
+        return $.trim(this.attr('js-' + name));
     },
     /**
      * 获取或设置data-开头的属性。
      */
     dataAttr: function(name, value) {
         if (value) return this.attr('data-' + name, value);
-        return this.attr('data-' + name);
+        return $.trim(this.attr('data-' + name));
     },
     /**
      * 返回当前元素内js-target属性指示的元素对象，如果不存在就为当前实例对象。

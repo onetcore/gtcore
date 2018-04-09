@@ -11,6 +11,7 @@ import { query, Query } from './query';
 import './form';
 import './grid';
 import './modal';
+import './resize';
 import './datetimepicker';
 import '../scss/mozlite.scss';
 

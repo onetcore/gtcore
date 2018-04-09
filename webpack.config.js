@@ -103,8 +103,7 @@ module.exports = (env) => {
             host: 'localhost',
             historyApiFallback: true,
             hot: true,
-            publicPath: '/',
-            inline: true
+            publicPath: '/'
         }
     }];
 };
