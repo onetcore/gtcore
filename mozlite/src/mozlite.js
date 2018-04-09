@@ -9,6 +9,8 @@ import { alert, BsType } from './alert';
 import { ajax } from './ajax';
 import { query, Query } from './query';
 import './form';
+import './grid';
+import './modal';
 import './datetimepicker';
 import '../scss/mozlite.scss';
 
