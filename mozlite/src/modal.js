@@ -35,12 +35,12 @@ $.fn.loadModal = function(url) {
 //处理消息
 function msgHandler(current, d) {
     if (d.message) {
-        var errmsg = current.find('div.modal-validation-summary');
+        var errmsg = current.find('div.modal-error');
         if (errmsg.length > 0 && d.type !== BsType.Success) {
-            var span = errmsg.attr('class', 'modal-validation-summary text-' + d.type).show().find('.errmsg');
+            var span = errmsg.attr('class', 'modal-error text-' + d.type).show().find('.errmsg');
             if (span.length == 0)
                 span = errmsg;
-            errmsg.html(d.message);
+            span.html(d.message);
             return;
         }
         alert(d.message, d.type, () => {
@@ -53,8 +53,12 @@ function msgHandler(current, d) {
             current.data('bs.modal').hide();
     } else if (d.data && d.data.url)
         location.href = d.data.url;
-    else if (d.type === BsType.Success)
+    else if (d.data && d.data.affected)
         location.href = location.href;
+    else {
+        var errmsg = current.find('div.modal-error');
+        if (errmsg.length) errmsg.hide();
+    }
 }
 
 //显示验证相关
