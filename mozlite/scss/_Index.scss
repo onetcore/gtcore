@@ -45,6 +45,7 @@ $grid-bordered-styles:(solid, dashed);
     position: absolute;
 }
 
-.modal-error {
+.modal-summary,
+.field-validation-valid {
     display: none;
 }

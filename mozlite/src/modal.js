@@ -35,9 +35,9 @@ $.fn.loadModal = function(url) {
 //处理消息
 function msgHandler(current, d) {
     if (d.message) {
-        var errmsg = current.find('div.modal-error');
+        var errmsg = current.find('div.modal-summary');
         if (errmsg.length > 0 && d.type !== BsType.Success) {
-            var span = errmsg.attr('class', 'modal-error text-' + d.type).show().find('.errmsg');
+            var span = errmsg.attr('class', 'modal-summary text-' + d.type).show().find('.modal-summary-text');
             if (span.length == 0)
                 span = errmsg;
             span.html(d.message);
@@ -56,7 +56,7 @@ function msgHandler(current, d) {
     else if (d.data && d.data.affected)
         location.href = location.href;
     else {
-        var errmsg = current.find('div.modal-error');
+        var errmsg = current.find('div.modal-summary');
         if (errmsg.length) errmsg.hide();
     }
 }
