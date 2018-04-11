@@ -1,6 +1,6 @@
 import 'bootstrap';
 import { alert, BsType } from './alert';
-import { queue, call, render } from './core';
+import { queue, call, render, options } from './core';
 
 $.fn.loadModal = function(url) {
     var s = this;
@@ -8,7 +8,17 @@ $.fn.loadModal = function(url) {
         .appendTo(document.body)
         .data('target', s.targetElement()));
     url = url || s.attr('href') || s.jsAttr('url');
-    current.load(url, () => {
+    current.load(url, (response, status, xhr) => {
+        switch (status) {
+            case 'error':
+                var errorMsg = options.status[xhr.status];
+                if (!errorMsg) errorMsg = options.unknownError;
+                alert(errorMsg);
+                return;
+            case 'timeout':
+                alert(options.modal.timeout);
+                return;
+        }
         var form = current.find('form');
         if (form.length > 0) {
             if (!form.attr('action'))

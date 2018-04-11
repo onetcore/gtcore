@@ -1,4 +1,4 @@
-import { queue } from './core';
+import { queue, options } from './core';
 import { alert, BsType } from './alert';
 
 $.fn.formSubmit = function(success, error) {
@@ -32,18 +32,19 @@ $.fn.formSubmit = function(success, error) {
         },
         error: function(e) {
             submit.removeAttr('disabled').find('i.fa').attr('class', css);
-            onError(e, error);
+            onErrorHandler(e, error);
         }
     });
     return false;
 };
 
-function onError(e, error) {
-    if (e.status === 401) {
-        alert('需要登入才能够执行此操作！<a href="/login">点击登入...</a>');
+function onErrorHandler(e, error) {
+    var status = options.status[e.status]
+    if (status) {
+        alert(status, BsType.Error);
         return;
     } else if (error) { error(e); } else {
-        alert(e.responseText);
+        alert(options.unknownError, BsType.Error);
     }
 };
 
@@ -74,7 +75,7 @@ export function ajax(url, data, success, error) {
         },
         error: function(e) {
             $('#js-loading').fadeOut();
-            onError(e);
+            onErrorHandler(e, error);
         }
     });
 };
@@ -122,12 +123,12 @@ queue(context => {
                 }
                 action = action.toLowerCase();
                 if (!url) {
-                    throw new Error('操作地址没有配置，请检查js-url,href,action值！');
+                    throw new Error(options.ajax.notFoundUrl);
                 }
                 cur.click(function() {
                     var ids = actionbar.data('moz-data-view').find('.data-content').checkedVal();
                     if (ids.length) {
-                        alert('请选择项目后再进行操作！');
+                        alert(options.ajax.selectedFirst);
                         return false;
                     }
                     return ajaxAction(cur, url, action, ids);
@@ -145,7 +146,7 @@ queue(context => {
         }
         action = action.toLowerCase();
         if (!url) {
-            throw new Error('操作地址没有配置，请检查js-url,href,action值！');
+            throw new Error(options.ajax.notFoundUrl);
         }
         current.click(function() {
             return ajaxAction(current, url, action);

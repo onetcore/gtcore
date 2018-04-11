@@ -3,6 +3,7 @@ declare module 'mozlite' {
 }
 
 declare const Mozlite: IMozlite;
+declare const moz: IMozlite;
 
 /** 
  * 扩展JQuery。
@@ -161,6 +162,11 @@ interface IMozlite {
      * 当前请求查询实例。
      */
     query: Query;
+
+    /**
+     * 配置选项。
+     */
+    options:object;
 }
 
 declare namespace Mozlite {

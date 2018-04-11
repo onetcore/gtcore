@@ -1,4 +1,4 @@
-import { queue } from './core';
+import { queue, options } from './core';
 import { alert } from './alert';
 
 function resize(current, scaleX, scaleY) {
@@ -31,8 +31,8 @@ function resize(current, scaleX, scaleY) {
 
 var unit = /^(\d+)px$/ig;
 
-function getNumber(current, type) {
-    var value = $.trim(current.attr(`_${type}`));
+function parsePX(value) {
+    value = $.trim(value);
     if (!value) return undefined;
     var match = unit.exec(value);
     if (match && match.length) {
@@ -44,7 +44,7 @@ function getNumber(current, type) {
 }
 
 $.fn.scale = function(type, scale) {
-    var value = getNumber(this, type);
+    var value = parsePX(this.attr(`css-${type}`));
     if (!value) return this;
     value *= scale;
     switch (type.toLowerCase()) {
@@ -64,21 +64,26 @@ $.fn.scale = function(type, scale) {
     return this;
 }
 
+function getScale(current) {
+    var win = current.jsAttr('resize')
+    if (!win) throw new Error(options.resize);
+    win = win.split(/x/ig);
+    if (win.length != 2) { throw new Error(options.resize); }
+    var scaleX = $(window).width() / parsePX(win[0]);
+    var scaleY = $(window).height() / parsePX(win[1]);
+    if (isNaN(scaleY) || isNaN(scaleX)) throw new Error(options.resize);
+    if (current.jsAttr('resize-mode') != 'xy')
+        scaleX = scaleY = Math.min(scaleX, scaleY);
+    return { scaleX, scaleY };
+}
+
 function scale(context) {
     $('[js-resize]', context).exec(current => {
-        var scaleY = $(window).height() / getNumber(current, 'win-height');
-        var scaleX = $(window).width() / getNumber(current, 'win-width');
-        if (isNaN(scaleY) || isNaN(scaleX)) {
-            throw new Error('没有配置当前元素得原始分辨率大小：_win-width和_win-height!');
-            return;
-        }
-        if (current.attr('js-resize') != 'xy') {
-            scaleX = scaleY = Math.min(scaleX, scaleY);
-        }
+        var scale = getScale(current);
         current.addClass('js-resize');
-        resize(current, scaleX, scaleY);
+        resize(current, scale.scaleX, scale.scaleY);
         //缩放子项
-        $('.scalable', current).exec(c => resize(c, scaleX, scaleY));
+        $('.scalable', current).exec(c => resize(c, scale.scaleX, scale.scaleY));
     });
 }
 

@@ -4,7 +4,7 @@
  * Copyright 2007-2018 Mozlite, Inc.
  * Licensed under Apache License 2.0
  */
-import { queue, render, call } from './core';
+import { queue, render, call, options } from './core';
 import { alert, BsType } from './alert';
 import { ajax } from './ajax';
 import { query, Query } from './query';
@@ -15,4 +15,8 @@ import './resize';
 import './datetimepicker';
 import '../scss/mozlite.scss';
 
-module.exports = { query, Query, queue, render, call, alert, BsType, ajax };
+if (!window.moz) {
+    window.moz = window.Mozlite;
+}
+
+module.exports = { query, Query, queue, render, call, alert, BsType, ajax, options };

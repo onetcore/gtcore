@@ -161,6 +161,24 @@ String.prototype.toCamelCase = function() {
     return this.replace(/-([a-z])/ig, (all, cur) => cur.toUpperCase());
 }
 
+//选项配置
+export var options = {
+    status: {
+        404: '请求出错，网页地址不存在！', //not found
+        401: '很抱歉，你没有访问权限，如果没有登入可<a href="/login?returnUrl=' + location.href + '">点击登入...</a>', //没权限
+    },
+    unknownError: '很抱歉，出现了未知错误，请检查是否正确操作后请重试，如果多次出现问题请联系技术支持人员进行排查！',
+    alert: { confirm: '确认' },
+    ajax: {
+        notFoundUrl: '操作地址没有配置，请检查js-url,a[href],form[action]值！',
+        selectedFirst: '请选择项目后再进行操作！'
+    },
+    modal: {
+        timeout: '服务器请求超时！'
+    },
+    resize: '配置原始分辨率大小错误，格式：js-resize="widthxheight"!'
+};
+
 //调用render
 $(function() {
     if (_executors.length > 0) { render(); }

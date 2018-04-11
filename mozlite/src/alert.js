@@ -1,4 +1,4 @@
-import './core';
+import { options } from './core';
 import 'bootstrap';
 
 //弹窗类型
@@ -10,7 +10,7 @@ export const BsType = {
 };
 
 //弹窗方法
-export function alert(msg, type, func){
+export function alert(msg, type, func) {
     var message = msg;
     if (!message && typeof msg === "object") {
         var bsmsg = msg;
@@ -20,7 +20,7 @@ export function alert(msg, type, func){
     if (!message)
         return;
     var modal = $(document.body)
-        .dset('js-alert', () => $('<div class="js-alert modal fade" data-backdrop="static"><div class="modal-dialog"><div class="modal-content"><div class="modal-body" style="padding: 50px 30px 30px;"><div class="col-sm-2"><i style="font-size: 50px;"></i></div> <span class="col-sm-10" style="line-height: 26px; padding-left: 0;"></span></div><div class="modal-footer"><button type="button" class="btn btn-primary"><i class="fa fa-check"></i> 确定</button></div></div></div></div>')
+        .dset('js-alert', () => $('<div class="js-alert modal fade" data-backdrop="static"><div class="modal-dialog"><div class="modal-content"><div class="modal-body" style="padding: 50px 30px 30px;"><div class="col-sm-2"><i style="font-size: 50px;"></i></div> <span class="col-sm-10" style="line-height: 26px; padding-left: 0;"></span></div><div class="modal-footer"><button type="button" class="btn btn-primary"><i class="fa fa-check"></i> ' + options.alert.confirm + ' </button></div></div></div></div>')
             .appendTo(document.body));
     var body = modal.find('.modal-body');
     type = type || BsType.Warning;
