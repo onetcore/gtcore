@@ -1,4 +1,4 @@
-import {queue} from './core';
+import { queue, call } from './core';
 
 $.fn.extend({
     checkedVal: function() {
@@ -17,13 +17,14 @@ $.fn.extend({
         var box = this;
         if (!box.is('input'))
             box = this.find('input[type=checkbox], input[type=radio]');
-        this.trigger(checked?'moz.checked':'moz.unchecked');
+        if (this.attr('oncheck'))
+            call(this.attr('oncheck'), checked);
         return box.prop('checked', checked);
     }
 });
 
 //添加单选和复选框得事件
-queue(context=>{
+queue(context => {
     //checkbox
     $('.moz-checkbox', context).click(function() {
         if ($(this).hasClass('disabled')) return;
