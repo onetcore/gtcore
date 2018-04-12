@@ -15,8 +15,4 @@ import './resize';
 import './datetimepicker';
 import '../scss/mozlite.scss';
 
-if (!window.moz) {
-    window.moz = window.Mozlite;
-}
-
 module.exports = { query, Query, queue, render, call, alert, BsType, ajax, options };
