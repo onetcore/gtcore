@@ -1,6 +1,10 @@
 .moz-checkbox {
     cursor: pointer;
     margin-top: 0;
+    &.disabled {
+        //禁用默认
+        cursor: default;
+    }
     input {
         position: absolute;
         display: block;
