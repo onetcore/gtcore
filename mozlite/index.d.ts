@@ -1,10 +1,8 @@
+declare const Mozlite: IMozlite;
+declare const moz: IMozlite;
 declare module 'mozlite' {
     export = Mozlite;
 }
-
-declare const Mozlite: IMozlite;
-declare const moz: IMozlite;
-
 /** 
  * 扩展JQuery。
 */
