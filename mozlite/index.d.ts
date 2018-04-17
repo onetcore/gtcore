@@ -1,5 +1,4 @@
 declare const Mozlite: IMozlite;
-declare const moz: IMozlite;
 declare module 'mozlite' {
     export = Mozlite;
 }
