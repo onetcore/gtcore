@@ -109,33 +109,6 @@ function ajaxAction(current, url, action, ids) {
 }
 
 queue(context => {
-    //actionbar
-    $('.data-view', context).exec(current => {
-        var actionbar = $(current.jsAttr('actionbar'), context);
-        if (!actionbar.data('moz-data-view')) {
-            actionbar.data('moz-data-view', current);
-            $('[js-action]', actionbar).exec(cur => {
-                var action = cur.jsAttr('action').trim();
-                var url = cur.jsAttr('url') || cur.attr('href');
-                if (!url) {
-                    url = action;
-                    action = 'post';
-                }
-                action = action.toLowerCase();
-                if (!url) {
-                    throw new Error(options.ajax.notFoundUrl);
-                }
-                cur.click(function() {
-                    var ids = actionbar.data('moz-data-view').find('.data-content').checkedVal();
-                    if (ids.length) {
-                        alert(options.ajax.selectedFirst);
-                        return false;
-                    }
-                    return ajaxAction(cur, url, action, ids);
-                });
-            });
-        }
-    });
     //action
     $('[js-action]', context).exec(current => {
         var action = current.jsAttr('action').trim();
@@ -150,6 +123,30 @@ queue(context => {
         }
         current.click(function() {
             return ajaxAction(current, url, action);
+        });
+    });
+    //actionbar
+    $('.data-view', context).exec(current => {
+        var actionbar = $(current.jsAttr('actionbar'), context);
+        $('[js-checked]', actionbar).exec(cur => {
+            var action = cur.jsAttr('checked').trim();
+            var url = cur.jsAttr('url') || cur.attr('href');
+            if (!url) {
+                url = action;
+                action = 'post';
+            }
+            action = action.toLowerCase();
+            if (!url) {
+                throw new Error(options.ajax.notFoundUrl);
+            }
+            cur.click(function() {
+                var ids = current.find('.data-content').checkedVal();
+                if (ids.length == 0) {
+                    alert(options.ajax.selectedFirst);
+                    return false;
+                }
+                return ajaxAction(cur, url, action, ids);
+            });
         });
     });
     //脚本提交表单
