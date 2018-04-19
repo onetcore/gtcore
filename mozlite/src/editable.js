@@ -26,8 +26,12 @@ queue(context => {
                 return false;
             }
             var data = current.jsAttrs('data');
-            data['value'] = current.text();
-            ajax(url, data);
+            data['value'] = $.trim(current.html());
+            ajax(url, data, function(d) {
+                current.removeAttr('contenteditable');
+                if (current.attr('js-success'))
+                    call(current.attr('js-success'), d);
+            });
             return false;
         });
 
