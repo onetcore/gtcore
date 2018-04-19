@@ -2,8 +2,8 @@ import {
     queue,
     options
 } from './core';
-import {ajax} from './ajax';
-import {alert} from './alert';
+import { ajax } from './ajax';
+import { alert } from './alert';
 
 queue(context => {
     $('[js-editable]', context).exec(current => {
@@ -15,22 +15,23 @@ queue(context => {
         if (!current.jsAttr('editable-src')) {
             current.jsAttr('editable-src', current.text());
         }
-        current.on('click', function (e) {
+        current.on('click', function(e) {
             current.attr('contenteditable', current.jsAttr('editable')).focus();
         });
 
-        current.on('blur', function(e){
+        current.on('blur', function(e) {
             var url = current.jsAttr('editable-url');
-            if(!url){
+            if (!url) {
                 alert(options.editable.notFoundUrl);
                 return false;
             }
             var data = current.jsAttrs('data');
+            data['value'] = current.text();
             ajax(url, data);
             return false;
         });
 
-        current.on('paste', function (e) {
+        current.on('paste', function(e) {
             e.preventDefault();
             var text = null;
 
