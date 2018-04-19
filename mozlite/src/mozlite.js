@@ -29,6 +29,7 @@ import './modal';
 import './resize';
 import './datetimepicker';
 import '../scss/mozlite.scss';
+import './editable';
 
 module.exports = {
     query,

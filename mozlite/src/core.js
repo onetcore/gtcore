@@ -10,7 +10,7 @@ $.fn.extend({
             this.data(key, data);
         }
         return data;
-    },
+        },
     /**
      * 回调不包含no-js得所有元素。
      */
@@ -182,7 +182,10 @@ export var options = {
     modal: {
         timeout: '服务器请求超时！'
     },
-    resize: '配置原始分辨率大小错误，格式：js-resize="widthxheight"!'
+    resize: '配置原始分辨率大小错误，格式：js-resize="widthxheight"!',
+    editable:{
+        notFoundUrl: '操作地址没有配置，请检查js-editable-url的值！'
+    }
 };
 
 //调用render
