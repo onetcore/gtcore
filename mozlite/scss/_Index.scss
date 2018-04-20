@@ -59,3 +59,7 @@ $grid-bordered-styles:(solid, dashed);
     white-space: nowrap;
     overflow: hidden;
 }
+
+.js-editable {
+    cursor: text;
+}

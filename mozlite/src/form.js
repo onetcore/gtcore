@@ -1,6 +1,7 @@
 import { queue, call } from './core';
 
 $.fn.extend({
+    //多选值
     checkedVal: function() {
         var values = [];
         this.find('input[type=checkbox], input[type=radio]').each(function() {
@@ -9,9 +10,11 @@ $.fn.extend({
         });
         return values;
     },
+    //单选值
     radioVal: function() {
         return this.find('input[type=radio]:checked').val();
     },
+    //设置选项
     checkedSet: function(checked) {
         checked = checked || false;
         var box = this;

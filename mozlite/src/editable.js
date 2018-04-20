@@ -7,6 +7,12 @@ import { alert } from './alert';
 
 queue(context => {
     $('[js-editable]', context).exec(current => {
+        var url = current.jsAttr('editable-url');
+        if (!url) {
+            alert(options.editable.notFoundUrl);
+            return;
+        }
+        current.addClass('js-editable');
         // 干掉IE http之类地址自动加链接
         try {
             document.execCommand("AutoUrlDetect", false, false);
@@ -20,13 +26,11 @@ queue(context => {
         });
 
         current.on('blur', function(e) {
-            var url = current.jsAttr('editable-url');
-            if (!url) {
-                alert(options.editable.notFoundUrl);
-                return false;
-            }
             var data = current.jsAttrs('data');
-            data['value'] = $.trim(current.html());
+            data.value = $.trim(current.text());
+            // 没有变化
+            if (data.value == current.jsAttr('editable-src'))
+                return false;
             ajax(url, data, function(d) {
                 current.removeAttr('contenteditable');
                 if (current.attr('js-success'))

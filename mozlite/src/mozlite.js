@@ -30,6 +30,7 @@ import './resize';
 import './datetimepicker';
 import '../scss/mozlite.scss';
 import './editable';
+import './refresher';
 
 module.exports = {
     query,
