@@ -72,11 +72,9 @@ export function ajax(url, data, success, error) {
         headers: getHeaders(),
         success: function(d) {
             $('#js-loading').fadeOut();
-            var callback = d.data && success;
+            if (success && success(d)) { return; }
             if (d.message && d.type)
-                alert(d.message, d.type, d.type === BsType.Success && !callback);
-            if (callback)
-                success(d.data);
+                alert(d.message, d.type, d.type === BsType.Success);
             else if (d.type === BsType.Success && d.data && d.data.affected)
                 location.href = location.href;
         },
