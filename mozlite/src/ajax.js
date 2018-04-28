@@ -39,6 +39,13 @@ $.fn.formSubmit = function(success, error) {
 };
 
 function onErrorHandler(e, error) {
+    if (e.status == 404) { //404用于处理为找到对象提示。
+        var text = $.trim(e.responseText);
+        if (text) {
+            alert(text);
+            return;
+        }
+    }
     var status = options.status[e.status]
     if (status) {
         alert(status, BsType.Error);
