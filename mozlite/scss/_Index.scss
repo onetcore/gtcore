@@ -62,4 +62,10 @@ $grid-bordered-styles:(solid, dashed);
 
 .js-editable {
     cursor: text;
+    .editable-status {
+        cursor: default;
+        float: left;
+        margin-top: 4px;
+        margin-right: 7px;
+    }
 }

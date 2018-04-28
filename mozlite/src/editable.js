@@ -3,7 +3,7 @@ import {
     options
 } from './core';
 import { ajax } from './ajax';
-import { alert } from './alert';
+import { alert, BsType } from './alert';
 
 queue(context => {
     $('[js-editable]', context).exec(current => {
@@ -37,7 +37,13 @@ queue(context => {
                 if (current.attr('js-success'))
                     call(current.attr('js-success'), d);
                 current.find('.editable-status').remove();
-                current.append('<i class="editable-status text-success fa fa-check"></i>');
+                if (d.type == BsType.Success) {
+                    current.append('<i class="editable-status text-success fa fa-check"></i>');
+                } else {
+                    current.html(current.jsAttr('editable-src'));
+                    current.append('<i title="' + d.message + '" class="editable-status text-danger fa fa-warning"></i>');
+                }
+                return true;
             }, function(e) {
                 current.find('.editable-status').remove();
                 current.append('<i class="editable-status text-danger fa fa-warning"></i>');
