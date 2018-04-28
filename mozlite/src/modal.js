@@ -11,6 +11,12 @@ $.fn.loadModal = function(url) {
     current.load(url, (response, status, xhr) => {
         switch (status) {
             case 'error':
+                if (xhr.status == 404) {
+                    if (response) {
+                        alert(response);
+                        return;
+                    }
+                }
                 var errorMsg = options.status[xhr.status];
                 if (!errorMsg) errorMsg = options.unknownError;
                 alert(errorMsg);

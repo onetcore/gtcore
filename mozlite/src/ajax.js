@@ -17,10 +17,7 @@ $.fn.formSubmit = function(success, error) {
         headers: getHeaders(),
         success: function(d) {
             submit.removeAttr('disabled').find('i.fa').attr('class', css);
-            if (success) {
-                success(d, form);
-                return;
-            }
+            if (success && success(d, form)) { return; }
             if (d.message) {
                 alert(d.message, d.type, function() {
                     if (d.data && d.data.url)
@@ -39,6 +36,8 @@ $.fn.formSubmit = function(success, error) {
 };
 
 function onErrorHandler(e, error) {
+    if (error && error(e))
+        return;
     if (e.status == 404) { //404用于处理为找到对象提示。
         var text = $.trim(e.responseText);
         if (text) {
@@ -50,7 +49,8 @@ function onErrorHandler(e, error) {
     if (status) {
         alert(status, BsType.Error);
         return;
-    } else if (error) { error(e); } else {
+    } else {
+        console.error(e.responseText);
         alert(options.unknownError, BsType.Error);
     }
 };
@@ -168,5 +168,23 @@ queue(context => {
                 selector.formSubmit();
                 return false;
             });
+    });
+    //脚本提交自己
+    $('[js-vsubmit]', context).exec(current => {
+        var url = current.attr('js-vsubmit');
+        var eventName = current.jsAttr('vsubmit-event');
+        if (!eventName) {
+            if (current.is('select'))
+                eventName = 'change';
+            else if (current.is('[type=checkbox]') || current.is('[type=radio]'))
+                eventName = 'click';
+            else
+                eventName = 'blur';
+        }
+        current.on(eventName, function() {
+            var data = current.jsAttrs();
+            data.value = current.val();
+            ajax(url, data);
+        });
     });
 });

@@ -22,6 +22,7 @@ queue(context => {
             current.jsAttr('editable-src', current.text());
         }
         current.on('click', function(e) {
+            current.find('.editable-status').remove();
             current.attr('contenteditable', current.jsAttr('editable')).focus();
         });
 
@@ -35,6 +36,11 @@ queue(context => {
                 current.removeAttr('contenteditable');
                 if (current.attr('js-success'))
                     call(current.attr('js-success'), d);
+                current.find('.editable-status').remove();
+                current.preppend('<i class="editable-status text-success fa fa-check"></i>');
+            }, function(e) {
+                current.find('.editable-status').remove();
+                current.preppend('<i class="editable-status text-danger fa fa-warning"></i>');
             });
             return false;
         });
