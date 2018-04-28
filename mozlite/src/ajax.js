@@ -182,7 +182,7 @@ queue(context => {
                 eventName = 'blur';
         }
         current.on(eventName, function() {
-            var data = current.jsAttrs();
+            var data = current.jsAttrs('data');
             data.value = current.val();
             ajax(url, data);
         });
