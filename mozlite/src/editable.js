@@ -37,10 +37,10 @@ queue(context => {
                 if (current.attr('js-success'))
                     call(current.attr('js-success'), d);
                 current.find('.editable-status').remove();
-                current.preppend('<i class="editable-status text-success fa fa-check"></i>');
+                current.append('<i class="editable-status text-success fa fa-check"></i>');
             }, function(e) {
                 current.find('.editable-status').remove();
-                current.preppend('<i class="editable-status text-danger fa fa-warning"></i>');
+                current.append('<i class="editable-status text-danger fa fa-warning"></i>');
             });
             return false;
         });
