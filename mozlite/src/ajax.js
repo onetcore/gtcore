@@ -185,4 +185,43 @@ queue(context => {
             ajax(url, data);
         });
     });
+    //file上传
+    $('[js-uploader]', context).exec(current => {
+        if (!current.is('input[type=file]')) { return; }
+        current.change(function() {
+            var url = current.jsAttr('uploader');
+            var data = new FormData();
+            data.append(current[0].files[0]);
+            var ajaxData = current.jsAttrs('data');
+            if (ajaxData) {
+                for (const key in ajaxData) {
+                    data.append(key, ajaxData[key]);
+                }
+            }
+            $.ajax({
+                type: "POST",
+                url: url,
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function(d) {
+                    $('#js-loading').fadeOut();
+                    if (current.jsAttr('success')) {
+                        if (call(current.jsAttr('success'), d.data, current)) {
+                            return;
+                        }
+                    }
+                    if (d.message && d.type)
+                        alert(d.message, d.type, d.type === BsType.Success);
+                    else if (d.type === BsType.Success && d.data && d.data.url) {
+                        current.parent().find('input.uploaded').val(d.data.url);
+                    }
+                },
+                error: function(e) {
+                    $('#js-loading').fadeOut();
+                    onErrorHandler(e);
+                }
+            });
+        });
+    });
 });

@@ -120,7 +120,7 @@ export function call(name, ...args) {
         if (args)
             return current.apply(null, args);
         else
-            current();
+            return current();
     }
     return null;
 }
