@@ -191,7 +191,7 @@ queue(context => {
         current.change(function() {
             var url = current.jsAttr('uploader');
             var data = new FormData();
-            data.append(current[0].files[0]);
+            data.append("file", current[0].files[0]);
             var ajaxData = current.jsAttrs('data');
             if (ajaxData) {
                 for (const key in ajaxData) {
