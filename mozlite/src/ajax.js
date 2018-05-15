@@ -1,4 +1,4 @@
-import { queue, options } from './core';
+import { queue, options, call } from './core';
 import { alert, BsType } from './alert';
 
 $.fn.formSubmit = function(success, error) {
@@ -73,10 +73,14 @@ export function ajax(url, data, success, error) {
         success: function(d) {
             $('#js-loading').fadeOut();
             if (success && success(d)) { return; }
-            if (d.message && d.type)
-                alert(d.message, d.type, d.type === BsType.Success);
-            else if (d.type === BsType.Success && d.data && d.data.affected)
-                location.href = location.href;
+            if (d.message && d.type) {
+                var cb = d.type === BsType.Success;
+                if (d.data.affected)
+                    cb = d.data;
+                alert(d.message, d.type, cb);
+            } else if (d.type === BsType.Success && d.data && d.data.affected) {
+                location.href = d.data.url || location.href;
+            }
         },
         error: function(e) {
             $('#js-loading').fadeOut();
@@ -214,7 +218,10 @@ queue(context => {
                     if (d.message && d.type)
                         alert(d.message, d.type, d.type === BsType.Success);
                     else if (d.type === BsType.Success && d.data && d.data.url) {
-                        current.parent().find('input.uploaded').val(d.data.url);
+                        var target = current.data('target');
+                        if (!target)
+                            target = current.parent().find('input.uploaded');
+                        target.val(d.data.url);
                     }
                 },
                 error: function(e) {

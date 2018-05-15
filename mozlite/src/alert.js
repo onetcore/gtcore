@@ -35,6 +35,8 @@ export function alert(msg, type, func) {
             if (typeof func === 'function') {
                 func(modal.data('bs.modal'));
                 modal.data('bs.modal').hide();
+            } else if (typeof func === 'object') {
+                location.href = func.url || location.href;
             } else {
                 location.href = location.href;
             }
