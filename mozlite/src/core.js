@@ -171,7 +171,7 @@ if (typeof String.prototype.startsWith !== 'function')
 export var options = {
     status: {
         404: '请求出错，网页地址不存在！', //not found
-        401: '很抱歉，你没有访问权限，如果没有登入可<a href="/login?returnUrl=' + location.href + '">点击登入...</a>', //没权限
+        401: '很抱歉，你没有权限，如果没有登入可<a class="text-danger" href="/login?returnUrl=' + location.href + '">点击登入...</a>', //没权限
     },
     unknownError: '很抱歉，出现了未知错误，请检查是否正确操作后请重试，如果多次出现问题请联系技术支持人员进行排查！',
     alert: { confirm: '确认' },

@@ -2,9 +2,11 @@ import { queue } from './core';
 import { ajax } from './ajax';
 
 const url = '/js-refresher'
+var refreshTimer;
 
-function refresh(timer, version) {
-    ajax(url, { version: version }, function(d) {
+function refresh(timer) {
+    if (refreshTimer) clearTimeout(refreshTimer);
+    ajax(url, { version: window.$version }, function(d) {
         if (d && d.affected)
             window.location.reload();
         else
@@ -20,6 +22,6 @@ $(function() {
     var timer = parseInt(current.attr('js-refresher-timer'));
     if (isNaN(timer)) timer = 600; //10分钟
     timer *= 1000;
-    var version = current.attr('js-refresher');
-    refresh(timer, version);
+    window.$version = current.attr('js-refresher');
+    refresh(timer);
 });
