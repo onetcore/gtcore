@@ -7,12 +7,14 @@ var refreshTimer;
 function refresh(timer) {
     if (refreshTimer) clearTimeout(refreshTimer);
     ajax(url, { version: window.$version }, function(d) {
-        if (d && d.affected)
+        if (d.data && d.data.affected)
             window.location.reload();
         else
             setTimeout(function() { refresh(timer); }, timer);
+        return true;
     }, function(e) {
         setTimeout(function() { refresh(timer); }, timer);
+        return true;
     });
 }
 
