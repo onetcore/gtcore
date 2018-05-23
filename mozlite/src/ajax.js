@@ -75,7 +75,7 @@ export function ajax(url, data, success, error) {
             if (success && success(d)) { return; }
             if (d.message && d.type) {
                 var cb = d.type === BsType.Success;
-                if (d.data.affected)
+                if (d.data && d.data.affected)
                     cb = d.data;
                 alert(d.message, d.type, cb);
             } else if (d.type === BsType.Success && d.data && d.data.affected) {
