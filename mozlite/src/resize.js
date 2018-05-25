@@ -71,22 +71,24 @@ function getScale(current) {
     if (win.length != 2) { throw new Error(options.resize); }
     var screenWidth = $(window).width();
     var screenHeight = $(window).height();
-    var screen = current.jsAttr('screen');
-    if (screen) {
-        screen = screen.split(/x/ig);
-        if (screen.length > 0) {
-            screenWidth = parsePX(screen[0]) || screenWidth;
-        }
-        if (screen.length > 1) {
-            screenHeight = parsePX(screen[1]) || screenHeight;
-        }
+    var container = current.parent();
+    if (!container.is('body')) {
+        screenWidth = container.width();
+        screenHeight = container.height();
     }
     var scaleX = screenWidth / parsePX(win[0]);
     var scaleY = screenHeight / parsePX(win[1]);
     if (isNaN(scaleY) || isNaN(scaleX)) throw new Error(options.resize);
-    if (current.jsAttr('resize-mode') != 'xy')
-        scaleX = scaleY = Math.min(scaleX, scaleY);
-    return { scaleX, scaleY };
+    var mode = current.jsAttr('resize-mode') || 'xy'
+    switch (mode) {
+        case 'x':
+            return { scaleX, scaleY: scaleX };
+        case 'y':
+            return { scaleX: scaleY, scaleY };
+        default:
+            scaleX = scaleY = Math.min(scaleX, scaleY);
+            return { scaleX, scaleY };
+    }
 }
 
 function scale(context) {
