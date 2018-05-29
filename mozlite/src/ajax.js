@@ -190,9 +190,10 @@ queue(context => {
         });
     });
     //file上传
-    $('[js-uploader]', context).exec(current => {
-        if (!current.is('input[type=file]')) { return; }
-        current.change(function() {
+    $('[js-uploader]', context).exec(cur => {
+        if (!cur.is('input[type=file]')) { return; }
+        cur.on('change', function upload() {
+            var current = $(this);
             var url = current.jsAttr('uploader');
             var data = new FormData();
             data.append("file", current[0].files[0]);
@@ -227,6 +228,9 @@ queue(context => {
                 error: function(e) {
                     $('#js-loading').fadeOut();
                     onErrorHandler(e);
+                },
+                complete: function() {
+                    current.replaceWith(current.clone().on('change', upload));
                 }
             });
         });
