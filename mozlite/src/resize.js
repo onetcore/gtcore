@@ -26,7 +26,8 @@ function resize(current, scaleX, scaleY) {
         .scale('scale-x', scaleX, scaleY)
         .scale('scale-y', scaleX, scaleY)
         //font-size
-        .scale('font-size', sacle);
+        .scale('font-size', sacle)
+        .scale('line-height', sacle);
 }
 
 var unit = /^(\d+)px$/ig;
