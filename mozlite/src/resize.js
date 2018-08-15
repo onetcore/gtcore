@@ -80,12 +80,14 @@ function getScale(current) {
     var scaleX = screenWidth / parsePX(win[0]);
     var scaleY = screenHeight / parsePX(win[1]);
     if (isNaN(scaleY) || isNaN(scaleX)) throw new Error(options.resize);
-    var mode = current.jsAttr('resize-mode') || 'xy'
+    var mode = current.jsAttr('resize-mode') || 'auto'
     switch (mode) {
         case 'x':
             return { scaleX, scaleY: scaleX };
         case 'y':
             return { scaleX: scaleY, scaleY };
+        case 'xy':
+            return {scaleX, scaleX};
         default:
             scaleX = scaleY = Math.min(scaleX, scaleY);
             return { scaleX, scaleY };
