@@ -27,7 +27,7 @@ function resize(current, scaleX, scaleY) {
         .scale('scale-y', scaleX, scaleY)
         //font-size
         .scale('font-size', sacle)
-        .scale('line-height', sacle);
+        .scale('line-height', scaleY);
 }
 
 var unit = /^(\d+)px$/ig;
@@ -87,7 +87,7 @@ function getScale(current) {
         case 'y':
             return { scaleX: scaleY, scaleY };
         case 'xy':
-            return {scaleX, scaleX};
+            return {scaleX, scaleY};
         default:
             scaleX = scaleY = Math.min(scaleX, scaleY);
             return { scaleX, scaleY };
