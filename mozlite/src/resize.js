@@ -97,7 +97,7 @@ function getScale(current) {
 function scale(context) {
     $('[js-resize]', context).exec(current => {
         var scale = getScale(current);
-        current.addClass('js-resize');
+        current.addClass('js-resize').data('scale', scale);
         resize(current, scale.scaleX, scale.scaleY);
         //缩放子项
         $('.scalable', current).exec(c => resize(c, scale.scaleX, scale.scaleY));
