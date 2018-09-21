@@ -1,6 +1,5 @@
-import 'bootstrap';
-import 'eonasdan-bootstrap-datetimepicker';
 import { queue } from './core';
+import 'eonasdan-bootstrap-datetimepicker';
 
 queue(context => {
     $('[js-date]').each(function() {

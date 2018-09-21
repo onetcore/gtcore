@@ -1,9 +1,6 @@
-import {
-    queue,
-    options
-} from './core';
+import {queue,options} from './core';
 import { ajax } from './ajax';
-import { alert, BsType } from './alert';
+import { alert, StatusType } from './alert';
 
 queue(context => {
     $('[js-editable]', context).exec(current => {
@@ -37,7 +34,7 @@ queue(context => {
                 if (current.attr('js-success'))
                     call(current.attr('js-success'), d);
                 current.find('.editable-status').remove();
-                if (d.type == BsType.Success) {
+                if (d.type == StatusType.Success) {
                     current.append('<i class="editable-status text-success fa fa-check"></i>');
                 } else {
                     current.html(current.jsAttr('editable-src'));

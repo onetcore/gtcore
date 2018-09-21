@@ -5,22 +5,63 @@
         <%= htmlWebpackPlugin.options.title %>
     </title>
     <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- <script src="../bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script> -->
+    <link href="../bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
 </head>
 
-<body>
-    <div class="filter">
-        <div class="input-group">
-            <input class="filter-input form-control" js-date="date" />
+<body style="padding:50px;margin:0;">
+<div class="filter mb-2">
+    <label>编码：</label>
+    <select class="form-control form-control-sm border-secondary">
+        <option>选择一</option>
+        <option>选择二</option>
+        <option>选择三</option>
+        <option>选择四</option>
+    </select>
+    <label>编码</label>
+        <div class="input-group input-group-sm">
+            <input class="form-control border-secondary" type="text" />
             <div class="input-group-append">
-                <button js-action="post" type="button" class="action-btn">
-                    <i class="fa fa-hand-point-up"></i>
+                <button js-action="post" type="button" class="btn btn-sm btn-outline-secondary">
+                    <i class="fa fa-fire"></i>
                 </button>
             </div>
         </div>
+        <div class="btn-group btn-group-sm right" role="group" aria-label="Small button group">
+                <button type="button" class="btn btn-outline-secondary">Left</button>
+                <button type="button" class="btn btn-outline-secondary">Middle</button>
+                <button type="button" class="btn btn-outline-secondary">Right</button>
+              </div>
     </div>
-
-    <div class="checkbox mt-3">
-        <div class="checked-style-default moz-checkbox"><input name="IsRemembered" type="checkbox" value="true"></input><label class="box-wrapper"><div class="box-checked"></div></label><span> 记住登入状态</span></div>
-    </div>
+    <hr>
+    <div class="filter mb-2">
+        <label>日期</label>
+        <input class="form-control form-control-sm border-secondary" js-date="date" type="text" />
+        <label>时间</label>
+        <input class="form-control form-control-sm border-secondary" js-date="time" type="text" />
+        <label>日期和时间</label>
+        <input class="form-control form-control-sm border-secondary" onclick="code('.dropdown-menu')" js-date="datetime" type="text" />
+            <div class="btn-group btn-group-sm right" role="group" aria-label="Small button group">
+                    <button type="button" class="btn btn-outline-secondary">Left</button>
+                    <button type="button" class="btn btn-outline-secondary">Middle</button>
+                    <button type="button" class="btn btn-outline-secondary">Right</button>
+                  </div>
+        </div>
+        <hr>
+        <div class="filter">
+            <input id="c" type="checkbox"/><label for="c">复选框</label>
+        </div>
+        <div id="code"></div>
+        <script>
+            function code(selector){
+                setTimeout(function(){
+                    document.querySelector('#code').innerHTML = document.querySelector(selector).outerHTML;
+                }, 3000);
+            }
+        </script>
 </body>
-</html
+</html>

@@ -1,5 +1,4 @@
-import 'bootstrap';
-import { alert, BsType } from './alert';
+import { alert, StatusType } from './alert';
 import { queue, call, render, options } from './core';
 
 $.fn.loadModal = function(url) {
@@ -52,7 +51,7 @@ $.fn.loadModal = function(url) {
 function msgHandler(current, d) {
     if (d.message) {
         var errmsg = current.find('div.modal-summary');
-        if (errmsg.length > 0 && d.type !== BsType.Success) {
+        if (errmsg.length > 0 && d.type !== StatusType.Success) {
             var span = errmsg.attr('class', 'modal-summary text-' + d.type).show().find('.modal-summary-text');
             if (span.length == 0)
                 span = errmsg;
@@ -62,10 +61,10 @@ function msgHandler(current, d) {
         alert(d.message, d.type, () => {
             if (d.data && d.data.url)
                 location.href = d.data.url;
-            else if (d.type === BsType.Success)
+            else if (d.type === StatusType.Success)
                 location.href = location.href;
         });
-        if (d.type === BsType.Success)
+        if (d.type === StatusType.Success)
             current.data('bs.modal').hide();
     } else if (d.data && d.data.url)
         location.href = d.data.url;

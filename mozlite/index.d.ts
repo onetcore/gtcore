@@ -168,7 +168,7 @@ interface IMozlite {
 
 declare namespace Mozlite {
     /**报警类型 */
-    enum BsType {
+    enum StatusType {
         /**成功。 */
         Success,
         /**消息。 */
@@ -182,9 +182,9 @@ declare namespace Mozlite {
     /** 
      * 消息接口。
     */
-    interface BsMessage {
+    interface StatusMessage {
         /**消息类型。 */
-        type: BsType;
+        type: StatusType;
         /**消息字符串。 */
         message: string;
         /**其他实例对象。 */

@@ -1,5 +1,5 @@
 import { queue, options, call } from './core';
-import { alert, BsType } from './alert';
+import { alert, StatusType } from './alert';
 
 $.fn.formSubmit = function(success, error) {
     var form = this;
@@ -22,7 +22,7 @@ $.fn.formSubmit = function(success, error) {
                 alert(d.message, d.type, function() {
                     if (d.data && d.data.url)
                         location.href = d.data.url;
-                    else if (d.type === BsType.Success)
+                    else if (d.type === StatusType.Success)
                         location.href = location.href;
                 });
             }
@@ -47,11 +47,11 @@ function onErrorHandler(e, error) {
     }
     var status = options.status[e.status]
     if (status) {
-        alert(status, BsType.Error);
+        alert(status, StatusType.Error);
         return;
     } else {
         console.error(e.responseText);
-        alert(options.unknownError, BsType.Error);
+        alert(options.unknownError, StatusType.Error);
     }
 };
 
@@ -74,11 +74,11 @@ export function ajax(url, data, success, error) {
             $('#js-loading').fadeOut();
             if (success && success(d)) { return; }
             if (d.message && d.type) {
-                var cb = d.type === BsType.Success;
+                var cb = d.type === StatusType.Success;
                 if (d.data && d.data.affected)
                     cb = d.data;
                 alert(d.message, d.type, cb);
-            } else if (d.type === BsType.Success && d.data && d.data.affected) {
+            } else if (d.type === StatusType.Success && d.data && d.data.affected) {
                 location.href = d.data.url || location.href;
             }
         },
@@ -217,8 +217,8 @@ queue(context => {
                         }
                     }
                     if (d.message && d.type)
-                        alert(d.message, d.type, d.type === BsType.Success);
-                    else if (d.type === BsType.Success && d.data && d.data.url) {
+                        alert(d.message, d.type, d.type === StatusType.Success);
+                    else if (d.type === StatusType.Success && d.data && d.data.url) {
                         var target = current.data('target');
                         if (!target)
                             target = current.parent().find('input.uploaded');

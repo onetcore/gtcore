@@ -1,19 +1,23 @@
-.action-btn {
-    @extend .btn;
-    @extend .btn-sm;
-    @extend .btn-outline-secondary;
-}
-
-.filter {
-    .filter-btn,
-    button,
-    select,
-    input,
-    textarea {
-        @extend .action-btn
+.filter{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    position: relative;
+    .form-control,.input-group{
+        width:auto;
     }
-    .filter-input {
-        cursor: initial !important;
+    >*{
+        margin-right: 10px;
+    }
+    label{
+        line-height: 1.8;
+        margin-bottom: 0;
+    }
+    .right{
+        flex:1 1 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
     }
 }
 

@@ -4,33 +4,18 @@
  * Copyright 2007-2018 Mozlite, Inc.
  * Licensed under Apache License 2.0
  */
-import {
-    queue,
-    render,
-    call,
-    options
-} from './core';
-import {
-    alert,
-    BsType
-} from './alert';
-import {
-    ajax
-} from './ajax';
-import {
-    query,
-    Query
-} from './query';
+import {queue,render,call,options} from './core';
+import {alert,StatusType} from './alert';
+import {ajax} from './ajax';
+import {query,Query} from './query';
 import './form';
-import {
-    Grid
-} from './grid';
+import {Grid} from './grid';
 import './modal';
 import './resize';
 import './datetimepicker';
-import '../scss/mozlite.scss';
 import './editable';
 import './refresher';
+import '../scss/mozlite.scss';
 
 module.exports = {
     query,
@@ -39,7 +24,7 @@ module.exports = {
     render,
     call,
     alert,
-    BsType,
+    StatusType,
     ajax,
     options,
     Grid

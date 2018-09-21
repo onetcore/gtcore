@@ -61,9 +61,7 @@
     @extend .moz-checkbox;
 }
 
-$boxs:16,
-18,
-10;
+$boxs:16,18,10;
 @each $i in $boxs {
     .moz-checkboxlist.box#{$i} .moz-checkbox .box-wrapper,
     .moz-radioboxlist.box#{$i} .moz-radiobox .box-wrapper {
@@ -120,6 +118,6 @@ $boxs:16,
     border-radius: 50%;
 }
 
-.checked-show {
+.show-checked {
     display: none;
 }

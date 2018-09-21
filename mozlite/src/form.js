@@ -54,13 +54,13 @@ queue(context => {
         if ($(this).hasClass('checked')) {
             target.addClass('checked').parents('tr').addClass('active');
             target.checkedSet(true);
-            actionbar.find('.checked-show').css('display', 'block');
-            actionbar.find('.checked-hide').hide();
+            actionbar.find('.show-checked').css('display', 'block');
+            actionbar.find('.hide-checked').hide();
         } else {
             target.removeClass('checked').parents('tr').removeClass('active');
             target.checkedSet(false);
-            actionbar.find('.checked-show').hide();
-            actionbar.find('.checked-hide').css('display', 'block');
+            actionbar.find('.show-checked').hide();
+            actionbar.find('.hide-checked').css('display', 'block');
         }
     });
     //data-content checkbox
@@ -70,13 +70,13 @@ queue(context => {
         var checkbeds = $('.data-content', dataView).find('.moz-checkbox.checked').length;
         if ($(this).hasClass('checked')) {
             $(this).parents('tr').addClass('active');
-            actionbar.find('.checked-show').css('display', 'block');
-            actionbar.find('.checked-hide').hide();
+            actionbar.find('.show-checked').css('display', 'block');
+            actionbar.find('.hide-checked').hide();
         } else {
             $(this).parents('tr').removeClass('active');
             if (checkbeds == 0) {
-                actionbar.find('.checked-show').hide();
-                actionbar.find('.checked-hide').css('display', 'block');
+                actionbar.find('.show-checked').hide();
+                actionbar.find('.hide-checked').css('display', 'block');
             }
         }
         //全选按钮
