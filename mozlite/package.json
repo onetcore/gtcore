@@ -1,6 +1,6 @@
 {
     "name": "mozlite",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "description": "UI for Mozlite framework.",
     "main": "dist/js/mozlite.min.js",
     "types": "index.d.ts",
@@ -35,14 +35,14 @@
         "html-webpack-plugin": "^3.1.0",
         "node-sass": "^4.8.3",
         "postcss-loader": "^2.1.6",
-        "resolve-url-loader": "^2.3.0",
+        "resolve-url-loader": "^2.3.1",
         "sass-loader": "^6.0.7",
         "style-loader": "^0.20.3",
         "uglifyjs-webpack-plugin": "^1.2.4",
-        "url-loader": "^1.0.1",
-        "webpack": "^4.4.1",
+        "url-loader": "^1.1.1",
+        "webpack": "^4.19.1",
         "webpack-cli": "^2.0.13",
-        "webpack-dev-server": "^3.1.1"
+        "webpack-dev-server": "^3.1.8"
     },
     "dependencies": {
         "bootstrap": "^4.0.0",
