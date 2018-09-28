@@ -13,11 +13,21 @@
         line-height: 1.8;
         margin-bottom: 0;
     }
+    .left{
+        display: flex;
+        >*{
+            margin-right: 10px;
+        }
+    }
     .right{
         flex:1 1 auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
+        margin-right: 0;
+        >*{
+            margin-left: 10px;
+        }
     }
 }
 

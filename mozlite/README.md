@@ -21,9 +21,7 @@ npm config set registry https://registry.npm.taobao.org
 模块导出为"Mozlite"，在前端UI中可以直接调用，通过Script标签引入库。
 
 ```html
-<link href="~/css/font-awesome.min.css" type="text/"/>
-<link href="~/css/bootstrap.min.css" type="text/"/>
-<link href="~/css/mozlite.min.css" type="text/"/>
+<link href="~/css/mozlite.min.css" type="text/">
 <script type="text/javascript" src="~/js/jQuery.min.js"></script>
 <script type="text/javascript" src="~/js/popper.min.js"></script>
 <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
