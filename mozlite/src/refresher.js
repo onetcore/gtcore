@@ -1,4 +1,4 @@
-import { queue } from './core';
+import { queue, options } from './core';
 import { ajax } from './ajax';
 
 const url = '/js-refresher'
@@ -26,4 +26,25 @@ $(function() {
     timer *= 1000;
     window.$version = current.attr('js-refresher');
     refresh(timer);
+});
+
+queue(context=>{
+    $('[js-enabled]', context).exec(current => {
+        var text = current.html();
+        var format = current.attr('js-enabled-format')||options.refersher.enabled;
+        var timer = current.attr('js-enabled')*1;
+        setInterval(function(){
+            if(current.hasClass('disabled')||current.attr('disabled')){
+                timer--;
+                if(timer<=0){
+                    current.removeClass('disabled').removeAttr('disabled');
+                    timer = current.attr('js-enabled')*1;
+                    current.html(text);
+                }
+                else{
+                    current.html(format.replace('$delay;', timer))
+                }
+            }
+        }, 1000);
+    });
 });

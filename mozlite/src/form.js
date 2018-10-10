@@ -28,6 +28,22 @@ $.fn.extend({
 
 //添加单选和复选框得事件
 queue(context => {
+    //replace
+    $('input[type=checkbox].js-checkbox,.moz-radioboxlist input[type=radio].js-radiobox', context).exec(current=>{
+        var wrapper = $('<div></div>')
+        if(current.is('.js-radiobox'))wrapper.addClass('checked-style-default moz-radiobox circle');
+        else wrapper.addClass('checked-style-check moz-checkbox');
+        var className = current.attr('class');
+        current.removeAttr('class');
+        if(className)wrapper.addClass(className);
+        if(current.is(':checked'))wrapper.addClass('checked');
+        wrapper.append(current.clone());
+        wrapper.append('<label class="box-wrapper"><div class="box-checked"></div></label>');
+        var label = current.parent().find('label[for='+current.attr('id')+']');
+        if(label.length)wrapper.append(label.html());
+        label.remove();
+        current.replaceWith(wrapper);
+    });
     //checkbox
     $('.moz-checkbox', context).click(function() {
         if ($(this).hasClass('disabled')) return;

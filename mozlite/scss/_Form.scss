@@ -118,6 +118,28 @@ $boxs:16,18,10;
     border-radius: 50%;
 }
 
+.moz-checkboxlist.nowrap, .moz-radioboxlist.nowrap{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    flex-direction: row;
+    .moz-radiobox, .moz-checkbox{
+        flex:1 1 auto;
+        margin-right: 10px;
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}
+
 .show-checked {
+    display: none;
+}
+
+.filter .moz-checkbox .box-wrapper{
+    top:3px;
+}
+
+input.js-checkbox, input.js-radio{
     display: none;
 }

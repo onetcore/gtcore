@@ -6,7 +6,7 @@
     "types": "index.d.ts",
     "style": "dist/css/mozlite.min.css",
     "scripts": {
-        "start:dev": "webpack-dev-server --mode development",
+        "start": "webpack-dev-server --mode development",
         "build": "webpack --mode production --env.prod",
         "dev": "webpack --mode development"
     },

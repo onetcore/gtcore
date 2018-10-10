@@ -83,6 +83,18 @@ $.fn.extend({
         if (target.length > 0)
             return target;
         return def || this;
+    },
+    /**
+     * 禁用当前元素。
+     */
+    disabled:function(){
+        return this.attr('disabled','disabled').addClass('disabled');
+    },
+    /**
+     * 激活当前元素。
+     */
+    enabled:function(){
+        return this.removeAttr('disabled').removeClass('disabled');
     }
 });
 
@@ -185,6 +197,9 @@ export var options = {
     resize: '配置原始分辨率大小错误，格式：js-resize="widthxheight"!',
     editable: {
         notFoundUrl: '操作地址没有配置，请检查js-editable-url的值！'
+    },
+    refersher:{
+        enabled:'($delay;秒)'
     }
 };
 

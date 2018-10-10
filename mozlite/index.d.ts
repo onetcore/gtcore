@@ -92,6 +92,15 @@ interface JQuery {
      * @param scale 缩放比例。
      */
     scale(type:string, scale:Number):this;
+
+    /**
+     * 禁用当前元素。
+     */
+    disabled():this;
+    /**
+     * 激活当前元素。
+     */
+    enabled():this;
 }
 
 /**扩展日期。 */

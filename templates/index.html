@@ -50,8 +50,15 @@
                   </div>
         </div>
         <hr>
-        <div class="filter">
-            <input id="c" type="checkbox"/><label for="c">复选框</label>
+        <div class="filter mb-2">
+            <input class="js-checkbox" id="c" checked="checked" type="checkbox"/><label class="hidden" for="c"> 复选框</label>
+            <div class="moz-radioboxlist nowrap">
+                <input class="js-radiobox" name="radio" type="radio" id="c1"/><label class="hidden" for="c1"> 单选1</label>
+                <input class="js-radiobox" name="radio" type="radio" id="c2"/><label class="hidden" for="c2"> 单选2</label>
+                <input class="js-radiobox" name="radio" type="radio" id="c3"/><label class="hidden" for="c3"> 单选3</label>
+            </div>
+
+            <button type="button" js-enabled="5" onclick="$(this).disabled()" class="btn btn-sm btn-outline-secondary disabled" disabled="disabled">延迟</button>
         </div>
         <div id="code"></div>
         <script>
