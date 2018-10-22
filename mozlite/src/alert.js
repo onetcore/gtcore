@@ -10,13 +10,14 @@ export const StatusType = {
 
 //弹窗方法
 export function alert(msg, type, func) {
-    var message = msg;
-    if (!message && typeof msg === "object") {
-        var bsmsg = msg;
-        type = bsmsg.type;
-        message = bsmsg.message;
+    if(typeof type === "function"){
+        func = type;
     }
-    if (!message)
+    if (typeof msg === "object") {
+        type = msg.type;
+        msg = msg.message;
+    }
+    if (!msg)
         return;
     var modal = $(document.body)
         .dset('js-alert', () => $('<div class="js-alert modal fade" data-backdrop="static"><div class="modal-dialog"><div class="modal-content"><div class="modal-body" style="padding: 50px 30px 30px;"><div class="col-sm-2"><i style="font-size: 50px;"></i></div> <span class="col-sm-10" style="line-height: 26px; padding-left: 0;"></span></div><div class="modal-footer"><button type="button" class="btn btn-primary"><i class="fa fa-check"></i> ' + options.alert.confirm + ' </button></div></div></div></div>')
@@ -27,7 +28,7 @@ export function alert(msg, type, func) {
         body.attr('class', 'modal-body row text-success').find('i').attr('class', 'fa fa-check');
     else
         body.attr('class', 'modal-body row text-' + type).find('i').attr('class', 'fa fa-warning');
-    body.find('span').html(message);
+    body.find('span').html(msg);
     var button = modal.find('button').attr('class', 'btn btn-' + type);
     if (func) {
         button.removeAttr('data-dismiss').on('click', () => {

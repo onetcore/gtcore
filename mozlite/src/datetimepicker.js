@@ -1,6 +1,10 @@
 import { queue } from './core';
 import 'eonasdan-bootstrap-datetimepicker';
-
+/**
+ * 为了兼容bootstrap 4.x，需要修改eonasdan-bootstrap-datetimepicker.js
+ * 1.将'collapse in'改为’collapse show‘
+ * 2.将togglePicker方法中的'in'改成'show'
+ */
 queue(context => {
     $('[js-date]').each(function() {
         var attrs = $(this).jsAttrs('date');

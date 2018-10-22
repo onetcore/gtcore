@@ -7,20 +7,20 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/popper.min.js"></script>
-    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
 <body style="padding:50px;margin:0;">
-<div class="filter mb-2">
-    <label>编码：</label>
-    <select class="form-control form-control-sm border-secondary">
-        <option>选择一</option>
-        <option>选择二</option>
-        <option>选择三</option>
-        <option>选择四</option>
-    </select>
-    <label>编码</label>
+    <div class="filter mb-2">
+        <label>编码：</label>
+        <select class="form-control form-control-sm border-secondary">
+            <option>选择一</option>
+            <option>选择二</option>
+            <option>选择三</option>
+            <option>选择四</option>
+        </select>
+        <label>编码</label>
         <div class="input-group input-group-sm">
             <input class="form-control border-secondary" type="text" />
             <div class="input-group-append">
@@ -30,10 +30,10 @@
             </div>
         </div>
         <div class="btn-group btn-group-sm right" role="group" aria-label="Small button group">
-                <button type="button" class="btn btn-outline-secondary">Left</button>
-                <button type="button" class="btn btn-outline-secondary">Middle</button>
-                <button type="button" class="btn btn-outline-secondary">Right</button>
-              </div>
+            <button type="button" class="btn btn-outline-secondary">Left</button>
+            <button type="button" class="btn btn-outline-secondary">Middle</button>
+            <button type="button" class="btn btn-outline-secondary">Right</button>
+        </div>
     </div>
     <hr>
     <div class="filter mb-2">
@@ -43,30 +43,33 @@
         <input class="form-control form-control-sm border-secondary" js-date="time" type="text" />
         <label>日期和时间</label>
         <input class="form-control form-control-sm border-secondary" js-date="datetime" type="text" />
-            <div class="btn-group btn-group-sm right" role="group" aria-label="Small button group">
-                    <button type="button" class="btn btn-outline-secondary">Left</button>
-                    <button type="button" class="btn btn-outline-secondary">Middle</button>
-                    <button type="button" class="btn btn-outline-secondary">Right</button>
-                  </div>
+        <div class="btn-group btn-group-sm right" role="group" aria-label="Small button group">
+            <button type="button" class="btn btn-outline-secondary">Left</button>
+            <button type="button" class="btn btn-outline-secondary">Middle</button>
+            <button type="button" class="btn btn-outline-secondary">Right</button>
         </div>
-        <hr>
-        <div class="filter mb-2">
-            <input class="js-checkbox" id="c" checked="checked" type="checkbox"/><label class="hidden" for="c"> 复选框</label>
-            <div class="moz-radioboxlist nowrap">
-                <input class="js-radiobox" name="radio" type="radio" id="c1"/><label class="hidden" for="c1"> 单选1</label>
-                <input class="js-radiobox" name="radio" type="radio" id="c2"/><label class="hidden" for="c2"> 单选2</label>
-                <input class="js-radiobox" name="radio" type="radio" id="c3"/><label class="hidden" for="c3"> 单选3</label>
-            </div>
+    </div>
+    <hr>
+    <div class="filter mb-2">
+        <input class="js-checkbox" id="c" checked="checked" type="checkbox" /><label class="hidden" for="c"> 复选框</label>
+        <div class="moz-radioboxlist nowrap">
+            <input class="js-radiobox" name="radio" type="radio" id="c1" /><label class="hidden" for="c1"> 单选1</label>
+            <input class="js-radiobox" name="radio" type="radio" id="c2" /><label class="hidden" for="c2"> 单选2</label>
+            <input class="js-radiobox" name="radio" type="radio" id="c3" /><label class="hidden" for="c3"> 单选3</label>
+        </div>
 
-            <button type="button" js-enabled="5" onclick="$(this).disabled()" class="btn btn-sm btn-outline-secondary disabled" disabled="disabled">延迟</button>
-        </div>
-        <div id="code"></div>
-        <script>
-            function code(selector){
-                setTimeout(function(){
-                    document.querySelector('#code').innerHTML = document.querySelector(selector).outerHTML;
-                }, 3000);
-            }
-        </script>
+        <button type="button" js-enabled="5" onclick="$(this).disabled()" class="btn btn-sm btn-outline-secondary disabled"
+            disabled="disabled">延迟</button>
+    </div>
+    <div id="code"></div>
+    <script>
+        //onclick="code('.usetwentyfour');" 
+        function code(selector) {
+            setTimeout(function () {
+                document.querySelector('#code').innerHTML = document.querySelector(selector).outerHTML;
+            }, 3000);
+        }
+    </script>
 </body>
+
 </html>
