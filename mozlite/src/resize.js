@@ -1,8 +1,7 @@
 import { queue, options } from './core';
-import { alert } from './alert';
 
 function resize(current, scaleX, scaleY) {
-    var sacle = Math.min(scaleX, scaleY);
+    var min = Math.min(scaleX, scaleY);
     //大小
     current.scale('width', scaleX)
         .scale('height', scaleY)
@@ -26,7 +25,7 @@ function resize(current, scaleX, scaleY) {
         .scale('scale-x', scaleX, scaleY)
         .scale('scale-y', scaleX, scaleY)
         //font-size
-        .scale('font-size', sacle)
+        .scale('font-size', min)
         .scale('line-height', scaleY);
 }
 
@@ -35,32 +34,37 @@ var unit = /^(\d+)px$/ig;
 function parsePX(value) {
     value = $.trim(value);
     if (!value) return undefined;
+    var px = false;
     var match = unit.exec(value);
     if (match && match.length) {
         value = match[1];
+        px = true;
     }
     value = parseFloat(value);
     if (isNaN(value)) return undefined;
-    return value;
+    return {value, px};
 }
 
 $.fn.scale = function(type, scale) {
-    var value = parsePX(this.attr(`css-${type}`));
-    if (!value) return this;
-    value *= scale;
-    switch (type.toLowerCase()) {
-        case 'scale-y':
-            this.css('transform', `scaleY(${value})`);
-            break;
-        case 'scale-x':
-            this.css('transform', `scaleX(${value})`);
-            break;
-        case 'scale':
-            this.css('transform', `scale(${value},${value})`);
-            break;
-        default:
-            this.css(type, value + 'px');
-            break;
+    var v = parsePX(this.attr(`css-${type}`), scale);
+    if (v) {
+        switch (type.toLowerCase()) {
+            case 'scale-y':
+                this.css('transform', `scaleY(${v.value})`);
+                break;
+            case 'scale-x':
+                this.css('transform', `scaleX(${v.value})`);
+                break;
+            case 'scale':
+                this.css('transform', `scale(${v.value},${v.value})`);
+                break;
+            default:
+                if(v.px)
+                    this.css(type, v.value * scale + 'px');
+                else
+                    this.css(type, v.value * scale);
+                break;
+        }
     }
     return this;
 }
@@ -77,8 +81,8 @@ function getScale(current) {
         screenWidth = container.width();
         screenHeight = container.height();
     }
-    var scaleX = screenWidth / parsePX(win[0]);
-    var scaleY = screenHeight / parsePX(win[1]);
+    var scaleX = screenWidth / parsePX(win[0]).value;
+    var scaleY = screenHeight / parsePX(win[1]).value;
     if (isNaN(scaleY) || isNaN(scaleX)) throw new Error(options.resize);
     var mode = current.jsAttr('resize-mode') || 'auto'
     switch (mode) {
@@ -101,8 +105,23 @@ function scale(context) {
         resize(current, scale.scaleX, scale.scaleY);
         //缩放子项
         $('.scalable', current).exec(c => resize(c, scale.scaleX, scale.scaleY));
+        onresized(current);
     });
 }
 
 queue(context => scale(context));
 window.onresize = function() { scale(); }
+
+var _resizers = [];
+function onresized(context) {
+    for (const executor of _resizers) {
+        executor(context);
+    }
+}
+/**
+ * 添加执行队列，这个队列一般在页面加载完或者Modal加载完后执行得方法。
+ * @param func 执行得方法。
+ */
+export function resize(func) {
+    _resizers.push(func);
+}
