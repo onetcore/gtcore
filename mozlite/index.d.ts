@@ -131,8 +131,9 @@ interface IMozlite {
     /**
      * 添加执行队列，这个队列一般在页面加载完或者Modal加载完后执行得方法。
      * @param func 执行得方法。
+     * @param resize 是否重置大小时候执行。
      */
-    queue(func: (context?: JQuery | undefined) => void);
+    queue(func: (context?: JQuery | undefined, resize?:boolean|undefined) => void);
 
     /**
      * 执行当前队列中得方法。

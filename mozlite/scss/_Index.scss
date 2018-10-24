@@ -55,8 +55,13 @@ $grid-bordered-styles:(solid, dashed);
     margin-top: -95px;
 }
 
-.js-resize .scalable {
-    position: absolute;
+.js-resize {
+    .scalable {
+        position: absolute;
+    }   
+    .resizable{
+        position: relative;
+    }
 }
 
 .modal-summary,

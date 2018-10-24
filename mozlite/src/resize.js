@@ -104,24 +104,8 @@ function scale(context) {
         current.addClass('js-resize').data('scale', scale);
         resize(current, scale.scaleX, scale.scaleY);
         //缩放子项
-        $('.scalable', current).exec(c => resize(c, scale.scaleX, scale.scaleY));
-        onresized(current);
+        $('.scalable,.resizable', current).exec(c => resize(c, scale.scaleX, scale.scaleY));
     });
 }
 
-queue(context => scale(context));
-window.onresize = function() { scale(); }
-
-var _resizers = [];
-function onresized(context) {
-    for (const executor of _resizers) {
-        executor(context);
-    }
-}
-/**
- * 添加执行队列，这个队列一般在页面加载完或者Modal加载完后执行得方法。
- * @param func 执行得方法。
- */
-export function resize(func) {
-    _resizers.push(func);
-}
+queue(context => scale(context), true);

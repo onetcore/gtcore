@@ -11,7 +11,7 @@ import {query,Query} from './query';
 import './form';
 import {Grid} from './grid';
 import './modal';
-import {resize} from './resize';
+import './resize';
 import './datetimepicker';
 import './editable';
 import './refresher';
@@ -27,6 +27,5 @@ module.exports = {
     StatusType,
     ajax,
     options,
-    Grid,
-    resize
+    Grid
 };

@@ -99,6 +99,12 @@ $.fn.extend({
 });
 
 var _executors = [];
+var _resizers = [];
+window.onresize = function() { 
+    for (const resizer of _resizers) {
+        resizer();
+    }
+ }
 
 /**
  * 执行当前队列中得方法。
@@ -112,8 +118,11 @@ export function render(context) {
 /**
  * 添加执行队列，这个队列一般在页面加载完或者Modal加载完后执行得方法。
  * @param func 执行得方法。
+ * @param resize 是否重置大小时候执行。
  */
-export function queue(func) {
+export function queue(func, resize) {
+    if(resize)
+        _resizers.push(func);
     _executors.push(func);
 }
 
