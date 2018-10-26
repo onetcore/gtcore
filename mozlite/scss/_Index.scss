@@ -1,43 +1,54 @@
-.filter{
+.filter {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     position: relative;
-    .form-control,.input-group{
-        width:auto;
+
+    .form-control,
+    .input-group {
+        width: auto;
     }
-    >*{
+
+    >* {
         margin-right: 10px;
     }
-    label{
+
+    label {
         line-height: 1.8;
         margin-bottom: 0;
     }
-    .left{
+
+    .left {
         display: flex;
-        >*{
+
+        >* {
             margin-right: 10px;
         }
     }
-    .right{
-        flex:1 1 auto;
+
+    .right {
+        flex: 1 1 auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
         margin-right: 0;
-        >*{
+
+        >* {
             margin-left: 10px;
         }
     }
 }
 
 $grid-bordered-styles:(solid, dashed);
+
 @each $style in $grid-bordered-styles {
     .grid-#{$style} {
         border-top: $grid-border-width $style $grid-border-color;
         border-left: $grid-border-width $style $grid-border-color;
+
         .grid-row {
             border: none;
+
             .grid-col {
                 border-right: $grid-border-width $style $grid-border-color;
                 border-bottom: $grid-border-width $style $grid-border-color;
@@ -50,16 +61,30 @@ $grid-bordered-styles:(solid, dashed);
     margin: 0;
 }
 
-.js-alert .modal-dialog {
+.js-alert .modal-dialog, .modal-dialog.alert-dialog{
     top: 50%;
     margin-top: -95px;
+
+    .modal-body {
+        padding: 50px 30px 30px;
+
+        .icon i{
+            font-size: 50px;
+        }
+
+        .txt {
+            line-height: 26px;
+            padding-left: 0;
+        }
+    }
 }
 
 .js-resize {
     .scalable {
         position: absolute;
-    }   
-    .resizable{
+    }
+
+    .resizable {
         position: relative;
     }
 }
@@ -81,6 +106,7 @@ $grid-bordered-styles:(solid, dashed);
 
 .js-editable {
     cursor: text;
+
     .editable-status {
         cursor: default;
         float: left;
