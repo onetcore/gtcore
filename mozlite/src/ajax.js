@@ -190,6 +190,11 @@ queue(context => {
         });
     });
     //file上传
+    $('[js-toggle=uploader]', context).exec(cur=>{
+        cur.on('click', function(){
+            cur.find('[js-uploader]').click();
+        });
+    });
     $('[js-uploader]', context).exec(cur => {
         if (!cur.is('input[type=file]')) { return; }
         cur.on('change', function upload() {
