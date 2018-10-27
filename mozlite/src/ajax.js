@@ -193,6 +193,7 @@ queue(context => {
     $('[js-toggle=uploader]', context).exec(cur=>{
         cur.on('click', function(){
             cur.find('[js-uploader]').click();
+            return false;
         });
     });
     $('[js-uploader]', context).exec(cur => {
