@@ -215,6 +215,7 @@ queue(context => {
                 contentType: false,
                 processData: false,
                 data: data,
+                headers: getHeaders(),
                 success: function(d) {
                     $('#js-loading').fadeOut();
                     if (current.jsAttr('success')) {
