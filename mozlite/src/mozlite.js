@@ -16,6 +16,7 @@ import './datetimepicker';
 import './editable';
 import './refresher';
 import '../scss/mozlite.scss';
+import './utils';
 
 module.exports = {
     query,
