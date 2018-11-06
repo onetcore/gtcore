@@ -20,7 +20,7 @@ export function alert(msg, type, func) {
     if (!msg)
         return;
     var modal = $(document.body)
-        .dset('js-alert', () => $('<div class="js-alert modal fade" data-backdrop="static"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="col-sm-2 icon"><i></i></div> <span class="col-sm-10 txt"></span></div><div class="modal-footer"><button type="button" class="btn btn-primary"> ' + options.alert.confirm + ' </button></div></div></div></div>')
+        .dset('js-alert', () => $('<div class="js-alert modal fade" data-backdrop="static"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-body"><div class="col-sm-2 icon"><i></i></div> <span class="col-sm-10 txt"></span></div><div class="modal-footer"><button type="button" class="btn btn-primary"> ' + options.alert.confirm + ' </button></div></div></div></div>')
             .appendTo(document.body));
     var body = modal.find('.modal-body');
     type = type || StatusType.Danger;

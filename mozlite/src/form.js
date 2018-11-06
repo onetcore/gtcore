@@ -111,11 +111,12 @@ queue(context => {
         }
     });
     //修改webpage中模型名称
-    $('form[method=get]', context).exec(current => {
+    $('.filter form[method=get]', context).exec(current => {
         current.find('input,select,textarea').each(function() {
             var name = this.name.toLowerCase();
-            if (name.startsWith('model.'))
-                name = name.substr(6);
+            var index = name.indexOf('.');
+            if (index>0)
+                name = name.substr(index+1);
             this.name = name;
         });
     });
