@@ -1,6 +1,6 @@
 {
     "name": "mozlite",
-    "version": "0.0.17",
+    "version": "0.0.18",
     "description": "UI for Mozlite framework.",
     "main": "dist/js/mozlite.min.js",
     "types": "index.d.ts",
@@ -28,9 +28,11 @@
         "babel-preset-env": "^1.6.1",
         "copy-webpack-plugin": "^4.5.1",
         "css-loader": "^0.28.11",
+        "eonasdan-bootstrap-datetimepicker": "^4.17.47",
         "extract-text-webpack-plugin": "^4.0.0-beta.0",
         "file-loader": "^1.1.11",
         "html-webpack-plugin": "^3.1.0",
+        "markdown": "^0.5.0",
         "node-sass": "^4.8.3",
         "postcss-loader": "^2.1.6",
         "resolve-url-loader": "^2.3.1",
@@ -40,7 +42,6 @@
         "url-loader": "^1.1.1",
         "webpack": "^4.19.1",
         "webpack-cli": "^3.1.2",
-        "eonasdan-bootstrap-datetimepicker": "^4.17.47",
         "webpack-dev-server": "^3.1.8"
     },
     "dependencies": {

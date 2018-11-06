@@ -17,6 +17,7 @@ import './editable';
 import './refresher';
 import '../scss/mozlite.scss';
 import './utils';
+import './markdown';
 
 module.exports = {
     query,
