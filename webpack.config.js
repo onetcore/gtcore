@@ -83,7 +83,7 @@ module.exports = (env) => {
                 { from: 'node_modules/jquery/dist/jquery.min.js', to: jsDir },
                 { from: 'node_modules/bootstrap/dist/css/bootstrap.min.css', to: cssDir },
                 { from: 'node_modules/bootstrap/dist/js/bootstrap.min.js', to: jsDir },
-                { from: 'node_modules/popper.js/dist/popper.min.js', to: jsDir },
+                { from: 'node_modules/popper.js/dist/umd/popper.min.js', to: jsDir },
                 { from: 'node_modules/font-awesome/css', to: 'font-awesome/css' },
                 { from: 'node_modules/font-awesome/fonts', to: 'font-awesome/fonts' },
             ])
