@@ -1,5 +1,5 @@
 import {
-    queue
+    queue, options
 } from './core';
 import {
     markdown
@@ -16,16 +16,16 @@ class MozMD {
         this.init();
     }
 
-    get value(){
+    get value() {
         return this._value.val();
     }
 
-    set value(source){
+    set value(source) {
         this.source.text(source);
         this.update();
     }
 
-    get html(){
+    get html() {
         return this._html.val();
     }
 
@@ -46,25 +46,25 @@ class MozMD {
                 case 'mozmd-fullscreen':
                     $(document.body).addClass('fullscreen');
                     this.selector.addClass('fullscreen-container');
-                    current.attr('class', 'mozmd-exitfull').attr('title', '退出全屏').find('i').attr('class', 'fa fa-window-restore');
+                    current.attr('class', 'mozmd-exitfull').attr('title', options.markdown.fullscreen.quit).find('i').attr('class', 'fa fa-window-restore');
                     break;
                 case 'mozmd-exitfull':
                     $(document.body).removeClass('fullscreen');
                     this.selector.removeClass('fullscreen-container');
-                    current.attr('class', 'mozmd-fullscreen').attr('title', '全屏显示').find('i').attr('class', 'fa fa-window-maximize');
+                    current.attr('class', 'mozmd-fullscreen').attr('title', options.markdown.fullscreen.show).find('i').attr('class', 'fa fa-window-maximize');
                     break;
                 case 'mozmd-mode-preview':
                     this.source.hide();
                     this.preview.show();
-                    current.attr('class', 'mozmd-mode-source').attr('title', '源码').find('i').attr('class', 'fa fa-code');
+                    current.attr('class', 'mozmd-mode-source').attr('title', options.markdown.source).find('i').attr('class', 'fa fa-code');
                     break;
                 case 'mozmd-mode-source':
                     this.source.show();
                     this.preview.hide();
-                    current.attr('class', 'mozmd-mode-preview').attr('title', '预览').find('i').attr('class', 'fa fa-eye');
+                    current.attr('class', 'mozmd-mode-preview').attr('title', options.markdown.preview).find('i').attr('class', 'fa fa-eye');
                     break;
             }
-            this.selector.trigger(name);
+            this.selector.trigger(name.replace(/-+/ig, '.'));
         }));
     }
 }

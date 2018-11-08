@@ -1,7 +1,14 @@
-import { queue, options, call } from './core';
-import { alert, StatusType } from './alert';
+import {
+    queue,
+    options,
+    call
+} from './core';
+import {
+    alert,
+    StatusType
+} from './alert';
 
-$.fn.formSubmit = function(success, error) {
+$.fn.formSubmit = function (success, error) {
     var form = this;
     var data = new FormData(this[0]);
     var submit = form.find('[js-submit=true],[type=submit]').attr('disabled', 'disabled');
@@ -15,11 +22,13 @@ $.fn.formSubmit = function(success, error) {
         processData: false,
         data: data,
         headers: getHeaders(),
-        success: function(d) {
+        success: function (d) {
             submit.removeAttr('disabled').find('i.fa').attr('class', css);
-            if (success && success(d, form)) { return; }
+            if (success && success(d, form)) {
+                return;
+            }
             if (d.message) {
-                alert(d.message, d.type, function() {
+                alert(d.message, d.type, function () {
                     if (d.data && d.data.url)
                         location.href = d.data.url;
                     else if (d.type === StatusType.Success)
@@ -27,7 +36,7 @@ $.fn.formSubmit = function(success, error) {
                 });
             }
         },
-        error: function(e) {
+        error: function (e) {
             submit.removeAttr('disabled').find('i.fa').attr('class', css);
             onErrorHandler(e, error);
         }
@@ -59,7 +68,9 @@ function getHeaders() {
     var token = $('#ajax-protected-form').find('[name="__RequestVerificationToken"]');
     if (token.length == 0)
         return {};
-    return { 'RequestVerificationToken': token.val() };
+    return {
+        'RequestVerificationToken': token.val()
+    };
 };
 
 export function ajax(url, data, success, error) {
@@ -70,9 +81,11 @@ export function ajax(url, data, success, error) {
         dataType: 'JSON',
         type: 'POST',
         headers: getHeaders(),
-        success: function(d) {
+        success: function (d) {
             $('#js-loading').fadeOut();
-            if (success && success(d)) { return; }
+            if (success && success(d)) {
+                return;
+            }
             if (d.message && d.type) {
                 var cb = d.type === StatusType.Success;
                 if (d.data && d.data.affected)
@@ -82,7 +95,7 @@ export function ajax(url, data, success, error) {
                 location.href = d.data.url || location.href;
             }
         },
-        error: function(e) {
+        error: function (e) {
             $('#js-loading').fadeOut();
             onErrorHandler(e, error);
         }
@@ -96,7 +109,9 @@ function ajaxAction(current, url, action, ids) {
     //post
     if (action == 'post') {
         var data = current.jsAttrs('data');
-        if (ids) { data['ids'] = ids; }
+        if (ids) {
+            data['ids'] = ids;
+        }
         ajax(url, data);
         return false;
     }
@@ -130,7 +145,7 @@ queue(context => {
         if (!url) {
             throw new Error(options.ajax.notFoundUrl);
         }
-        current.click(function() {
+        current.click(function () {
             return ajaxAction(current, url, action);
         });
     });
@@ -148,7 +163,7 @@ queue(context => {
             if (!url) {
                 throw new Error(options.ajax.notFoundUrl);
             }
-            cur.click(function() {
+            cur.click(function () {
                 var ids = current.find('.data-content').checkedVal();
                 if (ids.length == 0) {
                     alert(options.ajax.selectedFirst);
@@ -158,6 +173,16 @@ queue(context => {
             });
         });
     });
+    //提交表单
+    $('button[type=submit][js-target], input[type=submit][js-target]', context).exec(current=>{
+        var selector = current.attr('js-target');
+        selector = $(selector);
+        if (selector.is('form'))
+            current.click(function () {
+                selector.submit();
+                return false;
+            });
+    });
     //脚本提交表单
     $('[js-submit]', context).exec(current => {
         var selector = current.attr('js-submit');
@@ -166,7 +191,7 @@ queue(context => {
         else
             selector = $(selector);
         if (selector.length > 0)
-            current.click(function() {
+            current.click(function () {
                 selector.formSubmit();
                 return false;
             });
@@ -183,21 +208,23 @@ queue(context => {
             else
                 eventName = 'blur';
         }
-        current.on(eventName, function() {
+        current.on(eventName, function () {
             var data = current.jsAttrs('data');
             data.value = current.val();
             ajax(url, data);
         });
     });
     //file上传
-    $('[data-toggle=uploader]', context).exec(cur=>{
-        cur.on('click', function(){
+    $('[data-toggle=uploader]', context).exec(cur => {
+        cur.on('click', function () {
             $('input[type=file][js-uploader]', context).click();
             return false;
         });
     });
     $('[js-uploader]', context).exec(cur => {
-        if (!cur.is('input[type=file]')) { return; }
+        if (!cur.is('input[type=file]')) {
+            return;
+        }
         cur.on('change', function upload() {
             var current = $(this);
             var url = current.jsAttr('uploader');
@@ -216,7 +243,7 @@ queue(context => {
                 processData: false,
                 data: data,
                 headers: getHeaders(),
-                success: function(d) {
+                success: function (d) {
                     $('#js-loading').fadeOut();
                     if (current.jsAttr('success')) {
                         if (call(current.jsAttr('success'), d.data, current)) {
@@ -232,11 +259,11 @@ queue(context => {
                         target.val(d.data.url);
                     }
                 },
-                error: function(e) {
+                error: function (e) {
                     $('#js-loading').fadeOut();
                     onErrorHandler(e);
                 },
-                complete: function() {
+                complete: function () {
                     current.replaceWith(current.clone().on('change', upload));
                 }
             });

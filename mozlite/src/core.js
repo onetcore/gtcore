@@ -3,7 +3,7 @@ $.fn.extend({
     /**
      * 获取或设置缓存数据。
      */
-    dset: function(key, func) {
+    dset: function (key, func) {
         var data = this.data(key);
         if (!data) {
             data = func();
@@ -14,8 +14,8 @@ $.fn.extend({
     /**
      * 回调不包含no-js得所有元素。
      */
-    exec: function(callback) {
-        return this.each(function() {
+    exec: function (callback) {
+        return this.each(function () {
             var current = $(this);
             if (!current.hasClass('no-js')) {
                 callback(current);
@@ -25,7 +25,7 @@ $.fn.extend({
     /**
      * 预览文件地址，当前元素必须为input[type=file]。
      */
-    createObjectURL: function() {
+    createObjectURL: function () {
         if (!this.is('input') || this.attr('type') !== 'file')
             return null;
         if (navigator.userAgent.indexOf("MSIE") > 0) return this.val();
@@ -37,7 +37,7 @@ $.fn.extend({
     /**
      * 获取或设置js-开头的属性。
      */
-    jsAttrs: function(type) {
+    jsAttrs: function (type) {
         var attrs = {};
         var prefix = 'js-';
         if (type)
@@ -64,21 +64,21 @@ $.fn.extend({
     /**
      * 获取或设置js-开头的属性。
      */
-    jsAttr: function(name, value) {
+    jsAttr: function (name, value) {
         if (value) return this.attr('js-' + name, value);
         return $.trim(this.attr('js-' + name));
     },
     /**
      * 获取或设置data-开头的属性。
      */
-    dataAttr: function(name, value) {
+    dataAttr: function (name, value) {
         if (value) return this.attr('data-' + name, value);
         return $.trim(this.attr('data-' + name));
     },
     /**
      * 返回当前元素内js-target属性指示的元素对象，如果不存在就为当前实例对象。
      */
-    targetElement: function(def) {
+    targetElement: function (def) {
         var target = $(this.jsAttr('target'));
         if (target.length > 0)
             return target;
@@ -87,24 +87,24 @@ $.fn.extend({
     /**
      * 禁用当前元素。
      */
-    disabled:function(){
-        return this.attr('disabled','disabled').addClass('disabled');
+    disabled: function () {
+        return this.attr('disabled', 'disabled').addClass('disabled');
     },
     /**
      * 激活当前元素。
      */
-    enabled:function(){
+    enabled: function () {
         return this.removeAttr('disabled').removeClass('disabled');
     }
 });
 
 var _executors = [];
 var _resizers = [];
-window.onresize = function() { 
+window.onresize = function () {
     for (const resizer of _resizers) {
         resizer();
     }
- }
+}
 
 /**
  * 执行当前队列中得方法。
@@ -121,7 +121,7 @@ export function render(context) {
  * @param resize 是否重置大小时候执行。
  */
 export function queue(func, resize) {
-    if(resize)
+    if (resize)
         _resizers.push(func);
     _executors.push(func);
 }
@@ -147,7 +147,7 @@ export function call(name, ...args) {
 }
 
 //格式化显示日期字符串
-Date.prototype.toFormatString = function(fmt) {
+Date.prototype.toFormatString = function (fmt) {
     ///<summary>格式化日期字符串。</summary>
     ///<param name="fmt" type="String">格式化字符串：yyyy-MM-dd HH:mm:ss</param>
     var o = {
@@ -166,24 +166,24 @@ Date.prototype.toFormatString = function(fmt) {
     return fmt;
 };
 //添加随机码
-String.prototype.randomSuffix = function() {
+String.prototype.randomSuffix = function () {
     if (this.indexOf('?') === -1)
         return this + '?_=' + (+new Date);
     return this + '&_=' + (+new Date);
 };
 //格式化日期字符串
-String.prototype.toDateString = function(fmt) {
+String.prototype.toDateString = function (fmt) {
     var date = new Date(this.replace('T', ' '));
     if (!fmt) fmt = 'yyyy-MM-dd HH:mm:ss';
     return date.toFormatString(fmt);
 };
 //转换为驼峰形式
-String.prototype.toCamelCase = function() {
+String.prototype.toCamelCase = function () {
     return this.replace(/-([a-z])/ig, (all, cur) => cur.toUpperCase());
 }
 
 if (typeof String.prototype.startsWith !== 'function')
-    String.prototype.startsWith = function(str) {
+    String.prototype.startsWith = function (str) {
         if (this.length < str.length) return false;
         return this.substr(0, str.length) == str;
     };
@@ -195,7 +195,9 @@ export var options = {
         401: '很抱歉，你没有权限，如果没有登入可<a class="text-danger" href="/login?returnUrl=' + location.href + '">点击登入...</a>', //没权限
     },
     unknownError: '很抱歉，出现了未知错误，请检查是否正确操作后请重试，如果多次出现问题请联系技术支持人员进行排查！',
-    alert: { confirm: '确认' },
+    alert: {
+        confirm: '确认'
+    },
     ajax: {
         notFoundUrl: '操作地址没有配置，请检查js-url,a[href],form[action]值！',
         selectedFirst: '请选择项目后再进行操作！'
@@ -207,12 +209,22 @@ export var options = {
     editable: {
         notFoundUrl: '操作地址没有配置，请检查js-editable-url的值！'
     },
-    refersher:{
-        enabled:'($delay;秒)'
+    refersher: {
+        enabled: '($delay;秒)'
+    },
+    markdown: {
+        fullscreen: {
+            show: '全屏显示',
+            quit: '退出全屏'
+        },
+        preview: '预览',
+        source: '源码'
     }
 };
 
 //调用render
-$(function() {
-    if (_executors.length > 0) { render(); }
+$(function () {
+    if (_executors.length > 0) {
+        render();
+    }
 });
