@@ -168,7 +168,11 @@
                 <div class="main-container">
                     <div class="mozmd-editor" upload-url="/Admin/Pages/Content?handler=Upload">
                         <div class="mozmd-toolbar">
-                            <div class="mozmd-left"><a class="mozmd-mode-preview" title="预览"><i class="fa fa-eye"></i></a></div>
+                            <div class="mozmd-left">
+                                <a class="mozmd-mode-preview" title="预览"><i class="fa fa-eye"></i></a>
+                                <a class="mozmd-mode-save" title="存储"><i class="fa fa-file-o"></i></a>
+                                <a class="mozmd-mode-restore" title="存储"><i class="fa fa-file"></i></a>
+                            </div>
                             <div class="mozmd-right"><a class="mozmd-fullscreen" title="全屏显示"><i class="fa fa-window-maximize"></i></a></div>
                         </div>
                         <div class="mozmd-source customScrollBar overlay" contenteditable="plaintext-only"></div>
@@ -182,6 +186,17 @@
             </footer>
         </main>
     </div>
+    <script>
+        Mozlite.queue(context=>{
+            $('.mozmd-editor', context).exec(current=>{
+                current.bind('mozmd.mode.save', function(){
+                    current.data('mozmd-editor').replaceText('save');
+                }).bind('mozmd.mode.restore', function(){
+                    current.data('mozmd-editor').replaceText('editor');
+                });
+            });
+        });
+    </script>
     <!--
 .sidebar.sm .opened>ul{
     left:50px;

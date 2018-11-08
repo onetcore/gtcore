@@ -1,5 +1,6 @@
 import {
-    queue, options
+    queue,
+    options
 } from './core';
 import {
     markdown
@@ -38,9 +39,115 @@ class MozMD {
         this.selector.trigger('mozmd.updated');
     }
 
+    paste(e) {
+
+    }
+
+    saveSelection() {
+        if (window.getSelection && document.createRange) {
+            var sel = window.getSelection();
+            if (!sel.rangeCount) {
+                this._selection = {
+                    start: 0,
+                    end: 0
+                };
+                return;
+            }
+            var range = sel.getRangeAt(0);
+            var preSelectionRange = range.cloneRange();
+            preSelectionRange.selectNodeContents(this.source[0]);
+            preSelectionRange.setEnd(range.startContainer, range.startOffset);
+            var start = preSelectionRange.toString().length;
+
+            this._selection = {
+                start: start,
+                end: start + range.toString().length
+            };
+        } else if (document.selection && document.body.createTextRange) {
+            var selectedTextRange = document.selection.createRange();
+            var preSelectionTextRange = document.body.createTextRange();
+            preSelectionTextRange.moveToElementText(this.source[0]);
+            preSelectionTextRange.setEndPoint("EndToStart", selectedTextRange);
+            var start = preSelectionTextRange.text.length;
+
+            this._selection = {
+                start: start,
+                end: start + selectedTextRange.text.length
+            };
+        }
+    }
+    restoreSelection() {
+        var savedSel = this._selection;
+        if (window.getSelection && document.createRange) {
+            var charIndex = 0,
+                range = document.createRange();
+            range.setStart(this.source[0], 0);
+            range.collapse(true);
+            var nodeStack = [this.source[0]],
+                node, foundStart = false,
+                stop = false;
+
+            while (!stop && (node = nodeStack.pop())) {
+                if (node.nodeType == 3) {
+                    var nextCharIndex = charIndex + node.length;
+                    if (!foundStart && savedSel.start >= charIndex && savedSel.start <= nextCharIndex) {
+                        range.setStart(node, savedSel.start - charIndex);
+                        foundStart = true;
+                    }
+                    if (foundStart && savedSel.end >= charIndex && savedSel.end <= nextCharIndex) {
+                        range.setEnd(node, savedSel.end - charIndex);
+                        stop = true;
+                    }
+                    charIndex = nextCharIndex;
+                } else {
+                    var i = node.childNodes.length;
+                    while (i--) {
+                        nodeStack.push(node.childNodes[i]);
+                    }
+                }
+            }
+
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else if (document.selection && document.body.createTextRange) {
+            var textRange = document.body.createTextRange();
+            textRange.moveToElementText(this.source[0]);
+            textRange.collapse(true);
+            textRange.moveEnd("character", savedSel.end);
+            textRange.moveStart("character", savedSel.start);
+            textRange.select();
+        }
+    }
+
+    replaceText(text) {
+        this.restoreSelection();
+        var sel, range;
+        if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.getRangeAt && sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                range.deleteContents();
+                var textNode = document.createTextNode(text)
+                range.insertNode(textNode);
+                sel.removeAllRanges();
+                range = range.cloneRange();
+                range.selectNode(textNode);
+                range.collapse(false);
+                sel.addRange(range);
+            }
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            range.pasteHTML(text);
+            range.select();
+        }
+        this.update();
+    }
+
     init() {
-        this.source.on('input', e => this.update());
-        this.actions.exec(current => current.off('click').on('click', e => {
+        this.source.on('input', this.update()).on('paste', e => this.paste(e));
+        this.actions.exec(current => current.off('mousedown').on('mousedown', e => {
+            this.saveSelection();
             var name = current.attr('class');
             switch (name) {
                 case 'mozmd-fullscreen':
@@ -65,7 +172,9 @@ class MozMD {
                     break;
             }
             this.selector.trigger(name.replace(/-+/ig, '.'));
+            return false;
         }));
+        this.update();
     }
 }
 
