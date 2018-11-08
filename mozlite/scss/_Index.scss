@@ -73,6 +73,7 @@ body {
                     font-size: 14px;
                     height: 64px;
                     line-height: 64px;
+                    display: inline-block;
                     color: rgba(0, 0, 0, 0.65);
 
                     &:hover {
@@ -154,7 +155,7 @@ body {
                         margin-bottom: 1rem;
                     }
 
-                    .bottom-tabs {
+                    >.nav-tabs:last-child {
                         border: none;
 
                         li.nav-item {
@@ -210,6 +211,7 @@ body {
     flex-wrap: wrap;
     justify-content: flex-start;
     position: relative;
+    margin-bottom: 1rem;
 
     .form-control,
     .input-group {
