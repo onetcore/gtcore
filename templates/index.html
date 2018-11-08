@@ -147,7 +147,7 @@
                 <div class="header">
                     <div class="header-container">
                         <ul class="breadcrumb">
-                            <li><i class="fa fa-home"></i><a href="/">首页</a></li>
+                            <li><a href="/">首页</a></li>
                             <li><a href="javascript:;">消息管理</a></li>
                             <li>邮件管理</li>
                         </ul>
@@ -169,9 +169,11 @@
                     <div class="mozmd-editor" upload-url="/Admin/Pages/Content?handler=Upload">
                         <div class="mozmd-toolbar">
                             <div class="mozmd-left">
+                                <a class="mozmd-mode-header" title="斜体"><i class="fa fa-header"></i></a>
+                                <a class="mozmd-mode-bold" title="加粗"><i class="fa fa-bold"></i></a>
+                                <a class="mozmd-mode-italic" title="斜体"><i class="fa fa-italic"></i></a>
+                                <a class="mozmd-mode-code" title="斜体"><i class="fa fa-code"></i></a>
                                 <a class="mozmd-mode-preview" title="预览"><i class="fa fa-eye"></i></a>
-                                <a class="mozmd-mode-save" title="存储"><i class="fa fa-file-o"></i></a>
-                                <a class="mozmd-mode-restore" title="存储"><i class="fa fa-file"></i></a>
                             </div>
                             <div class="mozmd-right"><a class="mozmd-fullscreen" title="全屏显示"><i class="fa fa-window-maximize"></i></a></div>
                         </div>
@@ -187,12 +189,25 @@
         </main>
     </div>
     <script>
-        Mozlite.queue(context=>{
-            $('.mozmd-editor', context).exec(current=>{
-                current.bind('mozmd.mode.save', function(){
-                    current.data('mozmd-editor').replaceText('save');
-                }).bind('mozmd.mode.restore', function(){
-                    current.data('mozmd-editor').replaceText('editor');
+        Mozlite.queue(context => {
+            $('.mozmd-editor', context).exec(current => {
+                current.on('mozmd.mode.bold', function () {
+                    $(this).data('mozmd-editor').replaceText(text => "**" + text.trim() + "**", 2);
+                }).on('mozmd.mode.italic', function () {
+                    $(this).data('mozmd-editor').replaceText(text => "_" + text.trim() + "_", 1);
+                }).on('mozmd.mode.header', function () {
+                    $(this).data('mozmd-editor').replaceText(text => {
+                        text = text.trim();
+                        if (text[0] == '#')
+                            return '#' + text;
+                        return "# " + text;
+                    }, 1);
+                }).on('mozmd.mode.code', function () {
+                    $(this).data('mozmd-editor').replaceText(text => {
+                        if (!text) return '\r\n```\r\n```\r\n';
+                        if (text.indexOf('\r\n') == -1) return '`' + text + '`';
+                        return '\r\n```\r\n' + text.trim() + '\r\n```\r\n';
+                    });
                 });
             });
         });

@@ -76,6 +76,7 @@ class MozMD {
             };
         }
     }
+
     restoreSelection() {
         var savedSel = this._selection;
         if (window.getSelection && document.createRange) {
@@ -120,11 +121,18 @@ class MozMD {
         }
     }
 
-    replaceText(text) {
+    replaceText(text, index) {
         this.restoreSelection();
-        var sel, range;
+        var sel, range, length;
         if (window.getSelection) {
             sel = window.getSelection();
+            if (typeof text === 'function') {
+                var selText = sel.toString();
+                text = text(selText);
+                length = selText.length;
+            } else {
+                length = text.length;
+            }
             if (sel.getRangeAt && sel.rangeCount) {
                 range = sel.getRangeAt(0);
                 range.deleteContents();
@@ -138,14 +146,32 @@ class MozMD {
             }
         } else if (document.selection && document.selection.createRange) {
             range = document.selection.createRange();
+            if (typeof text === 'function') {
+                text = text(range.text);
+                length = range.text;
+            } else {
+                length = text.length;
+            }
             range.pasteHTML(text);
             range.select();
+        }
+        if (typeof index != 'undefined') {
+            if (!this._selection) this._selection = {
+                start: 0,
+                end: length
+            };
+            else
+                this._selection = {
+                    start: this._selection.start + index,
+                    end: this._selection.start + index + length
+                };
+            this.restoreSelection();
         }
         this.update();
     }
 
     init() {
-        this.source.on('input', this.update()).on('paste', e => this.paste(e));
+        this.source.on('input', e => this.update()).on('paste', e => this.paste(e));
         this.actions.exec(current => current.off('mousedown').on('mousedown', e => {
             this.saveSelection();
             var name = current.attr('class');
@@ -163,7 +189,7 @@ class MozMD {
                 case 'mozmd-mode-preview':
                     this.source.hide();
                     this.preview.show();
-                    current.attr('class', 'mozmd-mode-source').attr('title', options.markdown.source).find('i').attr('class', 'fa fa-code');
+                    current.attr('class', 'mozmd-mode-source').attr('title', options.markdown.source).find('i').attr('class', 'fa fa-keyboard-o');
                     break;
                 case 'mozmd-mode-source':
                     this.source.show();
