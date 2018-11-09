@@ -5,6 +5,9 @@ import {
 import {
     markdown
 } from 'markdown';
+import {
+    timingSafeEqual
+} from 'crypto';
 
 class MozMD {
     constructor(selector) {
@@ -170,8 +173,41 @@ class MozMD {
         this.update();
     }
 
+    toggleActions() {
+        if (this.source.is(':visible')) {
+            this.actions.filter('.disabled').removeClass('disabled');
+        } else {
+            this.actions.each(function () {
+                if (this.className.startsWith('mozmd-syntax-'))
+                    $(this).addClass('disabled');
+            });
+        }
+    }
+
     init() {
-        this.source.on('input', e => this.update()).on('paste', e => this.paste(e));
+        this.source.on('input', e => this.update()).on('paste', e => this.paste(e)).on('keydown', e => {
+            if (e.keyCode == 9) {
+                this.saveSelection();
+                if (e.shiftKey)
+                    this.replaceText(text => {
+                        if (!text) return '';
+                        var lines = [];
+                        text.split('\n').forEach(t => {
+                            if (t.startsWith('\t'))
+                                lines.push(t.substr(1));
+                            else
+                                lines.push(t);
+                        })
+                        return lines.join('\n');
+                    });
+                else
+                    this.replaceText(text => {
+                        if (!text) return '\t';
+                        return '\t' + text.split('\n').join('\n\t');
+                    });
+                return false;
+            }
+        });
         this.actions.exec(current => current.off('mousedown').on('mousedown', e => {
             this.saveSelection();
             var name = current.attr('class');
@@ -190,11 +226,78 @@ class MozMD {
                     this.source.hide();
                     this.preview.show();
                     current.attr('class', 'mozmd-mode-source').attr('title', options.markdown.source).find('i').attr('class', 'fa fa-keyboard-o');
+                    this.toggleActions();
                     break;
                 case 'mozmd-mode-source':
                     this.source.show();
                     this.preview.hide();
                     current.attr('class', 'mozmd-mode-preview').attr('title', options.markdown.preview).find('i').attr('class', 'fa fa-eye');
+                    this.toggleActions();
+                    break;
+                case 'mozmd-syntax-bold':
+                    this.replaceText(text => "**" + text.trim() + "**", 2);
+                    break;
+                case 'mozmd-syntax-italic':
+                    this.replaceText(text => "_" + text.trim() + "_", 1);
+                    break;
+                case 'mozmd-syntax-header':
+                    this.replaceText(text => {
+                        text = text.trim();
+                        if (text[0] == '#')
+                            return '#' + text;
+                        return "# " + text;
+                    }, 1);
+                    break;
+                case 'mozmd-syntax-code':
+                    this.replaceText(text => {
+                        if (!text) return '```\n\n```\n';
+                        if (text.indexOf('\n') == -1) {
+                            if (text.startsWith('`'))
+                                return text;
+                            return '`' + text + '`';
+                        }
+                        if (text.startsWith('```'))
+                            return text;
+                        return '```\n' + text.trim() + '\n```\n';
+                    });
+                    break;
+                case 'mozmd-syntax-ul':
+                    this.replaceText(text => {
+                        if (!text) return '* ';
+                        var lines = [];
+                        text.split('\n').forEach(t => {
+                            if (t.startsWith('1. '))
+                                lines.push('*' + t.substr(2));
+                            else if (t.startsWith('* '))
+                                lines.push(t);
+                            else
+                                lines.push('* ' + t);
+                        });
+                        return lines.join('\n');
+                    });
+                    break;
+                case 'mozmd-syntax-ol':
+                    this.replaceText(text => {
+                        if (!text) return '1. ';
+                        var lines = [];
+                        text.split('\n').forEach(t => {
+                            if (t.startsWith('* '))
+                                lines.push('1.' + t.substr(1));
+                            else if (t.startsWith('1. '))
+                                lines.push(t);
+                            else
+                                lines.push('1.' + t);
+                        });
+                        return lines.join('\n');
+                    });
+                    break;
+                case 'mozmd-syntax-link':
+                    var link = window.prompt('请输入链接地址', 'http://');
+                    if (link)
+                        this.replaceText(text => {
+                            if (!text) text = link;
+                            return '[' + text + '](' + link + ')'
+                        }, 1);
                     break;
             }
             this.selector.trigger(name.replace(/-+/ig, '.'));

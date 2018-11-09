@@ -37,6 +37,7 @@ queue(context => {
             sidebar.hasClass('mini') && sidebar.find('.js-menu')
                 .find('ul')
                 .removeAttr('style');
+            current.toggleClass('fa-dedent').toggleClass('fa-indent');
         });
     });
 });
