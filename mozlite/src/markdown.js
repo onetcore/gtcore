@@ -5,9 +5,23 @@ import {
 import {
     upload
 } from './ajax';
-import {
-    markdown
-} from 'markdown';
+import * as md from 'marked';
+//支持highlight.js，需要加载脚本：https://highlightjs.org/
+md.setOptions({
+    renderer: new md.Renderer(),
+    highlight: function (code) {
+        if (!window.hljs) return;
+        return hljs.highlightAuto(code).value;
+    },
+    pedantic: false,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    sanitize: true, //移除HTML,HTML将作为字符串
+    smartLists: true,
+    smartypants: false,
+    xhtml: false
+});
 
 class MozMD {
     constructor(selector) {
@@ -37,7 +51,7 @@ class MozMD {
     update() {
         var source = this.source.text();
         this._value.val(source);
-        var html = markdown.toHTML(source);
+        var html = md.parse(source);
         this.preview.html(html);
         this._html.val(html);
         this.selector.trigger('mozmd.updated');
