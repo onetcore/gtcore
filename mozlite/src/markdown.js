@@ -331,6 +331,9 @@ class MozMD {
                             return '[' + text + '](' + link + ')'
                         }, 1);
                     break;
+                case 'mozmd-syntax-quote':
+                    this.replaceText(text => '> ' + text, 1);
+                    break;
             }
             this.selector.trigger(name.replace(/-+/ig, '.'));
             return false;
