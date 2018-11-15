@@ -166,6 +166,15 @@ interface IMozlite {
     ajax(url: string, data: object, success?: Function, error?: Function);
 
     /**
+     * 上传数据库。
+     * @param current 提交表单原始。
+     * @param url 消息实例或字符串。
+     * @param data 发送JSON实例。
+     * @param success 发送成功后回调函数。
+     */
+    upload(current:JQuery, url: string, data: object, success?: Function);
+
+    /**
      * 当前请求查询实例。
      */
     query: Query;
