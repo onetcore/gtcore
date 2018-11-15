@@ -21,7 +21,7 @@ $.fn.formSubmit = function (success, error) {
         contentType: false,
         processData: false,
         data: data,
-        headers: getHeaders(),
+        headers: getHeaders(form),
         success: function (d) {
             submit.removeAttr('disabled').find('i.fa').attr('class', css);
             if (success && success(d, form)) {
@@ -64,12 +64,17 @@ function onErrorHandler(e, error) {
     }
 };
 
-function getHeaders() {
-    var token = $('#ajax-protected-form').find('[name="__RequestVerificationToken"]');
-    if (token.length == 0)
+function getHeaders(form) {
+    if (form) {
+        if (!form.is('form'))
+            form = form.parents('form');
+        form = form.find('[name="__RequestVerificationToken"]');
+    }
+    form = form || $('#ajax-protected-form').find('[name="__RequestVerificationToken"]');
+    if (form.length == 0)
         return {};
     return {
-        'RequestVerificationToken': token.val()
+        'RequestVerificationToken': form.val()
     };
 };
 
@@ -132,6 +137,30 @@ function ajaxAction(current, url, action, ids) {
     return false;
 }
 
+export function upload(current, url, data, success) {
+    $('#js-loading').fadeIn();
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: false,
+        processData: false,
+        data: data,
+        headers: getHeaders(current),
+        success: function (d) {
+            $('#js-loading').fadeOut();
+            if (success && success(d.data, current)) {
+                return;
+            }
+            if (d.message && d.type)
+                alert(d.message, d.type, d.type === StatusType.Success);
+        },
+        error: function (e) {
+            $('#js-loading').fadeOut();
+            onErrorHandler(e);
+        }
+    });
+}
+
 queue(context => {
     //action
     $('[js-action]', context).exec(current => {
@@ -174,7 +203,7 @@ queue(context => {
         });
     });
     //提交表单
-    $('button[type=submit][js-target], input[type=submit][js-target]', context).exec(current=>{
+    $('button[type=submit][js-target], input[type=submit][js-target]', context).exec(current => {
         var selector = current.attr('js-target');
         selector = $(selector);
         if (selector.is('form'))
@@ -242,7 +271,7 @@ queue(context => {
                 contentType: false,
                 processData: false,
                 data: data,
-                headers: getHeaders(),
+                headers: getHeaders(current),
                 success: function (d) {
                     $('#js-loading').fadeOut();
                     if (current.jsAttr('success')) {

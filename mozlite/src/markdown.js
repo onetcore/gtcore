@@ -3,15 +3,16 @@ import {
     options
 } from './core';
 import {
+    upload
+} from './ajax';
+import {
     markdown
 } from 'markdown';
-import {
-    timingSafeEqual
-} from 'crypto';
 
 class MozMD {
     constructor(selector) {
         this.selector = selector;
+        this._uploadUrl = selector.attr('js-upload-url');
         this.preview = $('.mozmd-preview', selector);
         this.source = $('.mozmd-source', selector);
         this.actions = $('.mozmd-toolbar a', selector);
@@ -43,7 +44,35 @@ class MozMD {
     }
 
     paste(e) {
-
+        if (!this._uploadUrl) return true;
+        this.saveSelection();
+        var clipboardData = e.clipboardData || e.originalEvent.clipboardData;
+        if (clipboardData && clipboardData.items) {
+            for (var i = 0; i < clipboardData.items.length; i++) {
+                var item = clipboardData.items[i];
+                if (item.kind == 'file' && item.type.indexOf('image') != -1) {
+                    var file = item.getAsFile();
+                    var data = new FormData();
+                    data.append("file", file);
+                    var ajaxData = this.selector.jsAttrs('upload-data');
+                    if (ajaxData) {
+                        for (const key in ajaxData) {
+                            data.append(key, ajaxData[key]);
+                        }
+                    }
+                    upload(this.selector, this._uploadUrl, data, (d, cur) => {
+                        this.replaceText(text => {
+                            var title = '';
+                            if (!text) text = '';
+                            else title = ' "' + text + '"'
+                            return '![' + text + '](' + d.url + title + ')';
+                        });
+                    });
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     saveSelection() {
@@ -185,29 +214,32 @@ class MozMD {
     }
 
     init() {
-        this.source.on('input', e => this.update()).on('paste', e => this.paste(e)).on('keydown', e => {
-            if (e.keyCode == 9) {
-                this.saveSelection();
-                if (e.shiftKey)
-                    this.replaceText(text => {
-                        if (!text) return '';
-                        var lines = [];
-                        text.split('\n').forEach(t => {
-                            if (t.startsWith('\t'))
-                                lines.push(t.substr(1));
-                            else
-                                lines.push(t);
-                        })
-                        return lines.join('\n');
-                    });
-                else
-                    this.replaceText(text => {
-                        if (!text) return '\t';
-                        return '\t' + text.split('\n').join('\n\t');
-                    });
-                return false;
-            }
-        });
+        this.source.on('input', e => this.update())
+            .on('paste', e => this.paste(e))
+            .on('keydown', e => {
+                //tab和shift+tab缩进
+                if (e.keyCode == 9) {
+                    this.saveSelection();
+                    if (e.shiftKey)
+                        this.replaceText(text => {
+                            if (!text) return '';
+                            var lines = [];
+                            text.split('\n').forEach(t => {
+                                if (t.startsWith('\t'))
+                                    lines.push(t.substr(1));
+                                else
+                                    lines.push(t);
+                            })
+                            return lines.join('\n');
+                        });
+                    else
+                        this.replaceText(text => {
+                            if (!text) return '\t';
+                            return '\t' + text.split('\n').join('\n\t');
+                        });
+                    return false;
+                }
+            });
         this.actions.exec(current => current.off('mousedown').on('mousedown', e => {
             this.saveSelection();
             var name = current.attr('class');

@@ -6,7 +6,7 @@
  */
 import {queue,render,call,options} from './core';
 import {alert,StatusType} from './alert';
-import {ajax} from './ajax';
+import {ajax, upload} from './ajax';
 import {query,Query} from './query';
 import './form';
 import {Grid} from './grid';
@@ -28,6 +28,7 @@ module.exports = {
     alert,
     StatusType,
     ajax,
+    upload,
     options,
     Grid
 };
