@@ -1,7 +1,15 @@
-import { alert, StatusType } from './alert';
-import { queue, call, render, options } from './core';
+import {
+    alert,
+    StatusType
+} from './alert';
+import {
+    queue,
+    call,
+    render,
+    options
+} from './core';
 
-$.fn.loadModal = function(url) {
+$.fn.loadModal = function (url) {
     var s = this;
     var current = s.dset('js-modal', () => $('<div class="js-modal modal fade" data-backdrop="static"><div>')
         .appendTo(document.body)
@@ -30,8 +38,8 @@ $.fn.loadModal = function(url) {
                 form.attr('action', url);
             if (form.find('input[type=file]').length > 0)
                 form.attr('enctype', 'multipart/form-data');
-            current.find('[js-submit=true],[type=submit]').click(function() {
-                form.formSubmit(function(d, form) {
+            current.find('[js-submit=true],[type=submit]').click(function () {
+                form.formSubmit(function (d, form) {
                     msgValid(current, d.data);
                     var func = s.jsAttr('submit');
                     if (func) {
@@ -88,6 +96,37 @@ function msgValid(modal, state) {
         if (element.length)
             element.html(state[key]).show();
     }
+}
+
+export function showModal(id, body, footer, func) {
+    var modal = $(document.body)
+        .dset('js-' + id, () => $('<div class="js-' + id + ' modal fade" data-backdrop="static"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-primary submit"> ' + options.modal.confirm + ' </button></div></div></div></div>')
+            .appendTo(document.body));
+    modal.find('.modal-body').html(body);
+    if (typeof footer === 'function') {
+        func = footer;
+        footer = undefined;
+    }
+    if (footer) {
+        modal.find('.modal-footer').html(footer);
+    }
+    var button = modal.find('button.submit');
+    if (func) {
+        button.removeAttr('data-dismiss').on('click', () => {
+            if (typeof func === 'function') {
+                func(modal);
+                modal.data('bs.modal').hide();
+            } else if (typeof func === 'object') {
+                location.href = func.url || location.href;
+            } else {
+                location.href = location.href;
+            }
+        });
+    } else
+        button.attr('data-dismiss', 'modal').off('click');
+    render(modal);
+    modal.modal('show');
+    return modal;
 }
 
 queue(context => {

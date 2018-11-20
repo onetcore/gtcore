@@ -33,7 +33,7 @@ export function alert(msg, type, func) {
     if (func) {
         button.removeAttr('data-dismiss').on('click', () => {
             if (typeof func === 'function') {
-                func(modal.data('bs.modal'));
+                func(modal);
                 modal.data('bs.modal').hide();
             } else if (typeof func === 'object') {
                 location.href = func.url || location.href;

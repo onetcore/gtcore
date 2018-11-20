@@ -6,6 +6,9 @@ import {
     upload
 } from './ajax';
 import * as md from 'marked';
+import {
+    showModal
+} from './modal';
 //支持highlight.js，需要加载脚本：https://highlightjs.org/
 md.setOptions({
     renderer: new md.Renderer(),
@@ -338,7 +341,7 @@ class MozMD {
                     });
                     break;
                 case 'mozmd-syntax-link':
-                    var link = window.prompt('请输入链接地址', 'http://');
+                    var link = window.prompt(options.markdown.link, 'http://');
                     if (link)
                         this.replaceText(text => {
                             if (!text) text = link;
@@ -348,11 +351,62 @@ class MozMD {
                 case 'mozmd-syntax-quote':
                     this.replaceText(text => '> ' + text, 1);
                     break;
+                case 'mozmd-syntax-image':
+                    if (!this._uploadUrl) {
+                        var imageUrl = window.prompt(options.markdown.image, 'http://');
+                        if (imageUrl)
+                            this.replaceText(text => {
+                                var title = '';
+                                if (text) title = ' "' + text + '"'
+                                return '![' + text + '](' + imageUrl + title + ')';
+                            }, 1);
+                        break;
+                    }
+                    this.showImageModal();
+                    break;
             }
             this.selector.trigger(name.replace(/-+/ig, '.'));
             return false;
         }));
         this.update();
+    }
+
+    showImageModal() {
+        showModal('mozmd-syntax-image', `<div class="form-group form-group-sm">
+            <label>${options.markdown.image}：</label>
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-sm" type="text" name="image-url"/>
+                <input type="file" class="hide"/>
+                <div class="input-group-append"><button onclick="$(this).parents('.input-group').find('input[type=file]').click();" title="${options.markdown.upload}" class="btn btn-sm btn-secondary"><i class="fa fa-upload"></i></button></div>
+            </div>
+            </div><div class="form-group form-group-sm">
+            <label>${options.markdown.title}：</label>
+            <input class="form-control form-control-sm" type="text" name="image-title"/>
+        </div>`, m => {
+            var url = m.find('input[name=image-url]').val().trim();
+            if (!url) return;
+            var title = m.find('input[name=image-title]').val().trim();
+            this.replaceText(text => {
+                if (title) {
+                    text = text || title;
+                    title = ' "' + title + '"'
+                }
+                return '![' + text + '](' + url + title + ')';
+            });
+        }).find('input[type=file]').on('change', e => {
+            var file = $(e.target);
+            var data = new FormData();
+            data.append("file", file[0].files[0]);
+            var ajaxData = this.selector.jsAttrs('upload-data');
+            if (ajaxData) {
+                for (const key in ajaxData) {
+                    data.append(key, ajaxData[key]);
+                }
+            }
+            upload(file, this._uploadUrl, data, (d, cur) => {
+                cur.parents('.input-group').find('input[name=image-url]').val(d.url);
+            });
+        });
     }
 }
 

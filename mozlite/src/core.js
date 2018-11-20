@@ -203,7 +203,8 @@ export var options = {
         selectedFirst: '请选择项目后再进行操作！'
     },
     modal: {
-        timeout: '服务器请求超时！'
+        timeout: '服务器请求超时！',
+        confirm: '确定'
     },
     resize: '配置原始分辨率大小错误，格式：js-resize="widthxheight"!',
     editable: {
@@ -218,7 +219,11 @@ export var options = {
             quit: '退出全屏'
         },
         preview: '预览',
-        source: '源码'
+        source: '源码',
+        link: '请输入链接地址',
+        image: '请输入图片地址',
+        upload: '上传图片',
+        title: '标题'
     }
 };
 

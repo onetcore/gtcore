@@ -69,9 +69,7 @@ module.exports = (env) => {
             new ExtractTextPlugin('css/[name].min.css'),
             new CopyPlugin([
                 { from: 'package.json', to: '../package.json' },
-                { from: 'README.md', to: '../README.md' },
-                { from: 'lib/highlight/highlight.pack.js', to: jsDir },
-                { from: 'lib/highlight/styles', to: 'css/highlight' }
+                { from: 'README.md', to: '../README.md' }
             ])
         ].concat(isDev ? [
             new HTMLWebpackPlugin({
