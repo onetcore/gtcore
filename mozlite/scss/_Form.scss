@@ -1,10 +1,12 @@
 .moz-checkbox {
     cursor: pointer;
     margin-top: 0;
+
     &.disabled {
         //禁用默认
         cursor: default;
     }
+
     input {
         position: absolute;
         display: block;
@@ -15,9 +17,11 @@
         margin: 0;
         visibility: hidden;
     }
+
     span {
         margin-left: 10px;
     }
+
     .box-wrapper {
         float: none;
         position: relative;
@@ -34,6 +38,7 @@
         transition: all 300ms ease-in-out;
         user-select: none;
         top: 4px;
+
         .box-checked {
             position: absolute;
             display: block;
@@ -49,8 +54,10 @@
             transition: 250ms all cubic-bezier(0.455, 0.030, 0.515, 0.955);
         }
     }
+
     &:hover .box-wrapper {
         box-shadow: 0 0 0 2px $check-radio-box-shadow-color;
+
         .box-checked {
             opacity: 0.3;
         }
@@ -61,13 +68,18 @@
     @extend .moz-checkbox;
 }
 
-$boxs:16,18,10;
+$boxs:16,
+18,
+10;
+
 @each $i in $boxs {
+
     .moz-checkboxlist.box#{$i} .moz-checkbox .box-wrapper,
     .moz-radioboxlist.box#{$i} .moz-radiobox .box-wrapper {
         @if $i==16 {
             padding-right: 14px;
         }
+
         padding-right: #{$i - 2}px;
         margin-bottom: 0;
         width: 16px;
@@ -80,6 +92,7 @@ $boxs:16,18,10;
         .box-checked {
             background: $check-radio-box-checked-color;
             opacity: 1;
+
             &:before {
                 font: normal normal normal 14px/1 FontAwesome;
                 font-size: 12px;
@@ -89,10 +102,12 @@ $boxs:16,18,10;
             }
         }
     }
+
     &.checked-style-check {
         .box-wrapper {
             .box-checked {
                 background: transparent;
+
                 &:before {
                     content: '\f00c';
                     color: $check-radio-box-checked-color;
@@ -118,15 +133,19 @@ $boxs:16,18,10;
     border-radius: 50%;
 }
 
-.moz-checkboxlist.nowrap, .moz-radioboxlist.nowrap{
+.moz-checkboxlist.nowrap,
+.moz-radioboxlist.nowrap {
     display: flex;
     flex-wrap: nowrap;
     align-items: stretch;
     flex-direction: row;
-    .moz-radiobox, .moz-checkbox{
-        flex:1 1 auto;
+
+    .moz-radiobox,
+    .moz-checkbox {
+        flex: 1 1 auto;
         margin-right: 10px;
-        &:last-child{
+
+        &:last-child {
             margin-right: 0;
         }
     }
@@ -136,10 +155,56 @@ $boxs:16,18,10;
     display: none;
 }
 
-.filter .moz-checkbox .box-wrapper{
-    top:3px;
+.filter .moz-checkbox .box-wrapper {
+    top: 3px;
 }
 
-input.js-checkbox, input.js-radio{
+input.js-checkbox,
+input.js-radio {
     display: none;
+}
+
+.input-append, .input-prepend {
+    .input-append-sm, .input-prepend-sm {
+        height: calc(1.8125rem + 2px);
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem;
+    }
+
+    .input-group-text {
+        background: transparent;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #ced4da;
+    }
+}
+
+.input-append{
+    .input-group-text {
+        border-left: 0 !important;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-control {
+        border-right: 0 !important;
+        padding-right: 0;
+    }
+}
+
+.input-prepend{
+    .input-group-text {
+        border-right: 0 !important;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .form-control {
+        border-left: 0 !important;
+        padding-left: 0;
+    }
 }

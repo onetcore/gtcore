@@ -166,6 +166,20 @@
                     </div>
                 </div>
                 <div class="main-container">
+                    <div class="filter">
+                        <div class="input-group input-append">
+                            <input type="text" class="form-control form-control-sm" />
+                            <div class="input-group-text input-append-sm">
+                                秒
+                            </div>
+                        </div>
+                        <div class="input-group input-prepend">
+                            <div class="input-group-text input-prepend-sm">
+                                单位
+                            </div>
+                            <input type="text" class="form-control form-control-sm" />
+                        </div>
+                    </div>
                     <div class="mozmd-editor" js-upload-url="/Admin/Pages/Content?handler=Upload" js-upload-data-id="1">
                         <div class="mozmd-toolbar">
                             <div class="mozmd-left">
@@ -182,7 +196,8 @@
                             </div>
                             <div class="mozmd-right"><a class="mozmd-fullscreen" title="全屏显示"><i class="fa fa-window-maximize"></i></a></div>
                         </div>
-                        <div class="mozmd-source customScrollBar overlay" contenteditable="plaintext-only">段落示意：蚂蚁金服务设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态， 提供跨越设计与开发的体验解决方案。</div>
+                        <div class="mozmd-source customScrollBar overlay" contenteditable="plaintext-only">段落示意：蚂蚁金服务设计平台
+                            ant.design，用最小的工作量，无缝接入蚂蚁金服生态， 提供跨越设计与开发的体验解决方案。</div>
                         <div class="mozmd-preview customScrollBar overlay"></div><textarea class="hide mozmd-source-value"
                             name="Input.Source"></textarea><textarea class="hide mozmd-html-value" name="Input.Html"></textarea>
                     </div>
@@ -196,7 +211,7 @@
     <script>
         Mozlite.queue(context => {
             $('.mozmd-editor', context).exec(current => {
-                
+
             });
         });
     </script>
