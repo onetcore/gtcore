@@ -181,6 +181,12 @@ input.js-radio {
         box-shadow: none;
         border-color: #ced4da;
     }
+
+    &.disabled{
+        .input-group-text{
+            background: #e9ecef;
+        }
+    }
 }
 
 .input-append{
