@@ -167,6 +167,7 @@
                 </div>
                 <div class="main-container">
                     <div class="filter">
+                        <input class="js-checkbox" type="checkbox" id="test" />
                         <div class="input-group input-append disabled">
                             <input disabled="disabled" type="text" class="form-control form-control-sm" />
                             <div class="input-group-text input-append-sm">
@@ -179,7 +180,6 @@
                             </div>
                             <input type="text" class="form-control form-control-sm" />
                         </div>
-                        <input class="js-checkbox" type="checkbox" id="test"/><label for="test">xxxxxxxxxxxxxx</label>
                     </div>
                     <div class="mozmd-editor" js-upload-url="/Admin/Pages/Content?handler=Upload" js-upload-data-id="1">
                         <div class="mozmd-toolbar">
@@ -210,11 +210,17 @@
         </main>
     </div>
     <script>
-         $('#test').exec(current => {
-                current.on('checked', (e, c)=>{
-                    alert(JSON.stringify(c));
+        $('#test').exec(current => {
+            current.on('checked', (e, c) => {
+                $('.input-append').exec(cur => {
+                    if (c) {
+                        cur.toggleClass('disabled').find('input').removeAttr('disabled');
+                    } else {
+                        cur.toggleClass('disabled').find('input').attr('disabled', 'disabled');
+                    }
                 });
             });
+        });
     </script>
     <!--
 .sidebar.sm .opened>ul{
