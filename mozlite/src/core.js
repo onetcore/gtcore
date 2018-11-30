@@ -51,6 +51,7 @@ $.fn.extend({
                 while (name.startsWith('-'))
                     name = name.substr(1);
                 if (!name) name = '_this';
+                else name = $.camelCase(name);
                 var value = $.trim(attr.value);
                 if (value == 'true')
                     value = true;
