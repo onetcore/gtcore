@@ -68,7 +68,7 @@ queue(context => {
     //checkall
     $('.moz-checkall', context).click(function () {
         var dataView = $(this).parents('.data-view');
-        var actionbar = $(dataView.jsAttr('actionbar'), context);
+        var actionbar = $(dataView.jsAttr('actionbar')||'.filter', context);
         var target = $(this).targetElement(dataView.find('.data-content').find('.moz-checkbox'));
         $(this).removeClass('some-checked');
         if ($(this).hasClass('checked')) {
@@ -86,7 +86,7 @@ queue(context => {
     //data-content checkbox
     $('.data-content', context).find('.moz-checkbox').click(function () {
         var dataView = $(this).parents('.data-view');
-        var actionbar = $(dataView.jsAttr('actionbar'), context);
+        var actionbar = $(dataView.jsAttr('actionbar')||'.filter', context);
         var checkbeds = $('.data-content', dataView).find('.moz-checkbox.checked').length;
         if ($(this).hasClass('checked')) {
             $(this).parents('tr').addClass('active');
