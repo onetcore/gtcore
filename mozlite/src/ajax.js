@@ -117,7 +117,10 @@ function ajaxAction(current, url, action, ids) {
         if (ids) {
             data['ids'] = ids;
         }
-        ajax(url, data);
+        ajax(url, data, function (d) {
+            current.trigger('success', d);
+            return false;
+        });
         return false;
     }
     //get
@@ -180,7 +183,7 @@ queue(context => {
     });
     //actionbar
     $('.data-view', context).exec(current => {
-        var actionbar = $(current.jsAttr('actionbar')||'.filter', context);
+        var actionbar = $(current.jsAttr('actionbar') || '.filter', context);
         $('[js-checked]', actionbar).exec(cur => {
             var action = cur.jsAttr('checked').trim();
             var url = cur.jsAttr('url') || cur.attr('href');

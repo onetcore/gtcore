@@ -300,6 +300,12 @@ $grid-bordered-styles:(solid, dashed);
     }
 }
 
+.modal-wide {
+    .modal-body {
+        padding: 0 !important;
+    }
+}
+
 .modal-summary,
 .field-validation-valid {
     display: none;
