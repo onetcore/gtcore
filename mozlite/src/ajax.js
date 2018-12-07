@@ -21,7 +21,7 @@ $.fn.formSubmit = function (success, error) {
         contentType: false,
         processData: false,
         data: data,
-        headers: getHeaders(form),
+        headers: headers(),
         success: function (d) {
             submit.removeAttr('disabled').find('i.fa').attr('class', css);
             if (success && success(d, form)) {
@@ -64,17 +64,14 @@ function onErrorHandler(e, error) {
     }
 };
 
-function getHeaders(form) {
-    if (form) {
-        if (!form.is('form'))
-            form = form.parents('form');
-        form = form.find('[name="__RequestVerificationToken"]');
-    }
-    form = form || $('#ajax-protected-form').find('[name="__RequestVerificationToken"]');
-    if (form.length == 0)
+function headers() {
+    var token = $('#ajax-protected-form').find('[name="__RequestVerificationToken"]');
+    if (token.length == 0) {
+        alert(options.ajax.noHeader);
         return {};
+    }
     return {
-        'RequestVerificationToken': form.val()
+        'RequestVerificationToken': token.val()
     };
 };
 
@@ -85,7 +82,7 @@ export function ajax(url, data, success, error) {
         data: data,
         dataType: 'JSON',
         type: 'POST',
-        headers: getHeaders(),
+        headers: headers(),
         success: function (d) {
             $('#js-loading').fadeOut();
             if (success && success(d)) {
@@ -148,7 +145,7 @@ export function upload(current, url, data, success) {
         contentType: false,
         processData: false,
         data: data,
-        headers: getHeaders(current),
+        headers: headers(),
         success: function (d) {
             $('#js-loading').fadeOut();
             if (success && success(d.data, current)) {
@@ -274,7 +271,7 @@ queue(context => {
                 contentType: false,
                 processData: false,
                 data: data,
-                headers: getHeaders(current),
+                headers: headers(),
                 success: function (d) {
                     $('#js-loading').fadeOut();
                     if (current.jsAttr('success')) {

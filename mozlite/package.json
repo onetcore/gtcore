@@ -1,6 +1,6 @@
 {
     "name": "mozlite",
-    "version": "0.0.28",
+    "version": "0.0.29",
     "description": "UI for Mozlite framework.",
     "main": "dist/js/mozlite.min.js",
     "types": "index.d.ts",

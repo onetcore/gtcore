@@ -201,7 +201,8 @@ export var options = {
     },
     ajax: {
         notFoundUrl: '操作地址没有配置，请检查js-url,a[href],form[action]值！',
-        selectedFirst: '请选择项目后再进行操作！'
+        selectedFirst: '请选择项目后再进行操作！',
+        noHeader: '没有配置RequestVerificationToken验证表单！'
     },
     modal: {
         timeout: '服务器请求超时！',
