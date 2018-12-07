@@ -44,7 +44,7 @@ queue(context => {
         wrapper.append(current.clone(true));
         wrapper.append('<label class="box-wrapper"><div class="box-checked"></div></label>');
         var label = current.parent().find('label[for=' + current.attr('id') + ']');
-        if (label.length) wrapper.append(label.html());
+        if (label.length) wrapper.append('<span>' + label.html() + '</span>');
         label.remove();
         current.replaceWith(wrapper);
     });
@@ -68,7 +68,7 @@ queue(context => {
     //checkall
     $('.moz-checkall', context).click(function () {
         var dataView = $(this).parents('.data-view');
-        var actionbar = $(dataView.jsAttr('actionbar')||'.filter', context);
+        var actionbar = $(dataView.jsAttr('actionbar') || '.filter', context);
         var target = $(this).targetElement(dataView.find('.data-content').find('.moz-checkbox'));
         $(this).removeClass('some-checked');
         if ($(this).hasClass('checked')) {
@@ -86,7 +86,7 @@ queue(context => {
     //data-content checkbox
     $('.data-content', context).find('.moz-checkbox').click(function () {
         var dataView = $(this).parents('.data-view');
-        var actionbar = $(dataView.jsAttr('actionbar')||'.filter', context);
+        var actionbar = $(dataView.jsAttr('actionbar') || '.filter', context);
         var checkbeds = $('.data-content', dataView).find('.moz-checkbox.checked').length;
         if ($(this).hasClass('checked')) {
             $(this).parents('tr').addClass('active');

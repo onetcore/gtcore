@@ -215,7 +215,6 @@ body.mozskin {
     flex-wrap: wrap;
     justify-content: flex-start;
     position: relative;
-    margin-bottom: 1rem;
 
     .form-control,
     .input-group {
@@ -236,6 +235,7 @@ body.mozskin {
 
         >* {
             margin-right: 10px;
+            margin-bottom: 1rem;
         }
     }
 
@@ -248,6 +248,61 @@ body.mozskin {
 
         >* {
             margin-left: 10px;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .multi {
+        margin-right: 0px;
+        display: block;
+
+        .form-row {
+            display: flex;
+            flex: 0 0 100%;
+
+            & > * {
+                margin-right: 10px;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
+td.data-action, th.data-action {
+    text-align: center;
+}
+
+@include media-breakpoint-down(sm) {
+    .filter {
+        .right {
+            display: none !important;
+        }
+    }
+
+    td.data-action, th.data-action {
+        display: none !important;
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .filter {
+        & > * {
+            margin-right: 0 !important;
+            width: 100%;
+            margin-bottom: 1rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .right {
+            justify-content: flex-start;
+
+            & > * {
+                margin-left: 0 !important;
+                margin-right: 10px;
+            }
         }
     }
 }
@@ -378,4 +433,10 @@ td.checkbox-only {
 
 .page-center {
     justify-content: center;
+}
+
+@for $i from 1 through 10 {
+    .indent-#{$i} {
+        text-indent: #{$i}rem;
+    }
 }

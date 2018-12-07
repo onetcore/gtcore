@@ -167,19 +167,22 @@
                 </div>
                 <div class="main-container">
                     <div class="filter">
-                        <input class="js-checkbox" type="checkbox" id="test" />
-                        <div class="input-group input-append disabled">
-                            <input disabled="disabled" type="text" class="form-control form-control-sm" />
-                            <div class="input-group-text input-append-sm">
-                                秒
+                        <form class="left">
+                            <input class="js-checkbox" type="checkbox" id="test" />
+                            <label for="test">开启回路</label>
+                            <div class="input-group input-append disabled">
+                                <input disabled="disabled" type="text" class="form-control form-control-sm" />
+                                <div class="input-group-text input-append-sm">
+                                    秒
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-group input-prepend">
-                            <div class="input-group-text input-prepend-sm">
-                                单位
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </div>
+                                <input type="text" class="form-control form-control-sm" />
                             </div>
-                            <input type="text" class="form-control form-control-sm" />
-                        </div>
+                        </form>
                     </div>
                     <div class="mozmd-editor" js-upload-url="/Admin/Pages/Content?handler=Upload" js-upload-data-id="1">
                         <div class="mozmd-toolbar">

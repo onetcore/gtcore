@@ -395,6 +395,7 @@ class MozMD {
             });
         }).find('input[type=file]').on('change', e => {
             var file = $(e.target);
+            if (file[0].files.length == 0) return;
             var data = new FormData();
             data.append("file", file[0].files[0]);
             var ajaxData = this.selector.jsAttrs('upload-data');
@@ -403,8 +404,8 @@ class MozMD {
                     data.append(key, ajaxData[key]);
                 }
             }
-            upload(file, this._uploadUrl, data, (d, cur) => {
-                cur.parents('.input-group').find('input[name=image-url]').val(d.url);
+            upload(undefined, this._uploadUrl, data, d => {
+                file.parents('.input-group').find('input[name=image-url]').val(d.url);
             });
         });
     }
