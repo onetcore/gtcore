@@ -285,6 +285,7 @@ queue(context => {
                         var target = current.data('target');
                         if (!target)
                             target = current.parent();
+                        target.trigger('uploaded', d.data.url);
                         if (!target.is('input'))
                             target = target.find('input.uploaded');
                         target.val(d.data.url);
