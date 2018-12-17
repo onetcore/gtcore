@@ -29,9 +29,9 @@ $.fn.extend({
         if (!this.is('input') || this.attr('type') !== 'file')
             return null;
         if (navigator.userAgent.indexOf("MSIE") > 0) return this.val();
-        if (window.createObjectURL) return window.createObjectURL(this[0].files[0]);
-        if (window.URL) return window.URL.createObjectURL(this[0].files[0]);
-        if (window.webkitURL) return window.webkitURL.createObjectURL(this[0].files[0]);
+        var createObjectURL = window.createObjectURL || (window.URL && window.URL.createObjectURL) || (window.webkitURL && window.webkitURL.createObjectURL);
+        if (createObjectURL)
+            return createObjectURL(this[0].files[0]);
         return null;
     },
     /**
