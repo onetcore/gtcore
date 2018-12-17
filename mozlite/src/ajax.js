@@ -246,7 +246,7 @@ queue(context => {
     //file上传
     $('[data-toggle=uploader]', context).exec(cur => {
         cur.on('click', function () {
-            $('input[type=file][js-uploader]', context).click();
+            $('input[type=file][js-uploader]', context).data('target', cur).click();
             return false;
         });
     });
@@ -284,7 +284,9 @@ queue(context => {
                     else if (d.type === StatusType.Success && d.data && d.data.url) {
                         var target = current.data('target');
                         if (!target)
-                            target = current.parent().find('input.uploaded');
+                            target = current.parent();
+                        if (!target.is('input'))
+                            target = target.find('input.uploaded');
                         target.val(d.data.url);
                     }
                 },
