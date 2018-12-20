@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
         <%= htmlWebpackPlugin.options.title %>
     </title>
@@ -110,6 +111,7 @@
                 </li>
             </ul>
         </div>
+        <div class="mini-bg"></div>
         <main>
             <header>
                 <i js-toggle="sidebar" class="sidebar-trigger fa fa-dedent"></i>
@@ -167,20 +169,26 @@
                 </div>
                 <div class="main-container">
                     <div class="filter">
-                        <form class="left">
-                            <input class="js-checkbox" type="checkbox" id="test" />
-                            <label for="test">开启回路</label>
-                            <div class="input-group input-append disabled">
-                                <input disabled="disabled" type="text" class="form-control form-control-sm" />
-                                <div class="input-group-text input-append-sm">
-                                    秒
+                        <form class="left form-inline">
+                            <div class="form-group">
+                                <input class="js-checkbox" type="checkbox" id="test" />
+                                <label for="test">开启回路</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-append disabled">
+                                    <input disabled="disabled" type="text" class="form-control form-control-sm" />
+                                    <div class="input-group-text input-append-sm">
+                                        秒
+                                    </div>
                                 </div>
                             </div>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm" />
                                 </div>
-                                <input type="text" class="form-control form-control-sm" />
                             </div>
                         </form>
                     </div>

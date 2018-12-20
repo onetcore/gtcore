@@ -1,4 +1,6 @@
-import { queue } from './core';
+import {
+    queue
+} from './core';
 
 queue(context => {
     $('.js-menu', context).exec(current => {
@@ -31,12 +33,17 @@ queue(context => {
             $(this).addClass('sm');
         });
     });
-    $('[js-toggle=sidebar]', context).exec(current => {
+    $('[js-toggle=sidebar], .mini-bg', context).exec(current => {
         current.on('click', function () {
             var sidebar = $('.sidebar', context).toggleClass('mini').addClass('no-js');
-            sidebar.hasClass('mini') && sidebar.find('.js-menu')
-                .find('ul')
-                .removeAttr('style');
+            if (sidebar.hasClass('mini')) {
+                sidebar.find('.js-menu')
+                    .find('ul')
+                    .removeAttr('style');
+                $('.mini-bg').hide();
+            } else if ($('.mozskin-xs').length) {
+                $('.mini-bg').show();
+            }
             current.toggleClass('fa-dedent').toggleClass('fa-indent');
         });
     });
@@ -48,4 +55,10 @@ queue(context => {
         else
             current.removeClass('mini');
     });
+    $('.mozskin', context).exec(current => {
+        if ($(document.body).width() < 376)
+            $('.mozskin').addClass('mozskin-xs')
+        else
+            $('.mozskin').removeClass('mozskin-xs');
+    })
 }, true);

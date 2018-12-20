@@ -215,3 +215,24 @@ input.js-radio {
         padding-left: 0;
     }
 }
+
+.input-range {
+    flex-wrap: nowrap;
+}
+.input-range label {
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    margin-left: 0;
+    margin-right: 0;
+    z-index: 1;
+}
+.input-range input {
+    border-left: none;
+    border-right: none;
+}
+.input-range input:first-child {
+    border-left: 1px solid #ced4da;
+}
+.input-range input:last-child {
+    border-right: 1px solid #ced4da;
+}

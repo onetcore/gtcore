@@ -11,7 +11,6 @@ body.fullscreen {
     top: 0;
     left: 0;
     z-index: 9999;
-    background: #fff !important;
     border: 0 !important;
 }
 
@@ -27,13 +26,12 @@ body.fullscreen {
 
 .mozmd-toolbar {
     display: flex;
-    flex: 0 0 36px;
+    flex: 0 0 auto;
     flex-direction: row;
-    flex-wrap: nowrap;
     border-bottom: 1px dashed #ddd;
     padding: 6px 6px;
     position: sticky;
-    position: -webkit-sticky;
+    line-height: 26px;
     top: 0;
 }
 
