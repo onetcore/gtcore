@@ -175,6 +175,7 @@
                                 <label for="test">开启回路</label>
                             </div>
                             <div class="form-group">
+                                <label>描述信息</label>
                                 <div class="input-group input-append disabled">
                                     <input disabled="disabled" type="text" class="form-control form-control-sm" />
                                     <div class="input-group-text input-append-sm">
@@ -183,14 +184,21 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label>输入文本</label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
+                                    <input type="text" class="form-control form-control-sm" />
+                                    <div class="input-group-append">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm" />
                                 </div>
                             </div>
                         </form>
+                        <div class="right">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary"><i class="fa fa-trash"></i> 删除</a>
+                                <a class="btn btn-sm btn-outline-secondary"><i class="fa fa-plus"></i> 添加</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="mozmd-editor" js-upload-url="/Admin/Pages/Content?handler=Upload" js-upload-data-id="1">
                         <div class="mozmd-toolbar">

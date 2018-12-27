@@ -275,6 +275,7 @@ body.mozskin {
 
     >* {
         margin-right: 10px;
+        margin-bottom: 0;
     }
 
     label {
@@ -294,9 +295,7 @@ body.mozskin {
 
     .right {
         flex: 1 1 auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        text-align: right;
         margin-right: 0;
 
         >* {
@@ -340,10 +339,9 @@ th.data-action {
 
 @include media-breakpoint-down(md) {
     .filter {
-        &>* {
+        .left, form {
             margin-right: 0 !important;
             width: 100%;
-            margin-bottom: 1rem;
 
             &:last-child {
                 margin-bottom: 0;
@@ -351,7 +349,7 @@ th.data-action {
         }
 
         .right {
-            justify-content: flex-start;
+            text-align: left;
 
             &>* {
                 margin-left: 0 !important;
