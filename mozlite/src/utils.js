@@ -55,10 +55,4 @@ queue(context => {
         else
             current.removeClass('mini');
     });
-    $('.mozskin', context).exec(current => {
-        if ($(document.body).width() < 376)
-            $('.mozskin').addClass('mozskin-xs')
-        else
-            $('.mozskin').removeClass('mozskin-xs');
-    })
 }, true);

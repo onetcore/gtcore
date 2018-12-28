@@ -102,6 +102,7 @@ $.fn.extend({
 var _executors = [];
 var _resizers = [];
 window.onresize = function () {
+    setScreen();
     for (const resizer of _resizers) {
         resizer();
     }
@@ -229,8 +230,38 @@ export var options = {
     }
 };
 
+const screen = {
+    xs: 0 ,
+    sm: 576,
+    md: 768,
+    lg: 992,
+    xl: 1200
+};
+
+//分辨率
+function setScreen() {
+    var body = $(document.body);
+    var width = body.width();
+    var current = 'xs';
+    if (width >= screen.xl)
+        current = 'xl';
+    else if (width >= screen.lg)
+        current = 'lg';
+    else if (width >= screen.md)
+        current = "md";
+    else if (width >= screen.sm)
+        current = "sm";
+    for (var i in screen) {
+        if (i == current)
+            body.addClass('mozskin-' + i);
+        else
+            body.removeClass('mozskin-' + i);
+    }
+}
+
 //调用render
 $(function () {
+    setScreen();
     if (_executors.length > 0) {
         render();
     }

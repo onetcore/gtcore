@@ -1,9 +1,8 @@
 body.mozskin {
     margin: 0;
     padding: 0;
-    font-family: Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-family: Microsoft YaHei, Arial;
     font-size: 14px;
-    font-variant: tabular-nums;
     line-height: 1.5;
     color: rgba(0, 0, 0, .65);
     background-color: #fff;
@@ -13,15 +12,21 @@ body.mozskin {
     display: none;
 }
 
-.mozskin-xs {
-
-    .mini,
-    .hide-xs {
-        display: none !important;
+@each $i in (xs sm md lg xl){
+    .mozskin-#{$i}{
+        .hide-#{$i} {
+            display: none !important;
+        }
+    
+        .show-#{$i} {
+            display: block !important;
+        }
     }
+}
 
-    .show-xs {
-        display: block !important;
+.mozskin-xs {
+    .mini {
+        display: none !important;
     }
 
     .sidebar {
@@ -301,20 +306,6 @@ body.mozskin {
         >* {
             margin-left: 10px;
             margin-bottom: 1rem;
-        }
-    }
-
-    .multi {
-        margin-right: 0px;
-        display: block;
-
-        .form-row {
-            display: flex;
-            flex: 0 0 100%;
-
-            &>* {
-                margin-right: 10px;
-            }
         }
     }
 }
