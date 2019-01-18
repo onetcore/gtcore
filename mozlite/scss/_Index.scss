@@ -483,3 +483,12 @@ td.checkbox-only {
         text-indent: #{$i}rem;
     }
 }
+
+.fa-circle{
+    background: #b71d1d;
+    border-radius: 100%;
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 0.3rem;
+    color: #fff;
+}
