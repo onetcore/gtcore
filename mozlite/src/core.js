@@ -183,13 +183,13 @@ String.prototype.toDateString = function (fmt) {
 String.prototype.toCamelCase = function () {
     return this.replace(/-([a-z])/ig, (all, cur) => cur.toUpperCase());
 }
-
-if (typeof String.prototype.startsWith !== 'function')
-    String.prototype.startsWith = function (str) {
-        if (this.length < str.length) return false;
-        return this.substr(0, str.length) == str;
-    };
-
+//移除重复值
+Array.prototype.distinct = function () {
+    return this.reduce(function (dest, src) {
+        if (dest.indexOf(src) == -1) dest.push(src);
+        return dest;
+    }, []);
+};
 //选项配置
 export var options = {
     status: {
@@ -231,7 +231,7 @@ export var options = {
 };
 
 const screen = {
-    xs: 0 ,
+    xs: 0,
     sm: 576,
     md: 768,
     lg: 992,

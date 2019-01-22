@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html>
-
 <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>
         <%= htmlWebpackPlugin.options.title %>
     </title>
@@ -121,10 +123,182 @@
                             <i class="fa fa-home mr-1"></i>首页
                         </a>
                     </li>
-                    <li class="nav-item text-nowarp">
-                        <a class="nav-link" asp-page="/admin/help" asp-area="" onclick="return false;">
-                            <i class="fa fa-question-circle mr-1"></i>帮助
+                    <li class="nav-item text-nowarp dropdown dropdown-panel">
+                        <a class="nav-link dropdown-toggle dropleft" href="javascript:;" data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">
+                            <i class="fa fa-bell-o mr-1"></i><span class="number badge badge-danger">19</span>
                         </a>
+                        <div class="dropdown-menu dropdown-panel-body">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">通知<span class="badge">(4)</span></a></li>
+                                <li class="nav-item"><a class="nav-link" id="msg-tab" data-toggle="tab" href="#msg" role="tab" aria-controls="notify" aria-selected="false">消息<span class="badge">(5)</span></a></li>
+                                <li class="nav-item"><a class="nav-link" id="task-tab" data-toggle="tab" href="#task" role="tab" aria-controls="notify" aria-selected="false">代办<span class="badge">(10)</span></a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade active show" id="notify" role="tabpanel">
+                                    <div class="dropdown-panel-content customScrollBar overlay">
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-panel-action">
+                                        <a href="javascript:;">清空</a>
+                                        <a href="javascript:;">编辑</a>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="msg" role="tabpanel">
+                                    <div class="dropdown-panel-content customScrollBar overlay">
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-panel-action">
+                                        <a href="javascript:;">清空</a>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="task" role="tabpanel">
+                                    <div class="dropdown-panel-content customScrollBar overlay">
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-content noicon">
+                                                <div class="title">发送了一个电子邮件 <span class="mark alert alert-success">已经完成</span></div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-content noicon">
+                                                <div class="title">发送了一个电子邮件 <span class="mark alert alert-danger">已经完成</span></div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-content noicon">
+                                                <div class="title">发送了一个电子邮件 <span class="mark alert alert-secondary">已经完成</span></div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-content noicon">
+                                                <div class="title">发送了一个电子邮件 <span class="mark alert alert-warning">已经完成</span></div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-content noicon">
+                                                <div class="title">发送了一个电子邮件 <span class="mark alert alert-success">已经完成</span></div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-panel-action">
+                                        <a href="javascript:;">清空</a>
+                                        <a href="javascript:;">编辑</a>
+                                        <a href="javascript:;">添加</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item text-nowarp dropdown droplast">
                         <a class="nav-link dropdown-toggle" href="javascript:;" data-toggle="dropdown" aria-haspopup="true"

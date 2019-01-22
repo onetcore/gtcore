@@ -47,6 +47,13 @@ queue(context => {
             current.toggleClass('fa-dedent').toggleClass('fa-indent');
         });
     });
+    //菜单tabs，点击后不隐藏
+    $('.dropdown-panel-body .nav-tabs', context).on('click', 'a', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).tab('show');
+        return false;
+    });
 });
 queue(context => {
     $('.sidebar', context).exec(current => {

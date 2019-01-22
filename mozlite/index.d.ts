@@ -84,23 +84,23 @@ interface JQuery {
      * 获取以js-${type}开头的所有属性对象。
      * @param type js-属性名称。
      */
-    jsAttrs(type?:string): Object;
+    jsAttrs(type?: string): Object;
 
     /**
      * 缩放当前元素，单位为px。
      * @param type 缩放类型，如：scale,scale-x,scale-y,margin-left等。
      * @param scale 缩放比例。
      */
-    scale(type:string, scale:Number):this;
+    scale(type: string, scale: Number): this;
 
     /**
      * 禁用当前元素。
      */
-    disabled():this;
+    disabled(): this;
     /**
      * 激活当前元素。
      */
-    enabled():this;
+    enabled(): this;
 }
 
 /**扩展日期。 */
@@ -126,6 +126,11 @@ interface String {
     /** 将'-'分隔的字符串转换为驼峰字符串。 */
     toCamelCase(): string;
 }
+/**扩展数组。 */
+interface Array {
+    /**移除重复项。 */
+    distinct(): Array
+}
 
 interface IMozlite {
     /**
@@ -133,7 +138,7 @@ interface IMozlite {
      * @param func 执行得方法。
      * @param resize 是否重置大小时候执行。
      */
-    queue(func: (context?: JQuery | undefined, resize?:boolean|undefined) => void);
+    queue(func: (context?: JQuery | undefined, resize?: boolean | undefined) => void);
 
     /**
      * 执行当前队列中得方法。
@@ -172,7 +177,7 @@ interface IMozlite {
      * @param data 发送JSON实例。
      * @param success 发送成功后回调函数。
      */
-    upload(current:JQuery, url: string, data: object, success?: Function);
+    upload(current: JQuery, url: string, data: object, success?: Function);
 
     /**
      * 当前请求查询实例。
@@ -182,7 +187,7 @@ interface IMozlite {
     /**
      * 配置选项。
      */
-    options:object;
+    options: object;
 }
 
 declare namespace Mozlite {
