@@ -283,12 +283,16 @@ queue(context => {
                         alert(d.message, d.type, d.type === StatusType.Success);
                     else if (d.type === StatusType.Success && d.data && d.data.url) {
                         var target = current.data('target');
-                        if (!target)
+                        if (target) {
+                            target.trigger('uploaded', d.data.url);
+                            target = target.parent();
+                        } else
                             target = current.parent();
-                        target.trigger('uploaded', d.data.url);
-                        if (!target.is('input'))
-                            target = target.find('input.uploaded');
-                        target.val(d.data.url);
+                        target = target.find('.uploaded');
+                        if (target.is('input'))
+                            target.val(d.data.url);
+                        else if (target.is('img'))
+                            target.attr('src', d.data.url);
                     }
                 },
                 error: function (e) {

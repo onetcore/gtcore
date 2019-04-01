@@ -227,7 +227,7 @@ input.js-radio {
     border-top: 1px solid #ced4da;
     border-bottom: 1px solid #ced4da;
     margin-left: 0;
-    margin-right: 0;    
+    margin-right: 0;
     height: calc(2.25rem + 2px);
     padding: .375rem 0;
     margin-bottom: 0;
@@ -247,12 +247,16 @@ input.js-radio {
     border-right: 1px solid #ced4da;
 }
 
-.radius-left{
-    border-top-left-radius: .25rem!important;
-    border-bottom-left-radius: .25rem!important;
+.radius-left {
+    border-top-left-radius: .25rem !important;
+    border-bottom-left-radius: .25rem !important;
 }
 
-.radius-right{
-    border-top-right-radius: .25rem!important;
-    border-bottom-right-radius: .25rem!important;
+.radius-right {
+    border-top-right-radius: .25rem !important;
+    border-bottom-right-radius: .25rem !important;
 }
+
+.uploaded,
+.data-view,
+.data-content {}
