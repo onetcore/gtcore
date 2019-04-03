@@ -288,11 +288,13 @@ queue(context => {
                             target = target.parent();
                         } else
                             target = current.parent();
-                        target = target.find('.uploaded');
-                        if (target.is('input'))
-                            target.val(d.data.url);
-                        else if (target.is('img'))
-                            target.attr('src', d.data.url);
+                        target.find('.uploaded').each(function () {
+                            var that = $(this);
+                            if (that.is('input'))
+                                that.val(d.data.url);
+                            else if (that.is('img'))
+                                that.attr('src', d.data.url);
+                        });
                     }
                 },
                 error: function (e) {
