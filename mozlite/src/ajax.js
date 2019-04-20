@@ -243,6 +243,56 @@ queue(context => {
             ajax(url, data);
         });
     });
+    //新文件上传
+    $('[js-upload]', context).exec(toggle => {
+        toggle.off('click').on('click', function () {
+            $('<input type="file" class="hide"/>').appendTo(document.body).on('change', function () {
+                var current = $(this);
+                if (this.files.length == 0) {
+                    current.remove();
+                    return false;
+                }
+                var data = new FormData();
+                data.append("file", this.files[0]);
+                var ajaxData = toggle.jsAttrs('data');
+                if (ajaxData) {
+                    for (const key in ajaxData) {
+                        data.append(key, ajaxData[key]);
+                    }
+                }
+                var url = toggle.attr('href') || toggle.attr('js-upload');
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    headers: headers(),
+                    success: function (d) {
+                        if (d.message && d.type) {
+                            alert(d.message, d.type, d.type === StatusType.Success);
+                        }
+                        else if (d.type === StatusType.Success && d.data && d.data.url) {
+                            toggle.trigger('uploaded', d.data.url);
+                            toggle.parent().find('.uploaded').each(function () {
+                                var that = $(this);
+                                if (that.is('input'))
+                                    that.val(d.data.url);
+                                else if (that.is('img'))
+                                    that.attr('src', d.data.url);
+                            });
+                        }
+                        current.remove();
+                    },
+                    error: function (e) {
+                        onErrorHandler(e);
+                        current.remove();
+                    }
+                });
+            }).click();
+            return false;
+        });
+    });
     //file上传
     $('[data-toggle=uploader]', context).exec(cur => {
         cur.on('click', function () {

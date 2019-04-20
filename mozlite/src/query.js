@@ -1,48 +1,44 @@
 export class Query {
     constructor(search) {
-        this.query = {};
         search = search || location.search;
         if (search && search[0] == '?')
             search = search.substr(1);
-        var index = search.indexOf('&');
+        this._query = {};
+        let index = search.indexOf('&');
         while (index != -1) {
             let current = search.substr(0, index);
             search = search.substr(index + 1);
-            if (current) {
-                index = current.indexOf('=');
-                if (index != -1) {
-                    var src = decodeURIComponent(current.substr(index + 1));
-                    var value = convert(src);
-                    this.query[current.substr(0, index)] = value;
-                }
-            }
+            current = split(current);
+            if (current) this._query[current.name] = current.value;
             index = search.indexOf('&');
         }
+        search = split(search);
+        if (search) this._query[search.name] = search.value;
     }
 
     get(name) {
-        return this.query[name];
+        return this._query[name];
     }
 
     set(name, value) {
-        this.query[name] = value;
+        this._query[name] = value;
         return this;
     }
 
     clear() {
-        this.query = {};
+        this._query = {};
         return this;
     }
 
     delete(name) {
-        delete this.query[name];
+        delete this._query[name];
         return this;
     }
 
     toString() {
-        var attr = [];
-        for (const key in this.query) {
-            attr.push(`${key}=${encodeURIComponent(this.query[key])}`);
+        let attr = [];
+        for (const key in this._query) {
+            attr.push(`${key}=${encodeURIComponent(this._query[key])}`);
         }
         return attr.join('&');
     }
@@ -60,6 +56,18 @@ function convert(value) {
     if (dateRegex.test(value))
         return new Date(value.replace(/[T+]/, ' '));
     return value;
+}
+
+function split(current) {
+    if (current) {
+        let index = current.indexOf('=');
+        if (index != -1) {
+            let src = decodeURIComponent(current.substr(index + 1));
+            let value = convert(src);
+            return { name: current.substr(0, index), value };
+        }
+    }
+    return null;
 }
 
 export const query = new Query();
