@@ -15,6 +15,14 @@ $.fn.loadModal = function (url) {
         .appendTo(document.body)
         .data('target', s.targetElement()));
     url = url || s.attr('href') || s.jsAttr('url');
+    var data = s.jsAttrs('data');
+    for(const key in data){
+        if(url.indexOf('?')==-1)
+            url += '?';
+        else 
+            url += '&';
+        url += key + '=' + data[key];
+    }
     current.load(url, (response, status, xhr) => {
         switch (status) {
             case 'error':
