@@ -252,6 +252,7 @@ queue(context => {
                     current.remove();
                     return false;
                 }
+                toggle.disabled();
                 var data = new FormData();
                 data.append("file", this.files[0]);
                 var ajaxData = toggle.jsAttrs('data');
@@ -283,10 +284,12 @@ queue(context => {
                             });
                         }
                         current.remove();
+                        toggle.enabled();
                     },
                     error: function (e) {
                         onErrorHandler(e);
                         current.remove();
+                        toggle.enabled();
                     }
                 });
             }).click();
