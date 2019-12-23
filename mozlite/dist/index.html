@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        Mozlite JS UI
+    </title>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../css/mozlite.min.css" rel="stylesheet"><script type="text/javascript" src="../js/mozlite.min.js"></script></head>
+
+<body class="mozskin customScrollBar">
+    <div class="mozskin-layout">
+        <div class="sidebar">
+            <div class="logo">
+                <a href="/"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjIwMHB4IiBoZWlnaHQ9IjIwMHB4IiB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNDcuMSAoNDU0MjIpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPgogICAgPHRpdGxlPkdyb3VwIDI4IENvcHkgNTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCB4MT0iNjIuMTAyMzI3MyUiIHkxPSIwJSIgeDI9IjEwOC4xOTcxOCUiIHkyPSIzNy44NjM1NzY0JSIgaWQ9ImxpbmVhckdyYWRpZW50LTEiPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjNDI4NUVCIiBvZmZzZXQ9IjAlIj48L3N0b3A+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMyRUM3RkYiIG9mZnNldD0iMTAwJSI+PC9zdG9wPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IHgxPSI2OS42NDQxMTYlIiB5MT0iMCUiIHgyPSI1NC4wNDI4OTc1JSIgeTI9IjEwOC40NTY3MTQlIiBpZD0ibGluZWFyR3JhZGllbnQtMiI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMyOUNERkYiIG9mZnNldD0iMCUiPjwvc3RvcD4KICAgICAgICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzE0OEVGRiIgb2Zmc2V0PSIzNy44NjAwNjg3JSI+PC9zdG9wPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjMEE2MEZGIiBvZmZzZXQ9IjEwMCUiPjwvc3RvcD4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDxsaW5lYXJHcmFkaWVudCB4MT0iNjkuNjkwODE2NSUiIHkxPSItMTIuOTc0MzU4NyUiIHgyPSIxNi43MjI4OTgxJSIgeTI9IjExNy4zOTEyNDglIiBpZD0ibGluZWFyR3JhZGllbnQtMyI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNGQTgxNkUiIG9mZnNldD0iMCUiPjwvc3RvcD4KICAgICAgICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iI0Y3NEE1QyIgb2Zmc2V0PSI0MS40NzI2MDYlIj48L3N0b3A+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNGNTFEMkMiIG9mZnNldD0iMTAwJSI+PC9zdG9wPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IHgxPSI2OC4xMjc5ODcyJSIgeTE9Ii0zNS42OTA1NzM3JSIgeDI9IjMwLjQ0MDA5MTQlIiB5Mj0iMTE0Ljk0MjY3OSUiIGlkPSJsaW5lYXJHcmFkaWVudC00Ij4KICAgICAgICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iI0ZBOEU3RCIgb2Zmc2V0PSIwJSI+PC9zdG9wPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjRjc0QTVDIiBvZmZzZXQ9IjUxLjI2MzUxOTElIj48L3N0b3A+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNGNTFEMkMiIG9mZnNldD0iMTAwJSI+PC9zdG9wPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0ibG9nbyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIwLjAwMDAwMCwgLTIwLjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0iR3JvdXAtMjgtQ29weS01IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMC4wMDAwMDAsIDIwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTI3LUNvcHktMyI+CiAgICAgICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTI1IiBmaWxsLXJ1bGU9Im5vbnplcm8iPgogICAgICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iMiI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNOTEuNTg4MDg2Myw0LjE3NjUyODIzIEw0LjE3OTk2NTQ0LDkxLjUxMjc3MjggQy0wLjUxOTI0MDYwNSw5Ni4yMDgxMTQ2IC0wLjUxOTI0MDYwNSwxMDMuNzkxODg1IDQuMTc5OTY1NDQsMTA4LjQ4NzIyNyBMOTEuNTg4MDg2MywxOTUuODIzNDcyIEM5Ni4yODcyOTIzLDIwMC41MTg4MTQgMTAzLjg3NzMwNCwyMDAuNTE4ODE0IDEwOC41NzY1MSwxOTUuODIzNDcyIEwxNDUuMjI1NDg3LDE1OS4yMDQ2MzIgQzE0OS40MzM5NjksMTU0Ljk5OTYxMSAxNDkuNDMzOTY5LDE0OC4xODE5MjQgMTQ1LjIyNTQ4NywxNDMuOTc2OTAzIEMxNDEuMDE3MDA1LDEzOS43NzE4ODEgMTM0LjE5MzcwNywxMzkuNzcxODgxIDEyOS45ODUyMjUsMTQzLjk3NjkwMyBMMTAyLjIwMTkzLDE3MS43MzczNTIgQzEwMS4wMzIzMDUsMTcyLjkwNjAxNSA5OS4yNTcxNjA5LDE3Mi45MDYwMTUgOTguMDg3NTM1OSwxNzEuNzM3MzUyIEwyOC4yODU5MDgsMTAxLjk5MzEyMiBDMjcuMTE2MjgzMSwxMDAuODI0NDU5IDI3LjExNjI4MzEsOTkuMDUwNzc1IDI4LjI4NTkwOCw5Ny44ODIxMTE4IEw5OC4wODc1MzU5LDI4LjEzNzg4MjMgQzk5LjI1NzE2MDksMjYuOTY5MjE5MSAxMDEuMDMyMzA1LDI2Ljk2OTIxOTEgMTAyLjIwMTkzLDI4LjEzNzg4MjMgTDEyOS45ODUyMjUsNTUuODk4MzMxNCBDMTM0LjE5MzcwNyw2MC4xMDMzNTI4IDE0MS4wMTcwMDUsNjAuMTAzMzUyOCAxNDUuMjI1NDg3LDU1Ljg5ODMzMTQgQzE0OS40MzM5NjksNTEuNjkzMzEgMTQ5LjQzMzk2OSw0NC44NzU2MjMyIDE0NS4yMjU0ODcsNDAuNjcwNjAxOCBMMTA4LjU4MDU1LDQuMDU1NzQ1OTIgQzEwMy44NjIwNDksLTAuNTM3OTg2ODQ2IDk2LjI2OTI2MTgsLTAuNTAwNzk3OTA2IDkxLjU4ODA4NjMsNC4xNzY1MjgyMyBaIiBpZD0iU2hhcGUiIGZpbGw9InVybCgjbGluZWFyR3JhZGllbnQtMSkiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik05MS41ODgwODYzLDQuMTc2NTI4MjMgTDQuMTc5OTY1NDQsOTEuNTEyNzcyOCBDLTAuNTE5MjQwNjA1LDk2LjIwODExNDYgLTAuNTE5MjQwNjA1LDEwMy43OTE4ODUgNC4xNzk5NjU0NCwxMDguNDg3MjI3IEw5MS41ODgwODYzLDE5NS44MjM0NzIgQzk2LjI4NzI5MjMsMjAwLjUxODgxNCAxMDMuODc3MzA0LDIwMC41MTg4MTQgMTA4LjU3NjUxLDE5NS44MjM0NzIgTDE0NS4yMjU0ODcsMTU5LjIwNDYzMiBDMTQ5LjQzMzk2OSwxNTQuOTk5NjExIDE0OS40MzM5NjksMTQ4LjE4MTkyNCAxNDUuMjI1NDg3LDE0My45NzY5MDMgQzE0MS4wMTcwMDUsMTM5Ljc3MTg4MSAxMzQuMTkzNzA3LDEzOS43NzE4ODEgMTI5Ljk4NTIyNSwxNDMuOTc2OTAzIEwxMDIuMjAxOTMsMTcxLjczNzM1MiBDMTAxLjAzMjMwNSwxNzIuOTA2MDE1IDk5LjI1NzE2MDksMTcyLjkwNjAxNSA5OC4wODc1MzU5LDE3MS43MzczNTIgTDI4LjI4NTkwOCwxMDEuOTkzMTIyIEMyNy4xMTYyODMxLDEwMC44MjQ0NTkgMjcuMTE2MjgzMSw5OS4wNTA3NzUgMjguMjg1OTA4LDk3Ljg4MjExMTggTDk4LjA4NzUzNTksMjguMTM3ODgyMyBDMTAwLjk5OTg2NCwyNS42MjcxODM2IDEwNS43NTE2NDIsMjAuNTQxODI0IDExMi43Mjk2NTIsMTkuMzUyNDQ4NyBDMTE3LjkxNTU4NSwxOC40Njg1MjYxIDEyMy41ODUyMTksMjAuNDE0MDIzOSAxMjkuNzM4NTU0LDI1LjE4ODk0MjQgQzEyNS42MjQ2NjMsMjEuMDc4NDI5MiAxMTguNTcxOTk1LDE0LjAzNDAzMDQgMTA4LjU4MDU1LDQuMDU1NzQ1OTIgQzEwMy44NjIwNDksLTAuNTM3OTg2ODQ2IDk2LjI2OTI2MTgsLTAuNTAwNzk3OTA2IDkxLjU4ODA4NjMsNC4xNzY1MjgyMyBaIiBpZD0iU2hhcGUiIGZpbGw9InVybCgjbGluZWFyR3JhZGllbnQtMikiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTUzLjY4NTYzMywxMzUuODU0NTc5IEMxNTcuODk0MTE1LDE0MC4wNTk2IDE2NC43MTc0MTIsMTQwLjA1OTYgMTY4LjkyNTg5NCwxMzUuODU0NTc5IEwxOTUuOTU5OTc3LDEwOC44NDI3MjYgQzIwMC42NTkxODMsMTA0LjE0NzM4NCAyMDAuNjU5MTgzLDk2LjU2MzYxMzMgMTk1Ljk2MDUyNyw5MS44Njg4MTk0IEwxNjguNjkwNzc3LDY0LjcxODExNTkgQzE2NC40NzIzMzIsNjAuNTE4MDg1OCAxNTcuNjQ2ODY4LDYwLjUyNDE0MjUgMTUzLjQzNTg5NSw2NC43MzE2NTI2IEMxNDkuMjI3NDEzLDY4LjkzNjY3NCAxNDkuMjI3NDEzLDc1Ljc1NDM2MDcgMTUzLjQzNTg5NSw3OS45NTkzODIxIEwxNzEuODU0MDM1LDk4LjM2MjM3NjUgQzE3My4wMjM2Niw5OS41MzEwMzk2IDE3My4wMjM2NiwxMDEuMzA0NzI0IDE3MS44NTQwMzUsMTAyLjQ3MzM4NyBMMTUzLjY4NTYzMywxMjAuNjI2ODQ5IEMxNDkuNDc3MTUsMTI0LjgzMTg3IDE0OS40NzcxNSwxMzEuNjQ5NTU3IDE1My42ODU2MzMsMTM1Ljg1NDU3OSBaIiBpZD0iU2hhcGUiIGZpbGw9InVybCgjbGluZWFyR3JhZGllbnQtMykiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICAgICAgPGVsbGlwc2UgaWQ9IkNvbWJpbmVkLVNoYXBlIiBmaWxsPSJ1cmwoI2xpbmVhckdyYWRpZW50LTQpIiBjeD0iMTAwLjUxOTMzOSIgY3k9IjEwMC40MzY2ODEiIHJ4PSIyMy42MDAxOTI2IiByeT0iMjMuNTgwNzg2Ij48L2VsbGlwc2U+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg=="
+                        alt="logo">
+                    <h1>Mozlite UI</h1>
+                </a>
+            </div>
+            <ul class="nav js-menu">
+                <li class="nav-item"><a class="nav-link level-0" href="/" title="&#x63A7;&#x5236;&#x9762;&#x677F;"><i
+                            class="fa fa-home"></i><span class="title">&#x63A7;&#x5236;&#x9762;&#x677F;</span></a></li>
+                <li class="active nav-item has-sub opened"><a class="nav-link level-0" href="#" title="&#x6D88;&#x606F;&#x7BA1;&#x7406;"><i
+                            class="fa fa-commenting-o"></i><span class="title">&#x6D88;&#x606F;&#x7BA1;&#x7406;</span></a>
+                    <ul>
+                        <li class="active nav-item"><a class="nav-link level-1" href="/" title="&#x90AE;&#x4EF6;&#x7BA1;&#x7406;"><span
+                                    class="title">&#x90AE;&#x4EF6;&#x7BA1;&#x7406;</span></a></li>
+                        <li class="nav-item"><a class="nav-link level-1" href="/" title="&#x90AE;&#x4EF6;&#x914D;&#x7F6E;"><span
+                                    class="title">&#x90AE;&#x4EF6;&#x914D;&#x7F6E;</span></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-sub"><a class="nav-link level-0" href="#" title="&#x9875;&#x9762;&#x7BA1;&#x7406;"><i
+                            class="fa fa-clipboard"></i><span class="title">&#x9875;&#x9762;&#x7BA1;&#x7406;</span></a>
+                    <ul>
+                        <li class="nav-item"><a class="nav-link level-1" href="/" title="&#x7F51;&#x7AD9;&#x4FE1;&#x606F;"><span
+                                    class="title">&#x7F51;&#x7AD9;&#x4FE1;&#x606F;</span></a></li>
+                        <li class="nav-item"><a class="nav-link level-1" href="/" title="&#x9875;&#x9762;&#x7C7B;&#x578B;"><span
+                                    class="title">&#x9875;&#x9762;&#x7C7B;&#x578B;</span></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-sub"><a class="nav-link level-0" href="#" title="&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;"><i
+                            class="fa fa-cogs"></i><span class="title">&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;</span></a>
+                    <ul>
+                        <li class="nav-item"><a class="nav-link level-1" href="/" title="&#x540E;&#x53F0;&#x670D;&#x52A1;"><span
+                                    class="title">&#x540E;&#x53F0;&#x670D;&#x52A1;</span></a></li>
+                        <li class="nav-item has-sub"><a class="nav-link level-1" href="#" title="&#x7528;&#x6237;&#x7BA1;&#x7406;">
+                                <span class="title">&#x7528;&#x6237;&#x7BA1;&#x7406;</span></a>
+                            <ul>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x7528;&#x6237;&#x5217;&#x8868;"><span
+                                            class="title">&#x7528;&#x6237;&#x5217;&#x8868;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x89D2;&#x8272;&#x5217;&#x8868;"><span
+                                            class="title">&#x89D2;&#x8272;&#x5217;&#x8868;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x6743;&#x9650;&#x5217;&#x8868;"><span
+                                            class="title">&#x6743;&#x9650;&#x5217;&#x8868;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x65E5;&#x5FD7;&#x7BA1;&#x7406;"><span
+                                            class="title">&#x65E5;&#x5FD7;&#x7BA1;&#x7406;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x7528;&#x6237;&#x914D;&#x7F6E;"><span
+                                            class="title">&#x7528;&#x6237;&#x914D;&#x7F6E;</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-sub"><a class="nav-link level-1" href="#" title="&#x7528;&#x6237;&#x7BA1;&#x7406;">
+                                <span class="title">&#x7528;&#x6237;&#x7BA1;&#x7406;</span></a>
+                            <ul>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x7528;&#x6237;&#x5217;&#x8868;"><span
+                                            class="title">&#x7528;&#x6237;&#x5217;&#x8868;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x89D2;&#x8272;&#x5217;&#x8868;"><span
+                                            class="title">&#x89D2;&#x8272;&#x5217;&#x8868;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x6743;&#x9650;&#x5217;&#x8868;"><span
+                                            class="title">&#x6743;&#x9650;&#x5217;&#x8868;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x65E5;&#x5FD7;&#x7BA1;&#x7406;"><span
+                                            class="title">&#x65E5;&#x5FD7;&#x7BA1;&#x7406;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x7528;&#x6237;&#x914D;&#x7F6E;"><span
+                                            class="title">&#x7528;&#x6237;&#x914D;&#x7F6E;</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-sub"><a class="nav-link level-0" href="#" title="&#x7528;&#x6237;&#x7BA1;&#x7406;"><i
+                            class="fa fa-users"></i><span class="title">&#x7528;&#x6237;&#x7BA1;&#x7406;</span></a>
+                    <ul>
+                        <li class="nav-item"><a class="nav-link level-1" href="/" title="&#x7528;&#x6237;&#x5217;&#x8868;"><span
+                                    class="title">&#x7528;&#x6237;&#x5217;&#x8868;</span></a></li>
+                        <li class="nav-item"><a class="nav-link level-1" href="/" title="&#x89D2;&#x8272;&#x5217;&#x8868;"><span
+                                    class="title">&#x89D2;&#x8272;&#x5217;&#x8868;</span></a></li>
+                        <li class="nav-item"><a class="nav-link level-1" href="/" title="&#x6743;&#x9650;&#x5217;&#x8868;"><span
+                                    class="title">&#x6743;&#x9650;&#x5217;&#x8868;</span></a></li>
+                        <li class="nav-item"><a class="nav-link level-1" href="/" title="&#x65E5;&#x5FD7;&#x7BA1;&#x7406;"><span
+                                    class="title">&#x65E5;&#x5FD7;&#x7BA1;&#x7406;</span></a></li>
+                        <li class="nav-item"><a class="nav-link level-1" href="/" title="&#x7528;&#x6237;&#x914D;&#x7F6E;"><span
+                                    class="title">&#x7528;&#x6237;&#x914D;&#x7F6E;</span></a></li>
+                        <li class="nav-item has-sub"><a class="nav-link level-1" href="#" title="&#x7528;&#x6237;&#x7BA1;&#x7406;">
+                                <span class="title">&#x7528;&#x6237;&#x7BA1;&#x7406;</span></a>
+                            <ul>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x7528;&#x6237;&#x5217;&#x8868;"><span
+                                            class="title">&#x7528;&#x6237;&#x5217;&#x8868;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x89D2;&#x8272;&#x5217;&#x8868;"><span
+                                            class="title">&#x89D2;&#x8272;&#x5217;&#x8868;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x6743;&#x9650;&#x5217;&#x8868;"><span
+                                            class="title">&#x6743;&#x9650;&#x5217;&#x8868;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x65E5;&#x5FD7;&#x7BA1;&#x7406;"><span
+                                            class="title">&#x65E5;&#x5FD7;&#x7BA1;&#x7406;</span></a></li>
+                                <li class="nav-item"><a class="nav-link level-2" href="/" title="&#x7528;&#x6237;&#x914D;&#x7F6E;"><span
+                                            class="title">&#x7528;&#x6237;&#x914D;&#x7F6E;</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="mini-bg"></div>
+        <main>
+            <header>
+                <i js-toggle="sidebar" class="sidebar-trigger fa fa-dedent"></i>
+                <ul class="right navbar-nav">
+                    <li class="nav-item text-nowarp">
+                        <a class="nav-link" title="首页" asp-page="/index" asp-area="">
+                            <i class="fa fa-home mr-1"></i>首页
+                        </a>
+                    </li>
+                    <li class="nav-item text-nowarp dropdown dropdown-panel">
+                        <a class="nav-link dropdown-toggle dropleft" href="#" data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">
+                            <i class="fa fa-bell-o mr-1"></i><span class="number badge badge-danger">19</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-panel-body">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">通知<span class="badge">(4)</span></a></li>
+                                <li class="nav-item"><a class="nav-link" id="msg-tab" data-toggle="tab" href="#msg" role="tab" aria-controls="notify" aria-selected="false">消息<span class="badge">(5)</span></a></li>
+                                <li class="nav-item"><a class="nav-link" id="task-tab" data-toggle="tab" href="#task" role="tab" aria-controls="notify" aria-selected="false">代办<span class="badge">(10)</span></a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade active show" id="notify" role="tabpanel">
+                                    <div class="dropdown-panel-content customScrollBar overlay">
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-envelope icon-circle"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-panel-action">
+                                        <a href="#">清空</a>
+                                        <a href="#">编辑</a>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="msg" role="tabpanel">
+                                    <div class="dropdown-panel-content customScrollBar overlay">
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-icon"><i class="fa fa-user-circle-o"></i></div>
+                                            <div class="dropdown-panel-item-content">
+                                                <div class="title">发送了一个电子邮件</div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-panel-action">
+                                        <a href="#">清空</a>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="task" role="tabpanel">
+                                    <div class="dropdown-panel-content customScrollBar overlay">
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-content noicon">
+                                                <div class="title">发送了一个电子邮件 <span class="mark alert alert-success">已经完成</span></div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-content noicon">
+                                                <div class="title">发送了一个电子邮件 <span class="mark alert alert-danger">已经完成</span></div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-content noicon">
+                                                <div class="title">发送了一个电子邮件 <span class="mark alert alert-secondary">已经完成</span></div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-content noicon">
+                                                <div class="title">发送了一个电子邮件 <span class="mark alert alert-warning">已经完成</span></div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-panel-item">
+                                            <div class="dropdown-panel-item-content noicon">
+                                                <div class="title">发送了一个电子邮件 <span class="mark alert alert-success">已经完成</span></div>
+                                                <div class="text">发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件发送了一个电子邮件</div>
+                                                <div class="text">1个小时前</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-panel-action">
+                                        <a href="#">清空</a>
+                                        <a href="#">编辑</a>
+                                        <a href="#">添加</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item text-nowarp dropdown droplast">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="avatar" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjIwMHB4IiBoZWlnaHQ9IjIwMHB4IiB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNDcuMSAoNDU0MjIpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPgogICAgPHRpdGxlPkdyb3VwIDI4IENvcHkgNTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCB4MT0iNjIuMTAyMzI3MyUiIHkxPSIwJSIgeDI9IjEwOC4xOTcxOCUiIHkyPSIzNy44NjM1NzY0JSIgaWQ9ImxpbmVhckdyYWRpZW50LTEiPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjNDI4NUVCIiBvZmZzZXQ9IjAlIj48L3N0b3A+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMyRUM3RkYiIG9mZnNldD0iMTAwJSI+PC9zdG9wPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IHgxPSI2OS42NDQxMTYlIiB5MT0iMCUiIHgyPSI1NC4wNDI4OTc1JSIgeTI9IjEwOC40NTY3MTQlIiBpZD0ibGluZWFyR3JhZGllbnQtMiI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMyOUNERkYiIG9mZnNldD0iMCUiPjwvc3RvcD4KICAgICAgICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzE0OEVGRiIgb2Zmc2V0PSIzNy44NjAwNjg3JSI+PC9zdG9wPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjMEE2MEZGIiBvZmZzZXQ9IjEwMCUiPjwvc3RvcD4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDxsaW5lYXJHcmFkaWVudCB4MT0iNjkuNjkwODE2NSUiIHkxPSItMTIuOTc0MzU4NyUiIHgyPSIxNi43MjI4OTgxJSIgeTI9IjExNy4zOTEyNDglIiBpZD0ibGluZWFyR3JhZGllbnQtMyI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNGQTgxNkUiIG9mZnNldD0iMCUiPjwvc3RvcD4KICAgICAgICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iI0Y3NEE1QyIgb2Zmc2V0PSI0MS40NzI2MDYlIj48L3N0b3A+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNGNTFEMkMiIG9mZnNldD0iMTAwJSI+PC9zdG9wPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IHgxPSI2OC4xMjc5ODcyJSIgeTE9Ii0zNS42OTA1NzM3JSIgeDI9IjMwLjQ0MDA5MTQlIiB5Mj0iMTE0Ljk0MjY3OSUiIGlkPSJsaW5lYXJHcmFkaWVudC00Ij4KICAgICAgICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iI0ZBOEU3RCIgb2Zmc2V0PSIwJSI+PC9zdG9wPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjRjc0QTVDIiBvZmZzZXQ9IjUxLjI2MzUxOTElIj48L3N0b3A+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNGNTFEMkMiIG9mZnNldD0iMTAwJSI+PC9zdG9wPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0ibG9nbyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIwLjAwMDAwMCwgLTIwLjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0iR3JvdXAtMjgtQ29weS01IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMC4wMDAwMDAsIDIwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTI3LUNvcHktMyI+CiAgICAgICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTI1IiBmaWxsLXJ1bGU9Im5vbnplcm8iPgogICAgICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iMiI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNOTEuNTg4MDg2Myw0LjE3NjUyODIzIEw0LjE3OTk2NTQ0LDkxLjUxMjc3MjggQy0wLjUxOTI0MDYwNSw5Ni4yMDgxMTQ2IC0wLjUxOTI0MDYwNSwxMDMuNzkxODg1IDQuMTc5OTY1NDQsMTA4LjQ4NzIyNyBMOTEuNTg4MDg2MywxOTUuODIzNDcyIEM5Ni4yODcyOTIzLDIwMC41MTg4MTQgMTAzLjg3NzMwNCwyMDAuNTE4ODE0IDEwOC41NzY1MSwxOTUuODIzNDcyIEwxNDUuMjI1NDg3LDE1OS4yMDQ2MzIgQzE0OS40MzM5NjksMTU0Ljk5OTYxMSAxNDkuNDMzOTY5LDE0OC4xODE5MjQgMTQ1LjIyNTQ4NywxNDMuOTc2OTAzIEMxNDEuMDE3MDA1LDEzOS43NzE4ODEgMTM0LjE5MzcwNywxMzkuNzcxODgxIDEyOS45ODUyMjUsMTQzLjk3NjkwMyBMMTAyLjIwMTkzLDE3MS43MzczNTIgQzEwMS4wMzIzMDUsMTcyLjkwNjAxNSA5OS4yNTcxNjA5LDE3Mi45MDYwMTUgOTguMDg3NTM1OSwxNzEuNzM3MzUyIEwyOC4yODU5MDgsMTAxLjk5MzEyMiBDMjcuMTE2MjgzMSwxMDAuODI0NDU5IDI3LjExNjI4MzEsOTkuMDUwNzc1IDI4LjI4NTkwOCw5Ny44ODIxMTE4IEw5OC4wODc1MzU5LDI4LjEzNzg4MjMgQzk5LjI1NzE2MDksMjYuOTY5MjE5MSAxMDEuMDMyMzA1LDI2Ljk2OTIxOTEgMTAyLjIwMTkzLDI4LjEzNzg4MjMgTDEyOS45ODUyMjUsNTUuODk4MzMxNCBDMTM0LjE5MzcwNyw2MC4xMDMzNTI4IDE0MS4wMTcwMDUsNjAuMTAzMzUyOCAxNDUuMjI1NDg3LDU1Ljg5ODMzMTQgQzE0OS40MzM5NjksNTEuNjkzMzEgMTQ5LjQzMzk2OSw0NC44NzU2MjMyIDE0NS4yMjU0ODcsNDAuNjcwNjAxOCBMMTA4LjU4MDU1LDQuMDU1NzQ1OTIgQzEwMy44NjIwNDksLTAuNTM3OTg2ODQ2IDk2LjI2OTI2MTgsLTAuNTAwNzk3OTA2IDkxLjU4ODA4NjMsNC4xNzY1MjgyMyBaIiBpZD0iU2hhcGUiIGZpbGw9InVybCgjbGluZWFyR3JhZGllbnQtMSkiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik05MS41ODgwODYzLDQuMTc2NTI4MjMgTDQuMTc5OTY1NDQsOTEuNTEyNzcyOCBDLTAuNTE5MjQwNjA1LDk2LjIwODExNDYgLTAuNTE5MjQwNjA1LDEwMy43OTE4ODUgNC4xNzk5NjU0NCwxMDguNDg3MjI3IEw5MS41ODgwODYzLDE5NS44MjM0NzIgQzk2LjI4NzI5MjMsMjAwLjUxODgxNCAxMDMuODc3MzA0LDIwMC41MTg4MTQgMTA4LjU3NjUxLDE5NS44MjM0NzIgTDE0NS4yMjU0ODcsMTU5LjIwNDYzMiBDMTQ5LjQzMzk2OSwxNTQuOTk5NjExIDE0OS40MzM5NjksMTQ4LjE4MTkyNCAxNDUuMjI1NDg3LDE0My45NzY5MDMgQzE0MS4wMTcwMDUsMTM5Ljc3MTg4MSAxMzQuMTkzNzA3LDEzOS43NzE4ODEgMTI5Ljk4NTIyNSwxNDMuOTc2OTAzIEwxMDIuMjAxOTMsMTcxLjczNzM1MiBDMTAxLjAzMjMwNSwxNzIuOTA2MDE1IDk5LjI1NzE2MDksMTcyLjkwNjAxNSA5OC4wODc1MzU5LDE3MS43MzczNTIgTDI4LjI4NTkwOCwxMDEuOTkzMTIyIEMyNy4xMTYyODMxLDEwMC44MjQ0NTkgMjcuMTE2MjgzMSw5OS4wNTA3NzUgMjguMjg1OTA4LDk3Ljg4MjExMTggTDk4LjA4NzUzNTksMjguMTM3ODgyMyBDMTAwLjk5OTg2NCwyNS42MjcxODM2IDEwNS43NTE2NDIsMjAuNTQxODI0IDExMi43Mjk2NTIsMTkuMzUyNDQ4NyBDMTE3LjkxNTU4NSwxOC40Njg1MjYxIDEyMy41ODUyMTksMjAuNDE0MDIzOSAxMjkuNzM4NTU0LDI1LjE4ODk0MjQgQzEyNS42MjQ2NjMsMjEuMDc4NDI5MiAxMTguNTcxOTk1LDE0LjAzNDAzMDQgMTA4LjU4MDU1LDQuMDU1NzQ1OTIgQzEwMy44NjIwNDksLTAuNTM3OTg2ODQ2IDk2LjI2OTI2MTgsLTAuNTAwNzk3OTA2IDkxLjU4ODA4NjMsNC4xNzY1MjgyMyBaIiBpZD0iU2hhcGUiIGZpbGw9InVybCgjbGluZWFyR3JhZGllbnQtMikiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTUzLjY4NTYzMywxMzUuODU0NTc5IEMxNTcuODk0MTE1LDE0MC4wNTk2IDE2NC43MTc0MTIsMTQwLjA1OTYgMTY4LjkyNTg5NCwxMzUuODU0NTc5IEwxOTUuOTU5OTc3LDEwOC44NDI3MjYgQzIwMC42NTkxODMsMTA0LjE0NzM4NCAyMDAuNjU5MTgzLDk2LjU2MzYxMzMgMTk1Ljk2MDUyNyw5MS44Njg4MTk0IEwxNjguNjkwNzc3LDY0LjcxODExNTkgQzE2NC40NzIzMzIsNjAuNTE4MDg1OCAxNTcuNjQ2ODY4LDYwLjUyNDE0MjUgMTUzLjQzNTg5NSw2NC43MzE2NTI2IEMxNDkuMjI3NDEzLDY4LjkzNjY3NCAxNDkuMjI3NDEzLDc1Ljc1NDM2MDcgMTUzLjQzNTg5NSw3OS45NTkzODIxIEwxNzEuODU0MDM1LDk4LjM2MjM3NjUgQzE3My4wMjM2Niw5OS41MzEwMzk2IDE3My4wMjM2NiwxMDEuMzA0NzI0IDE3MS44NTQwMzUsMTAyLjQ3MzM4NyBMMTUzLjY4NTYzMywxMjAuNjI2ODQ5IEMxNDkuNDc3MTUsMTI0LjgzMTg3IDE0OS40NzcxNSwxMzEuNjQ5NTU3IDE1My42ODU2MzMsMTM1Ljg1NDU3OSBaIiBpZD0iU2hhcGUiIGZpbGw9InVybCgjbGluZWFyR3JhZGllbnQtMykiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICAgICAgPGVsbGlwc2UgaWQ9IkNvbWJpbmVkLVNoYXBlIiBmaWxsPSJ1cmwoI2xpbmVhckdyYWRpZW50LTQpIiBjeD0iMTAwLjUxOTMzOSIgY3k9IjEwMC40MzY2ODEiIHJ4PSIyMy42MDAxOTI2IiByeT0iMjMuNTgwNzg2Ij48L2VsbGlwc2U+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg=="
+                                title="小白">小白
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" asp-page="/account/index" asp-area="@SecuritySettings.ExtensionName"><i
+                                    class="fa fa-user-o"></i>编辑资料</a>
+                            <a class="dropdown-item" asp-page="/account/changepassword" asp-area="@SecuritySettings.ExtensionName"><i
+                                    class="fa fa-key"></i>修改密码</a>
+                            <a class="dropdown-item" asp-page="/account/log" asp-area="@SecuritySettings.ExtensionName"><i
+                                    class="fa fa-envelope"></i>活动日志</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" asp-controller="Account" asp-action="Logout"><i class="fa fa-sign-out"></i>退出</a>
+                        </div>
+                    </li>
+                </ul>
+            </header>
+            <div class="main">
+                <div class="header">
+                    <div class="header-container">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="#">消息管理</a></li>
+                            <li>邮件管理</li>
+                        </ul>
+                        <h1 class="title">邮件管理</h1>
+                        <div class="summary">
+                            段落示意：!!!蚂蚁金服务设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态， 提供跨越设计与开发的体验解决方案。
+                        </div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item active">
+                                <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab">用户</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="core-tab" data-toggle="tab" href="#core" role="tab">通用</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="main-container">
+                    <div class="filter">
+                        <form class="left form-inline">
+                            <div class="form-group">
+                                <input class="js-checkbox" type="checkbox" id="test" />
+                                <label for="test">开启回路</label>
+                            </div>
+                            <div class="form-group">
+                                <label>描述信息</label>
+                                <div class="input-group input-append disabled">
+                                    <input disabled="disabled" type="text" class="form-control form-control-sm" />
+                                    <div class="input-group-text input-append-sm">
+                                        秒
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>输入文本</label>
+                                <div class="input-group input-range">
+                                    <input js-date="datetime" type="text" class="form-control form-control-sm" />
+                                    <label>~</label>
+                                    <input js-date="datetime" type="text" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>输入文本</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" />
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="right">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary"><i class="fa fa-trash"></i> 删除</a>
+                                <a class="btn btn-sm btn-outline-secondary"><i class="fa fa-plus"></i> 添加</a>
+                                <a href="index.html" js-upload="true" class="btn btn-sm btn-outline-secondary"><i class="fa fa-upload"></i> 上传</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mozmd-editor" js-upload-url="/Admin/Pages/Content?handler=Upload" js-upload-data-id="1">
+                        <div class="mozmd-toolbar">
+                            <div class="mozmd-left">
+                                <a class="mozmd-syntax-header" title="标题"><i class="fa fa-header"></i></a>
+                                <a class="mozmd-syntax-bold" title="加粗"><i class="fa fa-bold"></i></a>
+                                <a class="mozmd-syntax-italic" title="斜体"><i class="fa fa-italic"></i></a>
+                                <a class="mozmd-syntax-code" title="斜体"><i class="fa fa-code"></i></a>
+                                <a class="mozmd-syntax-ul" title="列表"><i class="fa fa-list-ul"></i></a>
+                                <a class="mozmd-syntax-ol" title="排序"><i class="fa fa-list-ol"></i></a>
+                                <a class="mozmd-syntax-link" title="排序"><i class="fa fa-link"></i></a>
+                                <a class="mozmd-syntax-quote" title="引用"><i class="fa fa-quote-right"></i></a>
+                                <a class="mozmd-syntax-image" title="图片"><i class="fa fa-image"></i></a>
+                                <a class="mozmd-mode-preview" title="预览"><i class="fa fa-eye"></i></a>
+                            </div>
+                            <div class="mozmd-right"><a class="mozmd-fullscreen" title="全屏显示"><i class="fa fa-window-maximize"></i></a></div>
+                        </div>
+                        <div class="mozmd-source customScrollBar overlay" contenteditable="plaintext-only">
+# 段落示意：
+
+> 蚂蚁金服务设计平台`ant.design`，用最小的工作量，无缝接入蚂蚁金服生态， 提供跨越设计与开发的体验解决方案。</div>
+                        <div class="mozmd-preview customScrollBar overlay"></div><textarea class="hide mozmd-source-value"
+                            name="Input.Source"></textarea><textarea class="hide mozmd-html-value" name="Input.Html"></textarea>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                Copyright &copy;2018 mozlite.com ver 1.0
+            </footer>
+        </main>
+    </div>
+    <script>
+        $('#test').exec(current => {
+            current.on('checked', (e, c) => {
+                $('.input-append').exec(cur => {
+                    if (c) {
+                        cur.toggleClass('disabled').find('input').removeAttr('disabled');
+                    } else {
+                        cur.toggleClass('disabled').find('input').attr('disabled', 'disabled');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <img src="/xx.png" def="/yy.png"/>
+    <!--
+.sidebar.sm .opened>ul{
+    left:50px;
+    width:200px;
+    background-image: linear-gradient(180deg, rgb(13, 13, 14) 0%, #070707 70%);
+}
+    <div class="filter mb-2">
+        <label>编码：</label>
+        <select class="form-control form-control-sm border-secondary">
+            <option>选择一</option>
+            <option>选择二</option>
+            <option>选择三</option>
+            <option>选择四</option>
+        </select>
+        <label>编码</label>
+        <div class="input-group input-group-sm">
+            <input class="form-control border-secondary" type="text" />
+            <div class="input-group-append">
+                <button js-action="post" type="button" class="btn btn-sm btn-outline-secondary">
+                    <i class="fa fa-fire"></i>
+                </button>
+            </div>
+        </div>
+        <div class="btn-group btn-group-sm right" role="group" aria-label="Small button group">
+            <button type="button" class="btn btn-outline-secondary">Left</button>
+            <button type="button" class="btn btn-outline-secondary">Middle</button>
+            <button type="button" class="btn btn-outline-secondary">Right</button>
+        </div>
+    </div>
+    <hr>
+    <div class="filter mb-2">
+        <label>日期</label>
+        <input class="form-control form-control-sm border-secondary" js-date="date" type="text" />
+        <label>时间</label>
+        <input class="form-control form-control-sm border-secondary" js-date="time" type="text" />
+        <label>日期和时间</label>
+        <input class="form-control form-control-sm border-secondary" js-date="datetime" type="text" />
+        <div class="btn-group btn-group-sm right" role="group" aria-label="Small button group">
+            <button type="button" class="btn btn-outline-secondary">Left</button>
+            <button type="button" class="btn btn-outline-secondary">Middle</button>
+            <button type="button" class="btn btn-outline-secondary">Right</button>
+        </div>
+    </div>
+    <hr>
+    <div class="filter mb-2">
+        <input class="js-checkbox" id="c" checked="checked" type="checkbox" /><label class="hidden" for="c"> 复选框</label>
+        <div class="moz-radioboxlist nowrap">
+            <input class="js-radiobox" name="radio" type="radio" id="c1" /><label class="hidden" for="c1"> 单选1</label>
+            <input class="js-radiobox" name="radio" type="radio" id="c2" /><label class="hidden" for="c2"> 单选2</label>
+            <input class="js-radiobox" name="radio" type="radio" id="c3" /><label class="hidden" for="c3"> 单选3</label>
+        </div>
+
+        <button type="button" js-enabled="5" onclick="$(this).disabled()" class="btn btn-sm btn-outline-secondary disabled"
+            disabled="disabled">延迟</button>
+    </div>
+    <div id="code"></div>
+    <script>
+        //onclick="code('.usetwentyfour');" 
+        function code(selector) {
+            setTimeout(function () {
+                document.querySelector('#code').innerHTML = document.querySelector(selector).outerHTML;
+            }, 3000);
+        }
+    </script>
+    -->
+    <!--  <div js-resize="1920x1080" js-resize-syntax="xy" css-width="1920" css-height="1080" style="width:1920px;height:1080px;border:1px solid #ccc;position: relative;">
+        <div class="scalable moz-treebox">
+                <table class="scalable tree-box" css-width="600" css-height="300" css-left="660" css-top="50" style="width:600px;height:300px; left: 660px; top:50px;">
+                    <tr class="resizable box-line box-top" style="height: 50px;" css-height="50">
+                        <td></td>
+                        <td class="box-line">
+                                <label class="label-box">项目</label></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                    <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                        <div class="line22">
+                                            <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                            <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                        </div>
+                                        <div class="line22">
+                                            <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                            <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                        <div class="line"><div>11</div></div>
+                                        <div class="line"><div>22</div></div>
+                                    </div>
+                                    <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                            </div>
+                            <label class="label-box" style="top:70%;">项目0</label>
+                        </td>
+                        <td>
+                            <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                    <div class="line22">
+                                        <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                        <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                    </div>
+                                    <div class="line22">
+                                        <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                        <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                    </div>
+                                </div>
+                
+                                <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                    <div class="line"><div>11</div></div>
+                                    <div class="line"><div>22</div></div>
+                                </div>
+                                <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                            </div>
+                            <label class="label-box" style="top:70%;">项目一</label>
+                        </td>
+                        <td>
+                            <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                    <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                        <div class="line22">
+                                            <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                            <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                        </div>
+                                        <div class="line22">
+                                            <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                            <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                        <div class="line"><div>11</div></div>
+                                        <div class="line"><div>22</div></div>
+                                    </div>
+                                    <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                            </div>
+                            <label class="label-box" style="top:70%;">项目二</label>
+                        </td>
+                    </tr>
+                    <tr class="resizable box-line box-middle" style="height: 100px;" css-height="100">
+                        <td></td>
+                        <td class="box-line">
+                                <label class="label-box">项目</label></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table class="scalable tree-box" css-width="1400" css-height="250" css-left="260" css-top="350" style="width:1400px;height:250px; left: 260px; top:350px;">
+                    <tr>
+                        <td class="no-bottom">
+                                <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                        <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                            </div>
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                            <div class="line"><div>11</div></div>
+                                            <div class="line"><div>22</div></div>
+                                        </div>
+                                        <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                                </div>
+                        </td>
+                        <td>
+                            
+                                <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                        <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                            </div>
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                            <div class="line"><div>11</div></div>
+                                            <div class="line"><div>22</div></div>
+                                        </div>
+                                        <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                                </div>
+                        </td>
+                        <td>
+                                <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                        <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                            </div>
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                            <div class="line"><div>11</div></div>
+                                            <div class="line"><div>22</div></div>
+                                        </div>
+                                        <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                                </div></td>
+                        <td class="no-bottom">
+                                <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                        <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                            </div>
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                            <div class="line"><div>11</div></div>
+                                            <div class="line"><div>22</div></div>
+                                        </div>
+                                        <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                                </div></td>
+                        <td>
+                                <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                        <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                            </div>
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                            <div class="line"><div>11</div></div>
+                                            <div class="line"><div>22</div></div>
+                                        </div>
+                                        <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                                </div></td>
+                        <td>
+                                <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                        <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                            </div>
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                            <div class="line"><div>11</div></div>
+                                            <div class="line"><div>22</div></div>
+                                        </div>
+                                        <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                                </div></td>
+                        <td class="no-bottom">
+                                <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                        <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                            </div>
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                            <div class="line"><div>11</div></div>
+                                            <div class="line"><div>22</div></div>
+                                        </div>
+                                        <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                                </div></td>
+                        <td>
+                                <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                        <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                            </div>
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                            <div class="line"><div>11</div></div>
+                                            <div class="line"><div>22</div></div>
+                                        </div>
+                                        <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                                </div></td>
+                        <td>
+                                <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                        <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                            </div>
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                            <div class="line"><div>11</div></div>
+                                            <div class="line"><div>22</div></div>
+                                        </div>
+                                        <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                                </div></td>
+                        <td>
+                                <div class="scalable circle-group" css-width="150" css-height="70" style="width: 130px;height: 70px; top:10%;">
+                                        <div class="scalable circle-box line-end" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="80" css-top="0">
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">1</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">2</div>
+                                            </div>
+                                            <div class="line22">
+                                                <div css-padding-right="4" css-width="25" css-height="25" style="padding-right: 4px; position: relative;" class="scalable">3</div>
+                                                <div css-padding-left="4" css-width="25" css-height="25" style="padding-left: 4px; position: relative;" class="scalable">4</div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="scalable circle-box line-start" css-width="50" css-height="50" style="width: 50px;height: 50px;" css-left="0" css-top="20">
+                                            <div class="line"><div>11</div></div>
+                                            <div class="line"><div>22</div></div>
+                                        </div>
+                                        <svg><line stroke="#ccc" stroke-width="1"></line></svg>
+                                </div></td>
+                    </tr>
+                    <tr class="box-line box-bottom">
+                        <td colspan="2" class="box-line"><label class="label-box">项目</label></td>
+                        <td class="box-line"><label class="label-box">项目</label></td>
+                        <td colspan="2"></td>
+                        <td class="box-line"><label class="label-box">项目</label></td>
+                        <td colspan="2"></td>
+                        <td class="box-line"><label class="label-box">项目</label></td>
+                    </tr>
+                </table>
+        </div>
+    </div>
+    <style>
+        .moz-treebox{position: relative;}
+        .moz-treebox .tree-box{
+            border:none;
+        }
+        .moz-treebox .tree-box td{
+            border:1px solid #ccc;
+            position: relative;
+        }
+        .moz-treebox .tree-box td:last-child{
+            border:none;
+        }
+        .moz-treebox .label-box{
+            border:1px solid #ccc;
+            display: block;
+            position: absolute;
+            background-color: #fff;
+        }
+        .moz-treebox .circle-box{
+            border:1px solid #ccc;
+            border-radius: 100%;
+            background-color: #fff;
+            overflow: hidden;
+        }
+        .circle-box .line{
+            flex-wrap: nowrap;
+            text-align: center;
+            border-bottom: #ccc 1px solid;
+        }
+        .circle-box .line22{
+            display: flex;
+            flex-wrap: nowrap;
+            text-align: center;
+            border-bottom: #ccc 1px solid;
+        }
+        .circle-box .line22:last-child, .circle-box .line:last-child{
+            border-bottom: none;
+        }
+        .circle-box .line22 div{
+            flex:0 0 50%;    
+        }
+        .circle-box .line22 div:first-child{
+            border-right: #ccc 1px solid;
+            text-align: right;
+        }
+        .circle-box .line22 div:last-child{
+            text-align: left;
+            padding-left: 5px;
+        }
+        .moz-treebox .tree-box tr.box-line td{
+            border:none;
+        }
+        .moz-treebox .tree-box tr.box-line td.box-line{
+            border-left: #ccc 1px solid;
+        }
+        .moz-treebox .tree-box td.no-bottom{
+            border-bottom: none;
+        }
+    </style>
+    <script>
+        Mozlite.queue(context=>{
+            $('.tree-box tr', context).exec(item=>{
+                var width = item.width()/item.find('td').length;
+                var height = item.height();
+                $('.label-box', item).exec(it=>{
+                    it.css('left', -it.width()/2+'px');
+                    if(item.hasClass('box-bottom')){
+                        it.css('bottom', -it.height()/2+'px').parent().css('border-bottom', 'none');
+                    }
+                    else if(item.hasClass('box-top')){
+                        it.css('top', -it.height()/2+'px').parent().css('border-top', 'none');
+                    }
+                    else if(item.hasClass('box-middle')){
+                        it.css('top', (height-it.height())/2+'px')
+                    }
+                });
+                $('.circle-group', item).exec(it=>{
+                    it.css('left', -3-it.find('.line-start').width()/2+'px');
+                });
+            });
+            $('.circle-group', context).exec(item=>{
+                var start = $('.line-start', item);
+                var end = $('.line-end', item);
+                var line = item.find('line');
+                line.attr('x1', start.position().left+start.width())
+                    .attr('y1', start.position().top+start.height()/2+1)
+                    .attr('x2', end.position().left)
+                    .attr('y2', end.position().top+end.height()/2+3);
+            });
+        }, true);
+    </script> -->
+</body>
+
+</html>
