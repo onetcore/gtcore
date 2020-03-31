@@ -1,4 +1,4 @@
-body.mozskin {
+body.gt-skin {
     margin: 0;
     padding: 0;
     font-family: Microsoft YaHei, Arial;
@@ -13,7 +13,7 @@ body.mozskin {
 }
 
 @each $i in (xs sm md lg xl){
-    .mozskin-#{$i}{
+    .gt-#{$i}{
         .hide-#{$i} {
             display: none !important;
         }
@@ -24,7 +24,7 @@ body.mozskin {
     }
 }
 
-.mozskin-xs {
+.gt-xs {
     .mini {
         display: none !important;
     }
@@ -60,7 +60,7 @@ body.mozskin {
     }
 }
 
-.mozskin-layout {
+.gt-layout {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -130,11 +130,11 @@ body.mozskin {
                     font-size: 14px;
                     height: 64px;
                     line-height: 64px;
-                    color: rgba(0, 0, 0, 0.65);
+                    color: #6c757d;
 
                     &:hover {
                         background: rgba(0, 0, 0, 0.025);
-                        color: rgba(0, 0, 0, 0.65);
+                        color: #6c757d;
                     }
 
                     &.dropdown-item {
@@ -187,7 +187,7 @@ body.mozskin {
                         }
 
                         li {
-                            color: rgba(0, 0, 0, 0.65);
+                            color: #6c757d;
                             margin-right: 1rem;
 
                             &:before {
@@ -253,7 +253,7 @@ body.mozskin {
 
             .main-container {
                 margin-top: 24px;
-                color: rgba(0, 0, 0, 0.65);
+                color: #6c757d;
                 background: #fff;
                 border-radius: 2px;
                 padding: 24px 24px;
@@ -274,57 +274,92 @@ body.mozskin {
     display: none !important;
 }
 
-.filter {
+
+.gt-toolbar, .gt-toolbar-right {
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -ms-flex-pack: start;
     justify-content: flex-start;
-    position: relative;
-
-    .form-control,
-    .input-group {
-        width: auto;
-    }
-
-    >* {
-        margin-right: 10px;
-        margin-bottom: 0;
-    }
-
-    label {
-        line-height: 1.8;
-        margin-bottom: 0;
-        margin-right: 10px;
-    }
-
-    label.box-wrapper {
-        margin-right: 0;
-    }
-
-    .left {
-        display: flex;
-
-        >* {
-            margin-right: 10px;
-            margin-bottom: 1rem;
-        }
-    }
-
-    .right {
-        flex: 1 1 auto;
-        text-align: right;
-        margin-right: 0;
-
-        >* {
-            margin-left: 10px;
-            margin-bottom: 1rem;
-        }
-    }
-
-    .input-range label{
-        height: calc(1.8125rem + 2px);
-        padding: .25rem 0;
-    }
 }
+
+    .gt-toolbar .btn-sm {
+        font-size: 13px;
+    }
+
+    .gt-toolbar label {
+        margin: 0;
+    }
+
+    .gt-toolbar .btn-group .dropdown:last-child > button:first-child {
+        border-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .gt-toolbar .btn-group .dropdown:first-child > button:first-child {
+        border-right: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .gt-toolbar .btn-group .dropdown:not(:first-child):not(:last-child) > button:first-child {
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+    }
+
+    .gt-toolbar .btn:active:focus, .gt-toolbar .btn, .gt-toolbar .form-control:active:focus, .gt-toolbar .form-control {
+        box-shadow: none !important;
+        outline-width: 0 !important;
+    }
+
+        .gt-toolbar .form-control, .gt-toolbar .form-control:hover, .gt-toolbar .form-control:focus {
+            color: #6c757d;
+            border-color: #6c757d;
+        }
+
+.gt-toolbar-right {
+    flex: 1 1 auto;
+    justify-content: flex-end;
+}
+
+    .gt-toolbar-right a, .gt-toolbar-right button, .gt-toolbar-right input, .gt-toolbar-right select {
+        height: 100%;
+    }
+
+
+.input-group-range > input:first-child,  .input-group-range > .radius-left {
+    border-right: 0;
+}
+
+.input-group-range > input:last-child,  .input-group-range > .radius-right{
+    border-left: 0;
+}
+
+.input-group-range > label {
+    border-top: 1px solid #6c757d;
+    border-bottom: 1px solid #6c757d;
+}
+
+.gt-bind-left, .gt-bind-right {
+    position: fixed;
+    top: 50%;
+}
+
+.gt-bind-left {
+    left: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.gt-bind-right {
+    right: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
 
 td.data-action,
 th.data-action {
@@ -332,12 +367,6 @@ th.data-action {
 }
 
 @include media-breakpoint-down(sm) {
-    .filter {
-        .right {
-            display: none !important;
-        }
-    }
-
     td.data-action,
     th.data-action {
         display: none !important;
@@ -345,24 +374,8 @@ th.data-action {
 }
 
 @include media-breakpoint-down(md) {
-    .filter {
-        .left, form {
-            margin-right: 0 !important;
-            width: 100%;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        .right {
-            text-align: left;
-
-            &>* {
-                margin-left: 0 !important;
-                margin-right: 10px;
-            }
-        }
+    .gt-toolbar-right {
+        justify-content: flex-start;
     }
 }
 
@@ -468,7 +481,7 @@ td {
     text-align: center;
     padding: 150px 50px !important;
 
-    i {
+    i, .feather {
         font-size: 72px;
         display: block;
         margin-bottom: 30px;
@@ -508,4 +521,79 @@ td.checkbox-only {
     font-size: 16px;
     padding: 7px 8px;
     color: #fff;
+}
+
+.feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+}
+.text-white-50 {
+    color: rgba(255, 255, 255, .5);
+}
+
+.bg-purple {
+    background-color: #6f42c1;
+}
+
+.lh-100 {
+    line-height: 1;
+}
+
+.lh-125 {
+    line-height: 1.25;
+}
+
+.lh-150 {
+    line-height: 1.5;
+}
+
+.icon-48 {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid rgba(248, 249, 250, 0.92);
+    font-size: 32px;
+    color: #fff;
+    text-align: center;
+    line-height: 42px;
+}
+
+.icon-en48 {
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.b-span, .br-span {
+    bottom: 0;
+    right: 0;
+    background: rgba(239, 240, 128, 0.25);
+    height: 14px;
+    font-size: 8px;
+    padding: 0 2px;
+    position: absolute;
+}
+
+.br-span {
+    border-top-left-radius: 4px;
+    text-align: right;
+}
+
+.b-span {
+    left: 0;
+    text-align: center;
+}
+
+.dropdown-menu .dropdown-item {
+    padding: 6px 10px;
+    font-size: 13px;
+    color: #6c757d;
+
+    i, .feather{
+        margin-right: 10px;
+    }
+}
+
+.no-after:after{
+    display: none;
 }

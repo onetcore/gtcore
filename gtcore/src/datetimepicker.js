@@ -2,7 +2,7 @@ import { queue } from './core';
 import 'eonasdan-bootstrap-datetimepicker';
 /**
  * 为了兼容bootstrap 4.x，需要修改eonasdan-bootstrap-datetimepicker.js
- * 1.将'collapse in'改为’collapse show‘
+ * 1.将'collapse in'改为'collapse show'
  * 2.将togglePicker方法中的'in'改成'show'
  */
 queue(context => {
@@ -66,7 +66,7 @@ queue(context => {
                         options.format = 'YYYY-MM-DD';
                         break;
                 }
-                $(this).addClass(`moz-${name}`);
+                $(this).addClass(`gt-${name}`);
                 continue;
             }
             if (i == 'min' || i == 'max')

@@ -1,4 +1,4 @@
-# 本框架用于Mozlite前端开发
+# 本框架用于GtCore前端开发
 
 本框架集成了`eonasdan-bootstrap-datetimepicker`,`moment`，依赖于`jQuery`,`bootstrap`,`popper.js`和`fontawesome`，并对`jQuery`进行扩展，以及一些辅助方法。
 
@@ -18,19 +18,19 @@ npm config set registry https://registry.npm.taobao.org
 
 ## API文档
 
-模块导出为"Mozlite"，在前端UI中可以直接调用，通过Script标签引入库。
+模块导出为"GtCore"，在前端UI中可以直接调用，通过Script标签引入库。
 
 ```html
 <link href="~/css/font-awesome.min.css" rel="stylesheet"/>
 <link href="~/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="~/css/mozlite.min.css" rel="stylesheet"/>
+<link href="~/css/gtcore.min.css" rel="stylesheet"/>
 <script type="text/javascript" src="~/js/jQuery.min.js"></script>
 <script type="text/javascript" src="~/js/popper.min.js"></script>
 <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="~/js/mozlite.min.js"></script>
+<script type="text/javascript" src="~/js/gtcore.min.js"></script>
 ```
 
-## Mozlite.alert(msg: string | StatusMessage, type?: StatusType, func?: Function)
+## GtCore.alert(msg: string | StatusMessage, type?: StatusType, func?: Function)
 
 使用Bootstrap的Modal，弹窗显示一条信息。
 
@@ -66,7 +66,7 @@ npm config set registry https://registry.npm.taobao.org
 * type?:StatusType：展示的类型枚举；
 * func?:Function：回调函数，点击确定后回调的函数。
 
-## Mozlite.ajax(url: string, data: object, success?: Function, error?: Function)
+## GtCore.ajax(url: string, data: object, success?: Function, error?: Function)
 
 执行ajax的Post提交功能，参数如下：
 

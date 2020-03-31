@@ -180,7 +180,7 @@ queue(context => {
     });
     //actionbar
     $('.data-view', context).exec(current => {
-        var actionbar = $(current.jsAttr('actionbar') || '.filter', context);
+        var actionbar = $('.gt-toolbar', context);
         $('[js-checked]', actionbar).exec(cur => {
             var action = cur.jsAttr('checked').trim();
             var url = cur.jsAttr('url') || cur.attr('href');

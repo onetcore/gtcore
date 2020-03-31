@@ -1,6 +1,6 @@
-declare const Mozlite: IMozlite;
-declare module 'mozlite' {
-    export = Mozlite;
+declare const GtCore: IGtCore;
+declare module 'gtcore' {
+    export = GtCore;
 }
 /** 
  * 扩展JQuery。
@@ -132,7 +132,7 @@ interface Array {
     distinct(): Array
 }
 
-interface IMozlite {
+interface IGtCore {
     /**
      * 添加执行队列，这个队列一般在页面加载完或者Modal加载完后执行得方法。
      * @param func 执行得方法。
@@ -180,17 +180,12 @@ interface IMozlite {
     upload(current: JQuery, url: string, data: object, success?: Function);
 
     /**
-     * 当前请求查询实例。
-     */
-    query: Query;
-
-    /**
      * 配置选项。
      */
     options: object;
 }
 
-declare namespace Mozlite {
+declare namespace GtCore {
     /**报警类型 */
     enum StatusType {
         /**成功。 */
@@ -229,40 +224,5 @@ declare namespace Mozlite {
 
         /** 重新计算网格宽度和高度。 */
         calc(): this;
-    }
-
-    /**
-     * 查询字符串。
-     */
-    interface Query {
-        /**
-         * 获取当前查询实例。
-         * @param name 当前查询键值。
-         */
-        get(name: string): string | undefined;
-        /**
-         * 设置当前键值。
-         * @param name 当前键实例。
-         * @param value 当前键值。
-         */
-        set(name: string, value: string): this;
-        /**
-         * 格式化输出当前查询实例。
-         */
-        toString();
-        /**
-         * 删除当前项。
-         * @param name 当前查询键值。
-         */
-        delete(name: string): this;
-        /**
-         * 清楚所有查询实例。
-         */
-        clear(): this;
-    }
-
-    var Query: {
-        prototype: Query;
-        new(): Query;
     }
 }

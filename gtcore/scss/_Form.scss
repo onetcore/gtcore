@@ -1,4 +1,4 @@
-.moz-checkbox {
+.gt-checkbox {
     cursor: pointer;
     margin-top: 0;
     white-space: nowrap;
@@ -65,8 +65,8 @@
     }
 }
 
-.moz-radiobox {
-    @extend .moz-checkbox;
+.gt-radiobox {
+    @extend .gt-checkbox;
 }
 
 $boxs:16,
@@ -75,8 +75,8 @@ $boxs:16,
 
 @each $i in $boxs {
 
-    .moz-checkboxlist.box#{$i} .moz-checkbox .box-wrapper,
-    .moz-radioboxlist.box#{$i} .moz-radiobox .box-wrapper {
+    .gt-checkboxlist.box#{$i} .gt-checkbox .box-wrapper,
+    .gt-radioboxlist.box#{$i} .gt-radiobox .box-wrapper {
         @if $i==16 {
             padding-right: 14px;
         }
@@ -88,7 +88,7 @@ $boxs:16,
     }
 }
 
-.moz-checkbox.checked {
+.gt-checkbox.checked {
     .box-wrapper {
         .box-checked {
             background: $check-radio-box-checked-color;
@@ -118,31 +118,31 @@ $boxs:16,
     }
 }
 
-.moz-radiobox.checked,
+.gt-radiobox.checked,
 .some-checked {
-    @extend .moz-checkbox.checked;
+    @extend .gt-checkbox.checked;
 }
 
 .some-checked .box-wrapper .box-checked {
     opacity: 0.5;
 }
 
-.moz-checkbox.circle .box-wrapper,
-.moz-radiobox .box-wrapper,
-.moz-checkbox.circle .box-wrapper .box-checked,
-.moz-radiobox .box-wrapper .box-checked {
+.gt-checkbox.circle .box-wrapper,
+.gt-radiobox .box-wrapper,
+.gt-checkbox.circle .box-wrapper .box-checked,
+.gt-radiobox .box-wrapper .box-checked {
     border-radius: 50%;
 }
 
-.moz-checkboxlist.nowrap,
-.moz-radioboxlist.nowrap {
+.gt-checkboxlist.nowrap,
+.gt-radioboxlist.nowrap {
     display: flex;
     flex-wrap: nowrap;
     align-items: stretch;
     flex-direction: row;
 
-    .moz-radiobox,
-    .moz-checkbox {
+    .gt-radiobox,
+    .gt-checkbox {
         flex: 1 1 auto;
         margin-right: 10px;
 
@@ -156,95 +156,13 @@ $boxs:16,
     display: none;
 }
 
-.filter .moz-checkbox .box-wrapper {
+.gt-toolbar .gt-checkbox .box-wrapper {
     top: 3px;
 }
 
 input.js-checkbox,
 input.js-radio {
     display: none;
-}
-
-.input-append,
-.input-prepend {
-
-    .input-append-sm,
-    .input-prepend-sm {
-        height: calc(1.8125rem + 2px);
-        padding: .25rem .5rem;
-        font-size: .875rem;
-        line-height: 1.5;
-        border-radius: .2rem;
-    }
-
-    .input-group-text {
-        background: transparent;
-    }
-
-    .form-control:focus {
-        box-shadow: none;
-        border-color: #ced4da;
-    }
-
-    &.disabled {
-        .input-group-text {
-            background: #e9ecef;
-        }
-    }
-}
-
-.input-append {
-    .input-group-text {
-        border-left: 0 !important;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    .form-control {
-        border-right: 0 !important;
-        padding-right: 0;
-    }
-}
-
-.input-prepend {
-    .input-group-text {
-        border-right: 0 !important;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    .form-control {
-        border-left: 0 !important;
-        padding-left: 0;
-    }
-}
-
-.input-range {
-    flex-wrap: nowrap;
-}
-
-.input-range label {
-    border-top: 1px solid #ced4da;
-    border-bottom: 1px solid #ced4da;
-    margin-left: 0;
-    margin-right: 0;
-    height: calc(2.25rem + 2px);
-    padding: .375rem 0;
-    margin-bottom: 0;
-    z-index: 1;
-}
-
-.input-range input {
-    border-left: none;
-    border-right: none;
-}
-
-.input-range input:first-child {
-    border-left: 1px solid #ced4da;
-}
-
-.input-range input:last-child {
-    border-right: 1px solid #ced4da;
 }
 
 .radius-left {
@@ -260,3 +178,4 @@ input.js-radio {
 .uploaded,
 .data-view,
 .data-content {}
+#ajax-protected-form{display: none;}

@@ -8,23 +8,23 @@ $screen-md-min:768px!default;
 $screen-lg-min:992px!default;
 
 @import '~eonasdan-bootstrap-datetimepicker/src/sass/bootstrap-datetimepicker-build';
-.moz-date {
+.gt-date {
     width: 115px;
 }
- .moz-datetime {
+ .gt-datetime {
     width: 185px;
 }
- .moz-time {
+ .gt-time {
     width: 90px;
 }
- .filter {
-    .moz-date {
+.gt-toolbar {
+    .gt-date {
         width: 95px;
     }
-    .moz-datetime {
+    .gt-datetime {
         width: 155px;
     }
-    .moz-time {
+    .gt-time {
         width: 75px;
     }
 }

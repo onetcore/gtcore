@@ -33,10 +33,10 @@ $.fn.extend({
 //添加单选和复选框得事件
 queue(context => {
     //replace
-    $('input[type=checkbox].js-checkbox,.moz-radioboxlist input[type=radio].js-radiobox', context).exec(current => {
+    $('input[type=checkbox].js-checkbox,.gt-radioboxlist input[type=radio].js-radiobox', context).exec(current => {
         var wrapper = $('<div></div>')
-        if (current.is('.js-radiobox')) wrapper.addClass('checked-style-default moz-radiobox circle');
-        else wrapper.addClass('checked-style-check moz-checkbox');
+        if (current.is('.js-radiobox')) wrapper.addClass('checked-style-default gt-radiobox circle');
+        else wrapper.addClass('checked-style-check gt-checkbox');
         var className = current.attr('class');
         current.removeAttr('class');
         if (className) wrapper.addClass(className);
@@ -49,27 +49,27 @@ queue(context => {
         current.replaceWith(wrapper);
     });
     //checkbox
-    $('.moz-checkbox', context).click(function () {
+    $('.gt-checkbox', context).click(function () {
         if ($(this).hasClass('disabled')) return;
         var checked = $(this).toggleClass('checked').hasClass('checked');
         $(this).checkedSet(checked);
     });
     //radioboxlist
-    $('.moz-radiobox', context).click(function () {
+    $('.gt-radiobox', context).click(function () {
         if ($(this).hasClass('checked') || $(this).hasClass('disabled')) {
             return;
         }
-        $(this).parents('.moz-radioboxlist')
-            .find('.moz-radiobox')
+        $(this).parents('.gt-radioboxlist')
+            .find('.gt-radiobox')
             .removeClass('checked')
             .checkedSet();
         $(this).addClass('checked').checkedSet(true);
     });
     //checkall
-    $('.moz-checkall', context).click(function () {
+    $('.gt-checkall', context).click(function () {
         var dataView = $(this).parents('.data-view');
-        var actionbar = $(dataView.jsAttr('actionbar') || '.filter', context);
-        var target = $(this).targetElement(dataView.find('.data-content').find('.moz-checkbox'));
+        var actionbar = $('.gt-toolbar', context);
+        var target = $(this).targetElement(dataView.find('.data-content').find('.gt-checkbox'));
         $(this).removeClass('some-checked');
         if ($(this).hasClass('checked')) {
             target.addClass('checked').parents('tr').addClass('active');
@@ -84,10 +84,10 @@ queue(context => {
         }
     });
     //data-content checkbox
-    $('.data-content', context).find('.moz-checkbox').click(function () {
+    $('.data-content', context).find('.gt-checkbox').click(function () {
         var dataView = $(this).parents('.data-view');
-        var actionbar = $(dataView.jsAttr('actionbar') || '.filter', context);
-        var checkbeds = $('.data-content', dataView).find('.moz-checkbox.checked').length;
+        var actionbar = $('.gt-toolbar', context);
+        var checkbeds = $('.data-content', dataView).find('.gt-checkbox.checked').length;
         if ($(this).hasClass('checked')) {
             $(this).parents('tr').addClass('active');
             actionbar.find('.show-checked').css('display', 'block');
@@ -100,8 +100,8 @@ queue(context => {
             }
         }
         //全选按钮
-        var checkall = dataView.find('.moz-checkall');
-        if (checkbeds < $('.data-content', dataView).find('.moz-checkbox').length) {
+        var checkall = dataView.find('.gt-checkall');
+        if (checkbeds < $('.data-content', dataView).find('.gt-checkbox').length) {
             checkall.removeClass('checked');
             checkall.checkedSet(false);
             if (checkbeds > 0) {
@@ -115,7 +115,7 @@ queue(context => {
         }
     });
     //修改webpage中模型名称
-    $('.filter form[method=get]', context).exec(current => {
+    $('.gt-toolbar form[method=get]', context).exec(current => {
         current.find('input,select,textarea').each(function () {
             var name = this.name.toLowerCase();
             var index = name.indexOf('.');

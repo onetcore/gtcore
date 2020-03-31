@@ -2,7 +2,7 @@
     flex-direction: column;
     font-size: 14px;
 
-    .fa {
+    .fa, .feather {
         min-width: 14px;
         margin-right: 10px;
         transition: font-size .15s cubic-bezier(.215, .61, .355, 1), margin .3s cubic-bezier(.645, .045, .355, 1);

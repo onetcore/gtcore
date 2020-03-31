@@ -1,0 +1,30 @@
+
+
+.customScrollBar::-webkit-scrollbar {
+    height: 18px;
+    width: 18px;
+}
+
+.customScrollBar::-webkit-scrollbar-thumb,
+.customScrollBar::-webkit-scrollbar-thumb:hover {
+    border-radius: 9px;
+    border: solid 6px transparent;
+    background-clip: content-box
+}
+
+.customScrollBar::-webkit-scrollbar-thumb {
+    background-color: #c8c8c8;
+}
+
+    .customScrollBar::-webkit-scrollbar-thumb:hover {
+        background-color: #98a3a6;
+    }
+
+.customScrollBar.overlay {
+    overflow: hidden !important;
+}
+
+    .customScrollBar.overlay:hover {
+        overflow: overlay !important;
+        overflow-y: auto !important;
+    }

@@ -129,6 +129,14 @@ export function queue(func, resize) {
 }
 
 /**
+ * 启用feathericons
+ */
+if (window.feather)
+    queue(context => {
+        window.feather.replace();
+    });
+
+/**
  * 执行方法。
  * @param name 方法名称。
  * @param args 参数列表。
@@ -253,9 +261,9 @@ function setScreen() {
         current = "sm";
     for (var i in screen) {
         if (i == current)
-            body.addClass('mozskin-' + i);
+            body.addClass('gt-' + i);
         else
-            body.removeClass('mozskin-' + i);
+            body.removeClass('gt-' + i);
     }
 }
 

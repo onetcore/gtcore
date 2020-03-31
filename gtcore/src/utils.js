@@ -41,7 +41,7 @@ queue(context => {
                     .find('ul')
                     .removeAttr('style');
                 $('.mini-bg').hide();
-            } else if ($('.mozskin-xs').length) {
+            } else if ($('.gt-xs').length) {
                 $('.mini-bg').show();
             }
             current.toggleClass('fa-dedent').toggleClass('fa-indent');
