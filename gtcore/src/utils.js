@@ -4,28 +4,47 @@ import {
 
 queue(context => {
     $('.js-menu', context).exec(current => {
+        var isTopMenu = $('.gt-topmenu', context).length > 0;
+        if (isTopMenu) {//移除菜单显示
+            $('.active.opened', current).removeClass('opened');
+        }
         $('.has-sub', current).each(function () {
             var _this = $(this);
-            _this.children('a').off('click').on('click', function () {
-                if (_this.parents('.mini').length && $(this).hasClass('level-0')) {
+            if (isTopMenu) {
+                _this.off('mouseenter').on('mouseenter', function () {
+                    if (_this.hasClass('opened')) {
+                        return false;
+                    }
+                    _this.addClass('opened');
                     return false;
-                }
-                if (_this.hasClass('opened')) {
-                    _this.children('ul').slideUp("fast", function () {
-                        _this.removeClass('opened');
+                });
+                _this.off('mouseleave').on('mouseleave', function () {
+                    _this.removeClass('opened');
+                    return false;
+                });
+            }
+            else {
+                _this.children('a').off('click').on('click', function () {
+                    if (_this.parents('.mini').length && $(this).hasClass('level-0')) {
+                        return false;
+                    }
+                    if (_this.hasClass('opened')) {
+                        _this.children('ul').slideUp("fast", function () {
+                            _this.removeClass('opened');
+                        });
+                        return false;
+                    }
+                    var opened = _this.parent().find('.opened');
+                    opened.children('ul').slideUp("fast", function () {
+                        opened.removeClass('opened');
+                    });
+                    _this.children('ul').slideDown("fast", function () {
+                        _this.addClass('opened')
+                            .removeAttr('style');
                     });
                     return false;
-                }
-                var opened = _this.parent().find('.opened');
-                opened.children('ul').slideUp("fast", function () {
-                    opened.removeClass('opened');
                 });
-                _this.children('ul').slideDown("fast", function () {
-                    _this.addClass('opened')
-                        .removeAttr('style');
-                });
-                return false;
-            });
+            }
         });
         current.parents('.sm').hover(function () {
             $(this).removeClass('sm');

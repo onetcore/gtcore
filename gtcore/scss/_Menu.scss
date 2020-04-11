@@ -18,6 +18,7 @@
     li {
         padding-top: 4px;
         padding-bottom: 4px;
+        position: relative;
     }
 
     a {
@@ -74,7 +75,6 @@
     }
 
     .has-sub ul {
-        overflow: hidden;
         display: none;
         background: #000c17;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) inset;
@@ -159,7 +159,6 @@
         }
 
         >li.has-sub:hover {
-            position: relative;
             left: 0;
             display: block;
             z-index: 1000;
@@ -199,6 +198,59 @@
                     right: 1rem;
                     transition: all 300ms ease-in-out;
                 }
+            }
+        }
+    }
+}
+
+.gt-topmenu:not(.gt-xs):not(.gt-sm){
+    flex-direction: column;
+    header.sidebar{
+        background-color: #002140;
+    }
+
+    .sidebar{
+        width: auto;
+        display: flex;
+        height: 64px;
+        flex: 0 0 64px;
+
+        .logo{
+            min-width: 256px;
+        }
+
+        .js-menu{
+            flex-direction: row;
+            .has-sub>.level-0{
+                margin-bottom: 5px;
+            }
+            .level-0:before{
+                display:none;
+            }
+            ul{
+                position: absolute;
+                border-radius: .25rem;
+                min-width: 145px;
+                a{ 
+                    padding: 0 20px;
+                }
+
+                ul{
+                    left: 100%;
+                    margin-left: 5px;
+                    top:0;
+                }
+            }
+            >li{
+                padding:0;
+                >a{
+                    height: 64px;
+                    line-height: 64px;    
+                    padding: 0 20px;
+                }
+            }
+            li.has-sub > a:before,&.has-sub.opened > a:before{
+                content:"\F105";
             }
         }
     }
