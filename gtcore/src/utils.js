@@ -52,11 +52,11 @@ queue(context => {
             $(this).addClass('sm');
         });
     });
-    $('[js-toggle=sidebar], .mini-bg', context).exec(current => {
+    $('[js-toggle=navbar], .mini-bg', context).exec(current => {
         current.on('click', function () {
-            var sidebar = $('.sidebar', context).toggleClass('mini').addClass('no-js');
-            if (sidebar.hasClass('mini')) {
-                sidebar.find('.js-menu')
+            var navbar = $('.navbar', context).toggleClass('mini').addClass('no-js');
+            if (navbar.hasClass('mini')) {
+                navbar.find('.js-menu')
                     .find('ul')
                     .removeAttr('style');
                 $('.mini-bg').hide();
@@ -75,7 +75,7 @@ queue(context => {
     });
 });
 queue(context => {
-    $('.sidebar', context).exec(current => {
+    $('.navbar', context).exec(current => {
         if ($(document.body).width() < 768)
             current.addClass('mini');
         else

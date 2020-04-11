@@ -29,7 +29,7 @@ body.gt-skin {
         display: none !important;
     }
 
-    .sidebar {
+    .navbar {
         position: fixed;
         top: 0;
         left: 0;
@@ -91,7 +91,7 @@ body.gt-skin {
             flex-direction: row;
             z-index: 1;
 
-            .sidebar-trigger {
+            .navbar-trigger {
                 font-size: 24px;
                 height: 64px;
                 flex: 0 0 64px;
@@ -592,5 +592,9 @@ td.checkbox-only {
 }
 
 .no-after:after{
+    display: none;
+}
+
+.no-before:before{
     display: none;
 }
