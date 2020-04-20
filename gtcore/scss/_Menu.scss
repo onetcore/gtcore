@@ -232,6 +232,9 @@ header>.navbar{
             .has-sub>.level-0{
                 margin-bottom: 5px;
             }
+            li.active>a.level-0{
+                background-color: transparent;
+            }
             .level-0:before{
                 display:none;
             }
