@@ -494,83 +494,85 @@
                     </ul>
                 </div>
             </div>
-            <div class="main-container">
-                <div class="gt-toolbar">
-                    <form class="left form-inline">
-                        <div class="form-group mr-2">
-                            <input class="js-checkbox" type="checkbox" id="test" />
-                            <label for="test">开启回路</label>
-                        </div>
-                        <div class="form-group mr-2">
-                            <label>描述信息</label>
-                            <div class="input-group checked-enabled input-group-range disabled">
-                                <input disabled="disabled" type="text" class="form-control form-control-sm" />
-                                <div class="input-group-append">
-                                    <label>秒</label>
+            <div class="main-container tab-content">
+                <div class="tab-panel fade show active" id="users">
+                    <div class="gt-toolbar mb-3">
+                        <form class="left form-inline">
+                            <div class="form-group mr-2">
+                                <input class="js-checkbox" type="checkbox" id="test" />
+                                <label for="test">开启回路</label>
+                            </div>
+                            <div class="form-group mr-2">
+                                <label>描述信息</label>
+                                <div class="input-group checked-enabled input-group-range disabled">
+                                    <input disabled="disabled" type="text" class="form-control form-control-sm" />
+                                    <div class="input-group-append">
+                                        <label>秒</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group mr-2">
-                            <div class="input-group checked-enabled input-group-range disabled">
-                                <div class="input-group-prepend">
-                                    <label>时间</label>
-                                </div>
-                                <input disabled="disabled" type="text" class="form-control form-control-sm" />
-                            </div>
-                        </div>
-                        <div class="form-group mr-2">
-                            <label>输入文本</label>
-                            <div class="input-group input-group-range">
-                                <input js-date="datetime" type="text" class="form-control form-control-sm" />
-                                <label>~</label>
-                                <input js-date="datetime" type="text"
-                                    class="form-control form-control-sm radius-right" />
-                            </div>
-                        </div>
-                        <div class="form-group mr-2">
-                            <label>输入文本</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control form-control-sm" />
-                                <div class="input-group-append">
-                                    <button type="button" class="btn btn-sm btn-primary"><i
-                                            class="fa fa-search"></i></button>
+                            <div class="form-group mr-2">
+                                <div class="input-group checked-enabled input-group-range disabled">
+                                    <div class="input-group-prepend">
+                                        <label>时间</label>
+                                    </div>
+                                    <input disabled="disabled" type="text" class="form-control form-control-sm" />
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                    <div class="gt-toolbar-right">
-                        <div class="btn-group">
-                            <a class="btn btn-sm btn-outline-secondary"><i class="fa fa-trash"></i> 删除</a>
-                            <a class="btn btn-sm btn-outline-secondary"><i class="fa fa-plus"></i> 添加</a>
-                            <a href="index.html" js-upload="true" class="btn btn-sm btn-outline-secondary"><i
-                                    class="fa fa-upload"></i> 上传</a>
+                            <div class="form-group mr-2">
+                                <label>输入文本</label>
+                                <div class="input-group input-group-range">
+                                    <input js-date="datetime" type="text" class="form-control form-control-sm" />
+                                    <label>~</label>
+                                    <input js-date="datetime" type="text"
+                                        class="form-control form-control-sm radius-right" />
+                                </div>
+                            </div>
+                            <div class="form-group mr-2">
+                                <label>输入文本</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" />
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-sm btn-primary"><i
+                                                class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="gt-toolbar-right">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary"><i class="fa fa-trash"></i> 删除</a>
+                                <a class="btn btn-sm btn-outline-secondary"><i class="fa fa-plus"></i> 添加</a>
+                                <a href="index.html" js-upload="true" class="btn btn-sm btn-outline-secondary"><i
+                                        class="fa fa-upload"></i> 上传</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="mozmd-editor" js-upload-url="/Admin/Pages/Content?handler=Upload" js-upload-data-id="1">
-                    <div class="mozmd-toolbar">
-                        <div class="mozmd-left">
-                            <a class="mozmd-syntax-header" title="标题"><i class="fa fa-header"></i></a>
-                            <a class="mozmd-syntax-bold" title="加粗"><i class="fa fa-bold"></i></a>
-                            <a class="mozmd-syntax-italic" title="斜体"><i class="fa fa-italic"></i></a>
-                            <a class="mozmd-syntax-code" title="斜体"><i class="fa fa-code"></i></a>
-                            <a class="mozmd-syntax-ul" title="列表"><i class="fa fa-list-ul"></i></a>
-                            <a class="mozmd-syntax-ol" title="排序"><i class="fa fa-list-ol"></i></a>
-                            <a class="mozmd-syntax-link" title="排序"><i class="fa fa-link"></i></a>
-                            <a class="mozmd-syntax-quote" title="引用"><i class="fa fa-quote-right"></i></a>
-                            <a class="mozmd-syntax-image" title="图片"><i class="fa fa-image"></i></a>
-                            <a class="mozmd-mode-preview" title="预览"><i class="fa fa-eye"></i></a>
+                <div class="tab-panel fade" id="core">
+                    <div class="mozmd-editor" js-upload-url="/Admin/Pages/Content?handler=Upload" js-upload-data-id="1">
+                        <div class="mozmd-toolbar">
+                            <div class="mozmd-left">
+                                <a class="mozmd-syntax-header" title="标题"><i class="fa fa-header"></i></a>
+                                <a class="mozmd-syntax-bold" title="加粗"><i class="fa fa-bold"></i></a>
+                                <a class="mozmd-syntax-italic" title="斜体"><i class="fa fa-italic"></i></a>
+                                <a class="mozmd-syntax-code" title="斜体"><i class="fa fa-code"></i></a>
+                                <a class="mozmd-syntax-ul" title="列表"><i class="fa fa-list-ul"></i></a>
+                                <a class="mozmd-syntax-ol" title="排序"><i class="fa fa-list-ol"></i></a>
+                                <a class="mozmd-syntax-link" title="排序"><i class="fa fa-link"></i></a>
+                                <a class="mozmd-syntax-quote" title="引用"><i class="fa fa-quote-right"></i></a>
+                                <a class="mozmd-syntax-image" title="图片"><i class="fa fa-image"></i></a>
+                                <a class="mozmd-mode-preview" title="预览"><i class="fa fa-eye"></i></a>
+                            </div>
+                            <div class="mozmd-right"><a class="mozmd-fullscreen" title="全屏显示"><i
+                                        class="fa fa-window-maximize"></i></a></div>
                         </div>
-                        <div class="mozmd-right"><a class="mozmd-fullscreen" title="全屏显示"><i
-                                    class="fa fa-window-maximize"></i></a></div>
+                        <div class="mozmd-source customScrollBar overlay" contenteditable="plaintext-only"># 段落示意：
+> 蚂蚁金服务设计平台`ant.design`，用最小的工作量，无缝接入蚂蚁金服生态， 提供跨越设计与开发的体验解决方案。</div>
+                        <div class="mozmd-preview customScrollBar overlay"></div><textarea class="hide mozmd-source-value"
+                            name="Input.Source"></textarea><textarea class="hide mozmd-html-value"
+                            name="Input.Html"></textarea>
                     </div>
-                    <div class="mozmd-source customScrollBar overlay" contenteditable="plaintext-only">
-                        # 段落示意：
-
-                        > 蚂蚁金服务设计平台`ant.design`，用最小的工作量，无缝接入蚂蚁金服生态， 提供跨越设计与开发的体验解决方案。</div>
-                    <div class="mozmd-preview customScrollBar overlay"></div><textarea class="hide mozmd-source-value"
-                        name="Input.Source"></textarea><textarea class="hide mozmd-html-value"
-                        name="Input.Html"></textarea>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import { queue } from './core';
-import 'eonasdan-bootstrap-datetimepicker';
+import './bootstrap-datetimepicker';
 /**
  * 为了兼容bootstrap 4.x，需要修改eonasdan-bootstrap-datetimepicker.js
  * 1.将'collapse in'改为'collapse show'
