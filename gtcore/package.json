@@ -1,6 +1,6 @@
 {
     "name": "gtcore",
-    "version": "0.0.39",
+    "version": "0.0.40",
     "description": "UI for GtCore framework.",
     "main": "dist/js/gtcore.min.js",
     "types": "index.d.ts",

@@ -273,15 +273,16 @@ queue(context => {
                         if (d.message && d.type) {
                             alert(d.message, d.type, d.type === StatusType.Success);
                         }
-                        else if (d.type === StatusType.Success && d.data && d.data.url) {
-                            toggle.trigger('uploaded', d.data.url);
-                            toggle.parent().find('.uploaded').each(function () {
-                                var that = $(this);
-                                if (that.is('input'))
-                                    that.val(d.data.url);
-                                else if (that.is('img'))
-                                    that.attr('src', d.data.url);
-                            });
+                        else if (d.data) {
+                            toggle.trigger('uploaded', d.data);
+                            if (d.data.url)
+                                toggle.parent().find('.uploaded').each(function () {
+                                    var that = $(this);
+                                    if (that.is('input'))
+                                        that.val(d.data.url);
+                                    else if (that.is('img'))
+                                        that.attr('src', d.data.url);
+                                });
                         }
                         current.remove();
                         toggle.enabled();
@@ -294,70 +295,6 @@ queue(context => {
                 });
             }).click();
             return false;
-        });
-    });
-    //file上传
-    $('[data-toggle=uploader]', context).exec(cur => {
-        cur.on('click', function () {
-            $('input[type=file][js-uploader]', context).data('target', cur).click();
-            return false;
-        });
-    });
-    $('[js-uploader]', context).exec(cur => {
-        if (!cur.is('input[type=file]')) {
-            return;
-        }
-        cur.on('change', function upload() {
-            var current = $(this);
-            var url = current.jsAttr('uploader');
-            var data = new FormData();
-            data.append("file", current[0].files[0]);
-            var ajaxData = current.jsAttrs('data');
-            if (ajaxData) {
-                for (const key in ajaxData) {
-                    data.append(key, ajaxData[key]);
-                }
-            }
-            $.ajax({
-                type: "POST",
-                url: url,
-                contentType: false,
-                processData: false,
-                data: data,
-                headers: headers(),
-                success: function (d) {
-                    $('#js-loading').fadeOut();
-                    if (current.jsAttr('success')) {
-                        if (call(current.jsAttr('success'), d.data, current)) {
-                            return;
-                        }
-                    }
-                    if (d.message && d.type)
-                        alert(d.message, d.type, d.type === StatusType.Success);
-                    else if (d.type === StatusType.Success && d.data && d.data.url) {
-                        var target = current.data('target');
-                        if (target) {
-                            target.trigger('uploaded', d.data.url);
-                            target = target.parent();
-                        } else
-                            target = current.parent();
-                        target.find('.uploaded').each(function () {
-                            var that = $(this);
-                            if (that.is('input'))
-                                that.val(d.data.url);
-                            else if (that.is('img'))
-                                that.attr('src', d.data.url);
-                        });
-                    }
-                },
-                error: function (e) {
-                    $('#js-loading').fadeOut();
-                    onErrorHandler(e);
-                },
-                complete: function () {
-                    current.replaceWith(current.clone().on('change', upload));
-                }
-            });
         });
     });
 });
