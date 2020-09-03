@@ -522,7 +522,7 @@
                             <div class="form-group mr-2">
                                 <label>输入文本</label>
                                 <div class="input-group input-group-range">
-                                    <input js-date="datetime" type="text" class="form-control form-control-sm" />
+                                    <input onclick="code('.usetwentyfour');"  js-date="datetime" type="text" class="form-control form-control-sm" />
                                     <label>~</label>
                                     <input js-date="datetime" type="text"
                                         class="form-control form-control-sm radius-right" />
@@ -548,6 +548,7 @@
                             </div>
                         </div>
                     </div>
+                    <div id="code"></div>
                 </div>
                 <div class="tab-panel fade" id="core">
                     <div class="mozmd-editor" js-upload-url="/Admin/Pages/Content?handler=Upload" js-upload-data-id="1">
@@ -580,6 +581,14 @@
             Copyright &copy;2018 gtcore.com ver 1.0
         </footer>
     </main>
+    <script>
+        //onclick="code('.usetwentyfour');" 
+        function code(selector) {
+            setTimeout(function () {
+                document.querySelector('#code').innerHTML = document.querySelector(selector).outerHTML;
+            }, 3000);
+        }
+    </script>
     <script>
         $('#test').exec(current => {
             current.on('checked', (e, c) => {
@@ -648,15 +657,6 @@
         <button type="button" js-enabled="5" onclick="$(this).disabled()" class="btn btn-sm btn-outline-secondary disabled"
             disabled="disabled">延迟</button>
     </div>
-    <div id="code"></div>
-    <script>
-        //onclick="code('.usetwentyfour');" 
-        function code(selector) {
-            setTimeout(function () {
-                document.querySelector('#code').innerHTML = document.querySelector(selector).outerHTML;
-            }, 3000);
-        }
-    </script>
     -->
     <!--  <div js-resize="1920x1080" js-resize-syntax="xy" css-width="1920" css-height="1080" style="width:1920px;height:1080px;border:1px solid #ccc;position: relative;">
         <div class="scalable gt-treebox">

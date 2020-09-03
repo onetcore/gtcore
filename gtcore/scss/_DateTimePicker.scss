@@ -378,3 +378,15 @@ $bs-datetimepicker-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25) !default;
     clip: rect(0,0,0,0);
     border: 0;
   }
+
+.bootstrap-datetimepicker-widget{
+    width:280px!important;
+}
+
+.bootstrap-datetimepicker-widget table td.day,.bootstrap-datetimepicker-widget table th {
+    height: 28px;
+    line-height: 28px;
+    width: 28px;
+    padding: 0;
+    margin: 0;
+}

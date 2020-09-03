@@ -598,3 +598,7 @@ td.checkbox-only {
 .no-before:before{
     display: none;
 }
+
+.modal-fullbody .modal-body {
+    padding: 0 !important;
+}
