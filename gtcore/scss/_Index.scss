@@ -289,6 +289,9 @@ body.gt-skin {
 
     .gt-toolbar .btn-sm {
         font-size: 13px;
+        i.fa, .feather{
+            margin-right: 5px;
+        }
     }
 
     .gt-toolbar label {
@@ -601,4 +604,85 @@ td.checkbox-only {
 
 .modal-fullbody .modal-body {
     padding: 0 !important;
+}
+
+.label{
+    display: inline-block;
+    padding: 2px 5px;
+    font-size:12px;
+    line-height: 14px;
+    color:$secondary;
+    border: 1px solid $secondary;
+    border-radius: 4px;
+}
+
+.label-info{
+    border-color:$info;
+    color:$info;
+}
+
+.label-bg-info{
+    color:$white;
+    border-color:$info;
+    background-color:$info;
+}
+
+.label-success{
+    border-color:$success;
+    color:$success;
+}
+
+.label-bg-success{
+    color:$white;
+    border-color:$success;
+    background-color:$success;
+}
+
+.label-warning{
+    border-color:$warning;
+    color:$warning;
+}
+
+.label-bg-warning{
+    color:$white;
+    border-color:$warning;
+    background-color:$warning;
+}
+
+.label-danger{
+    border-color:$danger;
+    color:$danger;
+}
+.label-bg-danger{
+    color:$white;
+    border-color:$danger;
+    background-color:$danger;
+}
+
+.label-dark{
+    border-color:$dark;
+    color:$dark;
+}
+.label-bg-dark{
+    color:$white;
+    border-color:$dark;
+    background-color:$dark;
+}
+
+.label-primary{
+    border-color:$primary;
+    color:$primary;
+}
+.label-bg-primary{
+    color:$white;
+    border-color:$primary;
+    background-color:$primary;
+}
+
+.pagination .page-item span{
+    line-height: 1.25;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    display: block;
+    padding: .25rem .75rem .75rem;
 }

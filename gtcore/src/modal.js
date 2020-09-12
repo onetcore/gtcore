@@ -16,10 +16,10 @@ $.fn.loadModal = function (url) {
         .data('target', s.targetElement()));
     url = url || s.attr('href') || s.jsAttr('url');
     var data = s.jsAttrs('data');
-    for(const key in data){
-        if(url.indexOf('?')==-1)
+    for (const key in data) {
+        if (url.indexOf('?') == -1)
             url += '?';
-        else 
+        else
             url += '&';
         url += key + '=' + data[key];
     }
@@ -100,7 +100,14 @@ function msgValid(modal, state) {
     }
 
     for (const key in state) {
-        const element = modal.find(`[data-valmsg-for="${key}"]`);
+        let element = modal.find(`[data-valmsg-for="${key}"]`);
+        if (element.length == 0) {
+            let char = key.charAt(0);
+            if (char >= 'a' && char <= 'z') { 
+                let current = char.toUpperCase() + key.substr(1);
+                element = modal.find(`[data-valmsg-for="${current}"]`); 
+            }
+        }
         if (element.length)
             element.html(state[key]).show();
     }
