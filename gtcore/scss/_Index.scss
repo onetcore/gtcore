@@ -287,6 +287,10 @@ body.gt-skin {
     justify-content: flex-start;
 }
 
+.gt-toolbar .input-group>.form-control {
+    z-index: 3;
+}
+
     .gt-toolbar .btn-sm {
         font-size: 13px;
         i.fa, .feather{
@@ -383,9 +387,11 @@ body.gt-skin {
 }
 
 
-td.data-action,
-th.data-action {
-    text-align: center;
+td.data-action a .fa,
+th.data-action a .fa,
+td.data-action a .feather,
+th.data-action a .feather {
+    margin-right: 5px;
 }
 
 @include media-breakpoint-down(sm) {
@@ -610,73 +616,8 @@ td.checkbox-only {
     display: inline-block;
     padding: 2px 5px;
     font-size:12px;
-    line-height: 14px;
-    color:$secondary;
-    border: 1px solid $secondary;
-    border-radius: 4px;
-}
-
-.label-info{
-    border-color:$info;
-    color:$info;
-}
-
-.label-bg-info{
-    color:$white;
-    border-color:$info;
-    background-color:$info;
-}
-
-.label-success{
-    border-color:$success;
-    color:$success;
-}
-
-.label-bg-success{
-    color:$white;
-    border-color:$success;
-    background-color:$success;
-}
-
-.label-warning{
-    border-color:$warning;
-    color:$warning;
-}
-
-.label-bg-warning{
-    color:$white;
-    border-color:$warning;
-    background-color:$warning;
-}
-
-.label-danger{
-    border-color:$danger;
-    color:$danger;
-}
-.label-bg-danger{
-    color:$white;
-    border-color:$danger;
-    background-color:$danger;
-}
-
-.label-dark{
-    border-color:$dark;
-    color:$dark;
-}
-.label-bg-dark{
-    color:$white;
-    border-color:$dark;
-    background-color:$dark;
-}
-
-.label-primary{
-    border-color:$primary;
-    color:$primary;
-}
-.label-bg-primary{
-    color:$white;
-    border-color:$primary;
-    background-color:$primary;
+    line-height: 14px;    
+    margin: 0;
 }
 
 .pagination .page-item span{
