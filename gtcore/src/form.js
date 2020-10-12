@@ -115,13 +115,16 @@ queue(context => {
         }
     });
     //修改webpage中模型名称
-    $('.gt-toolbar form[method=get]', context).exec(current => {
-        current.find('input,select,textarea').each(function () {
-            var name = this.name.toLowerCase();
-            var index = name.indexOf('.');
-            if (index > 0)
-                name = name.substr(index + 1);
-            this.name = name;
-        });
+    $('.gt-toolbar form', context).exec(current => {
+        var method = current.attr('method') || 'get';
+        if (method.toLowerCase() === 'get') {
+            current.find('input,select,textarea').each(function () {
+                var name = this.name.toLowerCase();
+                var index = name.indexOf('.');
+                if (index > 0)
+                    name = name.substr(index + 1);
+                this.name = name;
+            });
+        }
     });
 });
