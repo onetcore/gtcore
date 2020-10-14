@@ -1,7 +1,6 @@
 import {
     queue,
-    options,
-    call
+    options
 } from './core';
 import {
     alert,
@@ -196,6 +195,11 @@ queue(context => {
                 var ids = current.find('.data-content').checkedVal();
                 if (ids.length == 0) {
                     alert(options.ajax.selectedFirst);
+                    return false;
+                }
+                if (action === 'modal') {
+                    url = url.appendQuery('ids', ids.join(','))
+                    cur.loadModal(url);
                     return false;
                 }
                 return ajaxAction(cur, url, action, ids);

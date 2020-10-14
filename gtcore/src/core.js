@@ -191,6 +191,12 @@ String.prototype.toDateString = function (fmt) {
 String.prototype.toCamelCase = function () {
     return this.replace(/-([a-z])/ig, (all, cur) => cur.toUpperCase());
 }
+//附加查询实例到URL
+String.prototype.appendQuery = function (key, value) {
+    if (this.indexOf('?') === -1)
+        return this + '?' + key + '=' + value;
+    return this + '&' + key + '=' + value;
+}
 //移除重复值
 Array.prototype.distinct = function () {
     return this.reduce(function (dest, src) {
