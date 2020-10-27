@@ -361,6 +361,9 @@ header>.navbar{
                         margin-bottom: 4px;
                         font-size: 14px;
                         line-height: 22px;
+                        max-width: 240px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
 
                         .mark {
                             padding: 2px 5px;

@@ -179,3 +179,23 @@ input.js-radio {
 .data-view,
 .data-content {box-sizing: border-box;}
 #ajax-protected-form{display: none;}
+
+.input-checkbox-preppend{
+    padding: 6px 10px;
+    border: 1px solid #ced4da;
+    border-top-left-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+    margin-right: -1px;
+}
+
+.input-checkbox-append{
+    padding: 6px 10px;
+    border: 1px solid #ced4da;
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    margin-left: -1px;
+}
+
+.input-group-sm .input-checkbox-preppend,.input-group-sm .input-checkbox-append{
+    padding: 2px 8px;
+}
