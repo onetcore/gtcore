@@ -69,7 +69,7 @@ queue(context => {
     $('.gt-checkall', context).click(function () {
         var dataView = $(this).parents('.data-view');
         var actionbar = $('.gt-toolbar', context);
-        var target = $(this).targetElement(dataView.find('.data-content').find('.gt-checkbox'));
+        var target = $(this).targetElement(dataView.find('.data-content').find('.gt-checkbox').not('.disabled'));
         $(this).removeClass('some-checked');
         if ($(this).hasClass('checked')) {
             target.addClass('checked').parents('tr').addClass('active');
