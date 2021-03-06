@@ -298,6 +298,12 @@ body.gt-skin {
         }
     }
 
+    .gt-toolbar .input-group-append>.btn-sm{
+        i.fa, .feather{
+            margin-right: 0;
+        }
+    }
+
     .gt-toolbar label {
         margin: 0;
     }

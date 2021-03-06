@@ -43,9 +43,8 @@ queue(context => {
         if (current.is(':checked')) wrapper.addClass('checked');
         wrapper.append(current.clone(true));
         wrapper.append('<label class="box-wrapper"><div class="box-checked"></div></label>');
-        var label = current.parent().find('label[for=' + current.attr('id') + ']');
-        if (label.length) wrapper.append('<span>' + label.html() + '</span>');
-        label.remove();
+        var label = current.attr('.label');
+        if (label) wrapper.append('<span>' + label + '</span>');
         current.replaceWith(wrapper);
     });
     //checkbox
